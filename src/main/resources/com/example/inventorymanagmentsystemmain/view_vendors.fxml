@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
+<?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="594.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inventorymanagmentsystemmain.ViewVendorsController">
+   <children>
+      <MFXTableView fx:id="viewVendorsTableView" layoutX="5.0" layoutY="6.0" prefHeight="583.0" prefWidth="918.0" style="-fx-font-size: 13;" />
+      <MFXTableColumn fx:id="vendorName" layoutX="54.0" layoutY="6.0" prefHeight="42.0" prefWidth="279.0" text="VENDOR NAME" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </MFXTableColumn>
+      <MFXTableColumn fx:id="vendorId" layoutX="333.0" layoutY="6.0" prefHeight="42.0" prefWidth="100.0" text="VENDOR ID" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </MFXTableColumn>
+      <MFXTableColumn fx:id="status" layoutX="433.0" layoutY="6.0" prefHeight="42.0" prefWidth="100.0" text="STATUS" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </MFXTableColumn>
+      <MFXTableColumn fx:id="gender" layoutX="533.0" layoutY="6.0" minWidth="94.0" prefHeight="42.0" prefWidth="94.0" text="GENDER" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </MFXTableColumn>
+      <MFXTableColumn fx:id="dateRegistered" layoutX="627.0" layoutY="6.0" prefHeight="42.0" prefWidth="142.0" text="DATE REGISTERED" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </MFXTableColumn>
+      <MFXTableColumn fx:id="telepnoneNumber" layoutX="769.0" layoutY="6.0" prefHeight="42.0" prefWidth="152.0" text="TELEPHONE NUMBER" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </MFXTableColumn>
+      <MFXTableColumn fx:id="number" layoutX="7.0" layoutY="8.0" minWidth="48.0" prefHeight="42.0" prefWidth="48.0" text="NO." wrapText="true">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </MFXTableColumn>
+      <MFXButton fx:id="refreshBtn" contentDisplay="GRAPHIC_ONLY" layoutX="856.0" layoutY="544.0" onMouseClicked="#refreshViewVendorsTable" rippleAnimateShadow="true" rippleRadius="100.0" style="-fx-background-radius: 100; -fx-background-color: transparent;">
+         <graphic>
+            <ImageView fx:id="refreshImg" fitHeight="25.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@refresh_48px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+   </children>
+</AnchorPane>

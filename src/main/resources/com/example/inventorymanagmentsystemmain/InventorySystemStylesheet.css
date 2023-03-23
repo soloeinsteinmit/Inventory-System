@@ -1,0 +1,62 @@
+
+#underline:hover{
+    -fx-font-weight: bold;
+}
+
+#soften:hover{
+    -fx-font-weight: normal;
+}
+
+.softenColor{
+    -fx-background-color:  #1445a9;
+    -fx-background-radius: 3;
+}
+
+.softenColor:hover{
+    -fx-background-color: #1F6CC5;
+    -fx-background-radius: 3;
+}
+
+.googleButton{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 3;
+}
+
+.googleButton:hover{
+    -fx-background-color: #EBEBEB;
+    -fx-background-radius: 3;
+}
+
+.showPassword{
+    -fx-opacity: 1;
+}
+
+.showPassword:pressed{
+    -fx-opacity: 0;
+}
+
+.closebuttons{
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #1445a9;
+}
+.closebuttons:hover{
+    -fx-background-color: #1445a9;
+    -fx-text-fill: #FFFFFF;
+}
+.closebuttons:pressed{
+    -fx-background-color: #C71615;
+    -fx-text-fill: #FFFFFF;
+}
+
+.minimizeButtons{
+    -fx-background-color: #1445a9;
+    -fx-text-fill: #FFFFFF;
+}
+.minimizeButtons:hover{
+    -fx-background-color: #FFFFFF;
+    -fx-text-fill: #1445a9;
+}
+.minimizeButtons:pressed{
+    -fx-background-color: #C71615;
+    -fx-text-fill: #FFFFFF;
+}

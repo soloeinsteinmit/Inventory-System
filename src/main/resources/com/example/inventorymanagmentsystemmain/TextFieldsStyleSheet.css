@@ -1,0 +1,33 @@
+.mfx-text-field {
+	-mfx-main: #1445A9;
+
+	-fx-background-color: white;
+	-fx-background-radius: 5;
+	-fx-border-color: lightgray;
+	-fx-border-radius: 5;
+	-fx-padding: 5;
+
+	-fx-font-family: "Open Sans Regular";
+}
+
+.mfx-text-field:focus-within {
+	-fx-background-insets: 2;
+	-fx-border-color: -mfx-main;
+	-fx-border-width: 1.5;
+	-fx-border-insets: -0.5;
+}
+
+.mfx-date-picker:focus-within .icon {
+	-mfx-color: #1445A9;
+}
+
+.mfx-date-picker .date-picker-popup .months-combo:focus-within,
+.mfx-date-picker .date-picker-popup .years-combo:focus-within {
+	-fx-background-color: #f8f7fa;
+	-fx-text-fill: #1445A9;
+}
+
+.mfx-date-picker .date-picker-popup .months-combo .virtual-flow .mfx-combo-box-cell:selected .label,
+.mfx-date-picker .date-picker-popup .years-combo .virtual-flow .mfx-combo-box-cell:selected .label {
+	-fx-text-fill: #1445A9;
+}

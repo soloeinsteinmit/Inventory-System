@@ -1,0 +1,199 @@
+package com.example.inventorymanagmentsystemmain;
+
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXDialog;
+import io.github.palexdev.materialfx.controls.MFXButton;
+import io.github.palexdev.materialfx.controls.MFXDatePicker;
+import io.github.palexdev.materialfx.controls.MFXRadioButton;
+import io.github.palexdev.materialfx.controls.MFXTextField;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.ToggleGroup;
+import javafx.scene.effect.BoxBlur;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.StackPane;
+import tray.notification.NotificationType;
+
+import java.net.URL;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ResourceBundle;
+
+public class RegisterVendorController implements Initializable {
+
+    @FXML
+    private JFXButton addVendorButton;
+
+    @FXML
+    private MFXRadioButton adminCheckbox;
+
+    @FXML
+    private AnchorPane anchorPane;
+
+    @FXML
+    private MFXDatePicker dateRegisteredField;
+
+    @FXML
+    private MFXRadioButton femaleCheckbox;
+
+    @FXML
+    private MFXTextField fullNameField;
+
+    @FXML
+    private ToggleGroup gender;
+
+    @FXML
+    private JFXButton generateIdBtn;
+
+    @FXML
+    private MFXTextField idField;
+
+    @FXML
+    private MFXRadioButton maleCheckbox;
+
+    @FXML
+    private MFXRadioButton nonAdminCheckbox;
+
+    @FXML
+    private JFXButton removeVendorBtn;
+
+    @FXML
+    private JFXDialog dialog;
+
+    @FXML
+    private StackPane stackPane;
+    @FXML
+    private ToggleGroup status;
+
+    @FXML
+    private MFXTextField telephoneNoField;
+    @FXML
+    private MFXButton closeBtn;
+    @FXML
+    private MFXButton rVendorBtn;
+
+    @FXML
+    private MFXTextField vendorIdField;
+
+    private static String dateRegistered;
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        dialog.setDialogContainer(stackPane);
+    }
+
+    private static String g;
+    private static String s;
+    @FXML
+    void addVendor(MouseEvent event) throws SQLException {
+        if (DataAccess.checkId(idField.getText()) && !idField.getText().isEmpty() && !fullNameField.getText().isEmpty()
+                && !telephoneNoField.getText().isEmpty()){
+
+            if (maleCheckbox.isSelected()){
+                g = maleCheckbox.getText();
+            }else {
+                g = femaleCheckbox.getText();
+            }
+
+            if (adminCheckbox.isSelected()){
+                s = adminCheckbox.getText();
+            }else {
+                s = nonAdminCheckbox.getText();
+            }
+
+            DataAccess.registerVendor(fullNameField.getText(), idField.getText(),
+                    s, g, telephoneNoField.getText(), dateRegistered);
+
+            System.out.println("Gender  = "+ g);
+
+            AlertNotification.trayNotification("SUCCESS", "YOU HAVE SUCCESSFULLY ADDED "+
+                    fullNameField.getText().toUpperCase()+".", 5, NotificationType.SUCCESS);
+
+
+            /*
+            *
+            * && !idField.getText().isEmpty() && !fullNameField.getText().isEmpty()
+        && !telephoneNoField.getText().isEmpty() && !gender.getSelectedToggle().isSelected()
+                && !status.getSelectedToggle().isSelected()
+            * */
+        }else {
+            AlertNotification.trayNotification("ERROR", "PLEASE FILL IN ALL THE FORMS "
+                    , 5, NotificationType.ERROR);
+        }
+
+
+        generateIdBtn.setDisable(false);
+        idField.clear();
+        fullNameField.clear();
+        telephoneNoField.clear();
+        dateRegisteredField.clear();
+        maleCheckbox.setSelected(false);
+        femaleCheckbox.setSelected(false);
+        adminCheckbox.setSelected(false);
+        nonAdminCheckbox.setSelected(false);
+    }
+
+    @FXML
+    void generateId(MouseEvent event) {
+        /*Random acc_id = new Random();
+        int min = 111111;
+        int max = 999999;
+        idField.setText(String.valueOf(acc_id.nextInt(max - min + 1)+min));*/
+        idField.setText(RandomIdGenerator.randomId(111111, 999999));
+        if (!idField.getText().isEmpty()){
+            generateIdBtn.setDisable(true);
+        }
+
+    }
+
+    BoxBlur blur = new BoxBlur(3, 3, 3);
+    @FXML
+    void removeVendor(MouseEvent event) {
+        anchorPane.setEffect(blur);
+        dialog.show();
+
+        anchorPane.setDisable(true);
+
+        closeBtn.setOnMouseClicked(event1 -> {
+            anchorPane.setDisable(false);
+            dialog.setOnDialogClosed(e->{
+                anchorPane.setEffect(null);
+            });
+            vendorIdField.clear();
+            dialog.close();
+        });
+
+        rVendorBtn.setOnMouseClicked(mouseEvent->{
+            try {
+                if (!vendorIdField.getText().isEmpty() && !DataAccess.checkId(vendorIdField.getText())){
+                    DataAccess.removeVendor(vendorIdField.getText());
+
+                    anchorPane.setDisable(false);
+                    dialog.setOnDialogClosed(e->{
+                        anchorPane.setEffect(null);
+                    });
+                    vendorIdField.clear();
+                    dialog.close();
+                }else {
+                    AlertNotification.trayNotification("ERROR", "PLEASE FILL IN THE FORMS",
+                            4, NotificationType.ERROR);
+                }
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
+    }
+
+    @FXML
+    void getDate(ActionEvent event) {
+        LocalDate date = dateRegisteredField.getValue();
+        dateRegistered = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+    }
+
+}

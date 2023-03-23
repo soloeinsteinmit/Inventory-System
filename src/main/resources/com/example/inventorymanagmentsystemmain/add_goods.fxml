@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="594.0" prefWidth="940.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inventorymanagmentsystemmain.AddGoodsController">
+
+    <children>
+      <MFXFilterComboBox fx:id="goodsCategoryComboBox" floatMode="DISABLED" layoutX="55.0" layoutY="96.0" prefHeight="35.0" prefWidth="257.0" promptText="Manish" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="13.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </MFXFilterComboBox>
+      <MFXFilterComboBox fx:id="goodsName1" floatMode="DISABLED" layoutX="55.0" layoutY="175.0" prefHeight="35.0" prefWidth="257.0" promptText="Tomtom" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="13.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </MFXFilterComboBox>
+      <MFXButton fx:id="addGoods" layoutX="362.0" layoutY="238.0" onMouseClicked="#addGoods" style="-fx-background-color: TRANSPARENT;" text="ADD GOODS" textFill="#1445a9">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@add_48px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Segoe UI Semibold Italic" size="13.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="removeGoods" layoutX="496.0" layoutY="238.0" onMouseClicked="#removeGoods" style="-fx-background-color: TRANSPARENT;" text="REMOVE GOODS" textFill="#1445a9">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@minus_48px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Segoe UI Semibold Italic" size="13.0" />
+         </font>
+      </MFXButton>
+      <Label layoutX="55.0" layoutY="153.0" text="Good Name" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <MFXButton fx:id="saveBtn" layoutX="795.0" layoutY="533.0" onMouseClicked="#saveGoods" prefHeight="38.0" prefWidth="95.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="SAVE" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="13.0" />
+         </font>
+      </MFXButton>
+      <MFXTextField fx:id="quantityField" floatMode="DISABLED" layoutX="357.0" layoutY="98.0" prefHeight="35.0" prefWidth="143.0" promptText="1000" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTextField>
+      <Label layoutX="357.0" layoutY="76.0" text="Quantity" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="buyingPrice" floatMode="DISABLED" layoutX="565.0" layoutY="98.0" prefHeight="35.0" prefWidth="257.0" promptText="49.99" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTextField>
+      <Label layoutX="565.0" layoutY="76.0" text="Buying Price per/item" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="sellingPriceField" floatMode="DISABLED" layoutX="357.0" layoutY="175.0" prefHeight="35.0" prefWidth="143.0" promptText="50.99" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTextField>
+      <Label layoutX="357.0" layoutY="153.0" text="Selling Price" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="grossPriceField" allowEdit="false" floatMode="DISABLED" layoutX="571.0" layoutY="175.0" onMouseClicked="#calculateGross" onMousePressed="#calculateGross" prefHeight="35.0" prefWidth="143.0" promptText="50.99" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTextField>
+      <Label layoutX="571.0" layoutY="153.0" text="Gross Price" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="totalPriceField" floatMode="DISABLED" layoutX="742.0" layoutY="175.0" prefHeight="35.0" prefWidth="143.0" promptText="99.99" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTextField>
+      <Label layoutX="742.0" layoutY="153.0" text="Total Price" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="76.0" text="Good Category" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="55.0" layoutY="307.0" text="ADD NEW GOODS TO INVENTORY" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="newGoodsName" floatMode="DISABLED" layoutX="55.0" layoutY="358.0" prefHeight="35.0" prefWidth="257.0" promptText="Tomtom" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTextField>
+      <Label layoutX="55.0" layoutY="339.0" text="Enter good name" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <MFXFilterComboBox fx:id="goodsCategoryComboBoxNew" floatMode="DISABLED" layoutX="368.0" layoutY="359.0" prefHeight="35.0" prefWidth="257.0" promptText="Manish" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="13.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </MFXFilterComboBox>
+      <Label layoutX="368.0" layoutY="339.0" text="Select good category" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <MFXButton fx:id="addNewGoods" layoutX="643.0" layoutY="361.0" onMouseClicked="#addNewGoods" style="-fx-background-color: TRANSPARENT;" text="ADD NEW GOOD TO INVENTORY" textFill="#1445a9">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@duplicate_48px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Segoe UI Semibold Italic" size="13.0" />
+         </font>
+      </MFXButton>
+      <Label layoutX="55.0" layoutY="436.0" text="ADD NEW CATEGORY TO INVENTORY" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="newCategoryName" floatMode="DISABLED" layoutX="55.0" layoutY="484.0" prefHeight="35.0" prefWidth="257.0" promptText="Tomtom" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTextField>
+      <Label layoutX="55.0" layoutY="465.0" text="Enter category name" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <MFXButton fx:id="addNewCategory" layoutX="373.0" layoutY="486.0" onMouseClicked="#addNewCategory" style="-fx-background-color: TRANSPARENT;" text="ADD NEW CATEGORY TO INVENTORY" textFill="#1445a9">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@add_to_collection_48px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Segoe UI Semibold Italic" size="13.0" />
+         </font>
+      </MFXButton>
+      <MFXButton fx:id="refreshBtn" contentDisplay="GRAPHIC_ONLY" layoutX="870.0" layoutY="14.0" onMouseClicked="#refresh" prefHeight="32.0" prefWidth="28.0">
+         <graphic>
+            <ImageView fx:id="refreshImg" fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@refresh_48px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+    </children>
+</AnchorPane>

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDialog?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
+<?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<StackPane fx:id="stackPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inventorymanagmentsystemmain.RegisterVendorController">
+   <children>
+      <AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="594.0" prefWidth="940.0" style="-fx-background-color: #FFFFFF;" stylesheets="@InventorySystemStylesheet.css">
+         <children>
+            <Circle fill="#a7c5e0" layoutX="869.0" layoutY="69.0" radius="123.0" stroke="WHITE" strokeType="INSIDE" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="463.0" layoutX="89.0" layoutY="60.0" stroke="#ffffeb" strokeType="INSIDE" width="782.0">
+               <effect>
+                  <DropShadow height="90.62" radius="44.81" width="90.62">
+                     <color>
+                        <Color red="0.6549019813537598" green="0.772549033164978" blue="0.8784313797950745" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Rectangle>
+            <Circle fill="#1445a9" layoutX="111.0" layoutY="519.0" radius="181.0" stroke="#1445a9" strokeType="INSIDE" />
+            <Circle fill="WHITE" layoutX="112.0" layoutY="514.0" radius="123.0" stroke="WHITE" strokeType="INSIDE" />
+            <BorderPane layoutX="89.0" layoutY="60.0" prefHeight="463.0" prefWidth="782.0">
+               <left>
+                  <AnchorPane prefHeight="472.0" prefWidth="372.0" style="-fx-background-color: #1445a9;" BorderPane.alignment="CENTER">
+                     <children>
+                        <ImageView fitHeight="227.0" fitWidth="274.0" layoutX="44.0" layoutY="111.0" preserveRatio="true">
+                           <image>
+                              <Image url="@inventory-management-system.png" />
+                           </image>
+                        </ImageView>
+                        <Circle fill="#45cead" layoutX="229.0" layoutY="134.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="229.0" layoutY="108.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="229.0" layoutY="86.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="229.0" layoutY="65.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="229.0" layoutY="41.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="229.0" layoutY="17.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="249.0" layoutY="134.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="249.0" layoutY="108.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="249.0" layoutY="86.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="249.0" layoutY="65.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="249.0" layoutY="41.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="249.0" layoutY="17.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="266.0" layoutY="134.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="266.0" layoutY="108.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="266.0" layoutY="86.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="266.0" layoutY="65.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="266.0" layoutY="41.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="266.0" layoutY="17.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="276.0" layoutY="134.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="276.0" layoutY="108.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="276.0" layoutY="86.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="276.0" layoutY="65.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="276.0" layoutY="41.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="276.0" layoutY="17.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="292.0" layoutY="134.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="292.0" layoutY="108.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="292.0" layoutY="86.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="292.0" layoutY="65.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="292.0" layoutY="41.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="292.0" layoutY="17.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="310.0" layoutY="134.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="310.0" layoutY="108.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="310.0" layoutY="86.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="310.0" layoutY="65.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="310.0" layoutY="41.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="310.0" layoutY="17.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="321.0" layoutY="134.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="321.0" layoutY="108.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="321.0" layoutY="86.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="321.0" layoutY="65.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="321.0" layoutY="41.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="321.0" layoutY="17.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="341.0" layoutY="134.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="341.0" layoutY="108.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="341.0" layoutY="86.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="341.0" layoutY="65.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="341.0" layoutY="41.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="341.0" layoutY="17.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="359.0" layoutY="134.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="359.0" layoutY="108.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="359.0" layoutY="86.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="359.0" layoutY="65.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="359.0" layoutY="41.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="359.0" layoutY="17.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="9.0" layoutY="360.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="9.0" layoutY="379.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="9.0" layoutY="397.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="9.0" layoutY="417.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="9.0" layoutY="436.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="9.0" layoutY="455.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="19.0" layoutY="360.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="19.0" layoutY="379.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="19.0" layoutY="397.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="19.0" layoutY="417.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="19.0" layoutY="436.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="19.0" layoutY="455.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="37.0" layoutY="360.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="37.0" layoutY="379.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="37.0" layoutY="397.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="37.0" layoutY="417.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="37.0" layoutY="436.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="37.0" layoutY="455.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="53.0" layoutY="360.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="53.0" layoutY="379.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="53.0" layoutY="397.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="53.0" layoutY="417.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="53.0" layoutY="436.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="53.0" layoutY="455.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="63.0" layoutY="360.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="63.0" layoutY="379.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="63.0" layoutY="397.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="63.0" layoutY="417.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="63.0" layoutY="436.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="63.0" layoutY="455.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="81.0" layoutY="379.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="81.0" layoutY="417.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="82.0" layoutY="436.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="82.0" layoutY="455.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="100.0" layoutY="379.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="101.0" layoutY="417.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="101.0" layoutY="436.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Circle fill="#45cead" layoutX="101.0" layoutY="455.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                        <Text fill="WHITE" layoutX="48.0" layoutY="372.0" strokeType="OUTSIDE" strokeWidth="0.0" text="WELCOME TO INVENTORY MANAGEMENT SYSTEM" textAlignment="CENTER" wrappingWidth="320.1982421875">
+                           <font>
+                              <Font name="Segoe UI Black" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="60.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="HOME">
+                           <font>
+                              <Font name="Segoe UI Bold" size="12.0" />
+                           </font>
+                        </Text>
+                        <Circle fill="#45cead" layoutX="81.0" layoutY="397.0" opacity="0.31" radius="3.0" stroke="#1445a9" strokeType="INSIDE" />
+                     </children>
+                  </AnchorPane>
+               </left>
+               <right>
+                  <AnchorPane prefHeight="473.0" prefWidth="407.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+                     <children>
+                        <Text layoutX="114.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Register Vendor" wrappingWidth="174.720703125">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="23.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="55.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full name">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="54.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                        </Text>
+                        <JFXButton fx:id="addVendorButton" layoutX="56.0" layoutY="373.0" minWidth="52.0" onMouseClicked="#addVendor" prefHeight="38.0" prefWidth="298.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="Add vendor" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <JFXButton fx:id="generateIdBtn" layoutX="223.0" layoutY="207.0" minWidth="52.0" onMouseClicked="#generateId" prefHeight="39.0" prefWidth="126.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="Generate ID" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <MFXTextField fx:id="fullNameField" floatMode="DISABLED" layoutX="56.0" layoutY="74.0" minHeight="40.0" prefHeight="40.0" prefWidth="291.0" promptText="Berewonu Miki" stylesheets="@TextFieldsStyleSheet.css">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets left="10.0" />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </MFXTextField>
+                        <MFXTextField fx:id="idField" alignment="CENTER" allowEdit="false" floatMode="DISABLED" layoutX="54.0" layoutY="206.0" minHeight="40.0" prefHeight="40.0" prefWidth="153.0" promptText="123456" stylesheets="@TextFieldsStyleSheet.css">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets left="10.0" />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </MFXTextField>
+                        <MFXDatePicker fx:id="dateRegisteredField" layoutX="55.0" layoutY="141.0" onAction="#getDate" prefHeight="38.0" prefWidth="294.0" promptText="Jan 15, 2014" stylesheets="@TextFieldsStyleSheet.css">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </MFXDatePicker>
+                        <Text layoutX="55.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date registered">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                        </Text>
+                        <JFXButton fx:id="removeVendorBtn" layoutX="55.0" layoutY="416.0" minWidth="52.0" onMouseClicked="#removeVendor" prefHeight="38.0" prefWidth="299.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="Remove vendor" textFill="WHITE">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </JFXButton>
+                        <MFXRadioButton fx:id="maleCheckbox" gap="5.0" layoutX="112.0" layoutY="256.0" radioGap="4.5" radius="7.0" text="Male">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="gender" />
+                           </toggleGroup>
+                        </MFXRadioButton>
+                        <MFXRadioButton fx:id="femaleCheckbox" gap="5.0" layoutX="172.0" layoutY="256.0" radioGap="4.5" radius="7.0" text="Female" toggleGroup="$gender">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                        </MFXRadioButton>
+                        <Text layoutX="54.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                        </Text>
+                        <MFXRadioButton fx:id="adminCheckbox" gap="5.0" layoutX="114.0" layoutY="283.0" radioGap="4.5" radius="7.0" text="Admin">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="status" />
+                           </toggleGroup>
+                        </MFXRadioButton>
+                        <MFXRadioButton fx:id="nonAdminCheckbox" gap="5.0" layoutX="193.0" layoutY="283.0" radioGap="4.5" radius="7.0" text="Non-Admin" toggleGroup="$status">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                        </MFXRadioButton>
+                        <Text layoutX="56.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="55.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone number">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                        </Text>
+                        <MFXTextField fx:id="telephoneNoField" floatMode="DISABLED" layoutX="56.0" layoutY="325.0" minHeight="40.0" prefHeight="40.0" prefWidth="291.0" promptText="1234567890" stylesheets="@TextFieldsStyleSheet.css">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="13.0" />
+                           </font>
+                           <opaqueInsets>
+                              <Insets left="10.0" />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </MFXTextField>
+                     </children>
+                  </AnchorPane>
+               </right>
+            </BorderPane>
+            <JFXDialog fx:id="dialog" layoutX="250.0" layoutY="180.0" prefHeight="203.0" prefWidth="436.0">
+               <children>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="203.0" prefWidth="436.0" style="-fx-background-color: WHITE;">
+                     <children>
+                        <MFXButton fx:id="closeBtn" layoutX="333.0" layoutY="166.0" prefHeight="37.0" prefWidth="103.0" text="CLOSE" />
+                        <MFXButton fx:id="rVendorBtn" layoutX="205.0" layoutY="166.0" prefHeight="37.0" prefWidth="128.0" text="REMOVE VENDOR" />
+                        <MFXTextField fx:id="vendorIdField" alignment="CENTER" floatMode="DISABLED" layoutX="104.0" layoutY="82.0" minHeight="40.0" prefHeight="40.0" prefWidth="228.0" promptText="547893">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </MFXTextField>
+                        <Label layoutX="104.0" layoutY="51.0" text="Enter Vendor's ID to remove vendor">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </JFXDialog>
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
