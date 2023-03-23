@@ -1,0 +1,58 @@
+// this category table
+CREATE TABLE `inventory_management_system`.`category_table` (
+  `category_id` VARCHAR(10) NOT NULL,
+  `category_name` VARCHAR(45) NULL,
+  PRIMARY KEY (`category_id`));
+
+//goods table
+CREATE TABLE `inventory_management_system`.`goods_table` (
+  `goods_id` VARCHAR(10) NOT NULL,
+  `goods_name` VARCHAR(45) NULL,
+  `buying_price` DOUBLE NULL,
+  `selling_price` DOUBLE NULL,
+  `gross_price` DOUBLE NULL,
+  `quantity` INT NULL,
+  `date` DATE NULL,
+  `category_id` VARCHAR(10) NULL,
+  PRIMARY KEY (`goods_id`),
+  INDEX `category_id_idx` (`category_id` ASC) VISIBLE,
+  CONSTRAINT `category_id`
+    FOREIGN KEY (`category_id`)
+    REFERENCES `inventory_management_system`.`category_table` (`category_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+// view issued goods table
+CREATE TABLE `inventory_management_system`.`view_issued_goods` (
+  `user_id` VARCHAR(10) NULL,
+  `receipt_id` VARCHAR(10) NULL,
+  `goods_id` VARCHAR(10) NULL,
+  `datetime_of_good_sold` DATETIME NULL,
+  `quantity_bought` INT NULL,
+  INDEX `user_id_idx` (`user_id` ASC) VISIBLE,
+  INDEX `goods_id_idx` (`goods_id` ASC) VISIBLE,
+  CONSTRAINT `user_id`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `inventory_management_system`.`users` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `goods_id`
+    FOREIGN KEY (`goods_id`)
+    REFERENCES `inventory_management_system`.`goods_table` (`goods_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+//category table data
+INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('001', 'Beverages');
+INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('002', 'Bread/Bakery');
+INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('003', 'Canned/Jarred Goods');
+INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('004', 'Dairy');
+INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('005', 'Dry/Baking Goods');
+INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('006', 'Frozen Foods');
+INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('007', 'Meat');
+INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('008', 'Produce');
+INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('009', 'Cleaners');
+INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('010', 'Paper Goods');
+INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('011', 'Personal Care');
+
+
