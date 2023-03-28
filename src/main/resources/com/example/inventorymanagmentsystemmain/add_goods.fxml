@@ -63,7 +63,7 @@
             <Font name="Segoe UI Semibold" size="13.0" />
          </font>
       </MFXButton>
-      <MFXTextField fx:id="quantityField" floatMode="DISABLED" layoutX="357.0" layoutY="98.0" prefHeight="35.0" prefWidth="143.0" promptText="1000" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+      <MFXTextField fx:id="quantityField" floatMode="DISABLED" layoutX="357.0" layoutY="98.0" onMouseClicked="#removeOverstockMessage" onMouseDragOver="#removeOverstockMessage" prefHeight="35.0" prefWidth="143.0" promptText="1000" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
          <font>
             <Font name="Segoe UI Semibold" size="14.0" />
          </font>
@@ -194,5 +194,10 @@
             </ImageView>
          </graphic>
       </MFXButton>
+      <Label fx:id="overStockingMessage" alignment="CENTER" layoutX="248.0" layoutY="57.0" prefHeight="19.0" prefWidth="360.0" text="OVERSTOCKING BEVERAGES" textAlignment="CENTER" textFill="RED" visible="false">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

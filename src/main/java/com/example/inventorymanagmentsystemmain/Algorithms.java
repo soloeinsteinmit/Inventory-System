@@ -23,4 +23,17 @@ public class Algorithms {
         }
         return false;
     }
+
+    public static int getIndexOfItemFound(String findString, ArrayList<String> searchArray){
+
+        for (int i = 0; i <= searchArray.size()-1;){
+            if (findString.equals(searchArray.get(i))){
+                return i;
+            }
+            else {
+                i++;
+            }
+        }
+        return -1;
+    }
 }

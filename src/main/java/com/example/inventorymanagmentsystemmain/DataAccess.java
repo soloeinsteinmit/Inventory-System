@@ -38,6 +38,14 @@ public class DataAccess {
     public static String categoryId;
     public static String categoryName;
 
+    /**
+     * Good quantity variables
+     * */
+    public static int GET_EACH_GOOD_QUANTITY;
+    public static int HIGH_STOCK_VALUE = 1000;
+    public static int LOW_STOCK_VALUE = 100;
+    public static int SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY;
+
 
 
     // goods name and item category
@@ -319,6 +327,7 @@ public class DataAccess {
         if (resultSet.isBeforeFirst()){
             while (resultSet.next()){
                 item_category = resultSet.getString("category_name");
+
                 if (itemCategory.contains(item_category)){
                     continue;
                 }else {
@@ -451,7 +460,7 @@ public class DataAccess {
         psAddGoods.setDouble(1, Double.parseDouble(buyingPrice));
         psAddGoods.setDouble(2, Double.parseDouble(sellingPrice));
         psAddGoods.setDouble(3, Double.parseDouble(grossPrice));
-        psAddGoods.setInt(4, Integer.parseInt(quantity));
+        psAddGoods.setInt(4, Integer.parseInt(quantity) + getGoodQuantity(goodsName));
         psAddGoods.setString(5, datetimeRegistered);
         psAddGoods.setString(6, getGoodsId(goodsName));
 
@@ -496,6 +505,86 @@ public class DataAccess {
         psAddNewGoods.setString(8, getCategoryId(categoryName));
         psAddNewGoods.executeUpdate();
 
+    }
+
+    public static int getGoodQuantity(String goodName) throws SQLException {
+        Connection connection;
+        PreparedStatement psGetEachGoodQuantity;
+        ResultSet resultSet;
+        connection = DriverManager.getConnection(DBConstantConnection.root_URL,
+                DBConstantConnection.user, DBConstantConnection.password);
+
+        psGetEachGoodQuantity = connection.prepareStatement("""
+                SELECT quantity
+                FROM goods_table
+                WHERE goods_name = ?""" );
+        psGetEachGoodQuantity.setString(1, goodName);
+        resultSet = psGetEachGoodQuantity.executeQuery();
+
+        if (resultSet.isBeforeFirst()){
+            while (resultSet.next()){
+                GET_EACH_GOOD_QUANTITY = resultSet.getInt("quantity");
+            }
+        }
+
+        return GET_EACH_GOOD_QUANTITY;
+    }
+
+    public static boolean isStockHigh(String categoryName) throws SQLException {
+        Connection connection;
+        PreparedStatement psGetSumQuantity;
+        ResultSet resultSet;
+        connection = DriverManager.getConnection(DBConstantConnection.root_URL,
+                DBConstantConnection.user, DBConstantConnection.password);
+
+        psGetSumQuantity = connection.prepareStatement("""
+                SELECT SUM(goods_table.quantity)\s
+                FROM goods_table
+                INNER JOIN category_table
+                ON category_table.category_id = goods_table.category_id
+                WHERE category_name = ?
+                """);
+
+        psGetSumQuantity.setString(1, categoryName);
+        resultSet = psGetSumQuantity.executeQuery();
+
+
+        if (resultSet.isBeforeFirst()){
+            while (resultSet.next()){
+                SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY = resultSet.getInt("SUM(goods_table.quantity)");
+                System.out.println(SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY+ " sum here top");
+            }
+        }
+        System.out.println(SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY+ " sum here");
+        return SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY > HIGH_STOCK_VALUE;
+    }
+
+    public static int getSumQuantity(String categoryName) throws SQLException {
+        Connection connection;
+        PreparedStatement psGetSumQuantity;
+        ResultSet resultSet;
+        connection = DriverManager.getConnection(DBConstantConnection.root_URL,
+                DBConstantConnection.user, DBConstantConnection.password);
+
+        psGetSumQuantity = connection.prepareStatement("""
+                SELECT SUM(goods_table.quantity)\s
+                FROM goods_table
+                INNER JOIN category_table
+                ON category_table.category_id = goods_table.category_id
+                WHERE category_name = ?
+                """);
+
+        psGetSumQuantity.setString(1, categoryName);
+        resultSet = psGetSumQuantity.executeQuery();
+
+
+        if (resultSet.isBeforeFirst()){
+            while (resultSet.next()){
+                SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY = resultSet.getInt("SUM(goods_table.quantity)");
+                System.out.println(SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY+ " sum here top");
+            }
+        }
+        return SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY;
     }
 
 

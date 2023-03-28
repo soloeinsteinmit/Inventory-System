@@ -80,7 +80,7 @@ public class RegisterVendorController implements Initializable {
 
     private static String dateRegistered;
 
-
+    GetDatetime getDatetime = new GetDatetime();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -107,7 +107,7 @@ public class RegisterVendorController implements Initializable {
             }
 
             DataAccess.registerVendor(fullNameField.getText(), idField.getText(),
-                    s, g, telephoneNoField.getText(), dateRegistered);
+                    s, g, telephoneNoField.getText(), getDatetime.todatDate());
 
             System.out.println("Gender  = "+ g);
 

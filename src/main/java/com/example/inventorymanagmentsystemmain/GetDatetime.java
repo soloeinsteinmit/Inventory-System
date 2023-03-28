@@ -10,4 +10,11 @@ public class GetDatetime {
 
         return dtf.format(currentDateTime);
     }
+
+    public String todatDate(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDateTime currentDate = LocalDateTime.now();
+
+        return dtf.format(currentDate);
+    }
 }
