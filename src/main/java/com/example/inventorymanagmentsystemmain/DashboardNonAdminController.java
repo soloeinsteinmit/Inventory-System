@@ -44,7 +44,6 @@ public class DashboardNonAdminController implements Initializable {
         TooltipClass.tooltipMessage("VIEW GOODS", viewGoods);
         TooltipClass.tooltipMessage("MY PROFILE", myProfileTab);
         TooltipClass.tooltipMessage("ISSUED GOODS", issuedGoodsTab);
-        TooltipClass.tooltipMessage("ADD GOODS", addGoodsTab);
 
     }
 }

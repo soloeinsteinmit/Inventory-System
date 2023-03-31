@@ -74,98 +74,10 @@ public class InventoryManagementController implements Initializable {
     // performing transitions on the fxml files
 
     public void switchToLoginScreen(ActionEvent event) throws IOException{
-        /*
-//        Parent root = FXMLLoader.load((Objects.requireNonNull(
-//                getClass().getResource("InventoryLogin.fxml"))));
-//        Stage window = (Stage) createAccountButton.getScene().getWindow();
-//        window.setScene(new Scene(root));
-//        window.show();
-        FXMLLoader fxmlLoader = new FXMLLoader(InventoryManagementSystem.class.getResource("InventoryLogin.fxml"));
-        Parent root = fxmlLoader.load();
-        Scene scene = button.getScene();
 
-        root.translateXProperty().set(scene.getWidth());
-        parentContainer.getChildren().add(root);
-
-        Timeline timeline = new Timeline();
-        KeyValue kv = new KeyValue(root.translateXProperty(),0, Interpolator.EASE_OUT);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
-        timeline.getKeyFrames().add(kf);
-        timeline.setOnFinished(event1 -> {
-            parentContainer.getChildren().remove(anchorPane);
-        });
-        timeline.play();*/
-        ChangingScenes.translateFoward(parentContainer, anchorPane, "InventoryLogin");
+        ChangingScenes.translateForward(parentContainer, anchorPane, "InventoryLogin");
     }
 
-
-    // TODO: i will do this later
-    //fill all the forms this screen for now
-/*    public void checkEntries() throws IOException{
-        if(firstNameText.getText().isBlank() && lastNameText.getText().isBlank() && emailText.getText().isBlank() && (passwordHidden.getText().isBlank() || passwordText.getText().isBlank())){
-
-            String title = "Sign In";
-            String message = "Sign In Error, Fill all the forms";
-            TrayNotification tray = new TrayNotification();
-            AnimationType  type = AnimationType.POPUP;
-
-            tray.setAnimationType(type);
-            tray.setTitle(title);
-            tray.setMessage(message);
-            tray.setNotificationType(NotificationType.ERROR);
-            tray.showAndDismiss(Duration.millis(3000));
-        } else {
-            if (validateEmail()){
-                cover1.setVisible(true);
-                cover2.setVisible(true);
-                cover3.setVisible(true);
-                cover4.setVisible(true);
-                alert.setVisible(false);
-                alert1.setVisible(false);
-                alert2.setVisible(false);
-                alert3.setVisible(false);
-
-                String title = "Sign In";
-                String message = "Sign In Successful";
-                TrayNotification tray = new TrayNotification();
-                AnimationType type = AnimationType.POPUP;
-
-                tray.setAnimationType(type);
-                tray.setTitle(title);
-                tray.setMessage(message);
-                tray.setNotificationType(NotificationType.SUCCESS);
-                tray.showAndDismiss(Duration.millis(3000));
-
-                System.out.println("Button worked");
-                String firstName = firstNameText.getText();
-                String lastName = lastNameText.getText();
-//        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("Dashboard.fxml")));
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
-                Parent root = fxmlLoader.load();
-
-                Scene scene = button.getScene();
-                DashboardController fullName = fxmlLoader.getController();
-                fullName.setUserInformation(firstName, lastName);
-
-                root.translateYProperty().set(scene.getHeight());
-                parentContainer.getChildren().add(root);
-
-                Timeline timeline = new Timeline();
-                KeyValue kv = new KeyValue(root.translateYProperty(),0, Interpolator.EASE_OUT);
-                KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
-                timeline.getKeyFrames().add(kf);
-                timeline.setOnFinished(event1 -> {
-                    parentContainer.getChildren().remove(anchorPane);
-                });
-                timeline.play();
-//            Stage window = (Stage) createAccountButton.getScene().getWindow();
-//            window.setScene(new Scene(root));
-//            window.show();
-                DataAccess createAccount = new DataAccess();
-                createAccount.signUpUser(firstNameText.getText(), lastNameText.getText(), emailText.getText(), passwordHidden.getText());
-            }
-        }
-    }*/
 
     // hiding and showing password
     @FXML

@@ -29,7 +29,7 @@
             <Insets left="10.0" />
          </padding>
       </MFXFilterComboBox>
-      <MFXButton fx:id="addGoods" layoutX="362.0" layoutY="238.0" onMouseClicked="#addGoods" style="-fx-background-color: TRANSPARENT;" text="ADD GOODS" textFill="#1445a9">
+      <MFXButton fx:id="addGoods" layoutX="257.0" layoutY="244.0" onMouseClicked="#addGoods" style="-fx-background-color: TRANSPARENT;" text="ADD GOODS" textFill="#1445a9">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -41,7 +41,7 @@
             <Font name="Segoe UI Semibold Italic" size="13.0" />
          </font>
       </MFXButton>
-      <MFXButton fx:id="removeGoods" layoutX="496.0" layoutY="238.0" onMouseClicked="#removeGoods" style="-fx-background-color: TRANSPARENT;" text="REMOVE GOODS" textFill="#1445a9">
+      <MFXButton fx:id="removeGoods" layoutX="391.0" layoutY="244.0" onMouseClicked="#removeGoods" style="-fx-background-color: TRANSPARENT;" text="REMOVE GOODS" textFill="#1445a9">
          <graphic>
             <ImageView fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -163,7 +163,7 @@
             <Font name="Segoe UI Semilight" size="14.0" />
          </font>
       </Label>
-      <MFXTextField fx:id="newCategoryName" floatMode="DISABLED" layoutX="55.0" layoutY="484.0" prefHeight="35.0" prefWidth="257.0" promptText="Tomtom" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+      <MFXTextField fx:id="newCategoryName" floatMode="DISABLED" layoutX="55.0" layoutY="484.0" prefHeight="35.0" prefWidth="257.0" promptText="Fruits" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
          <font>
             <Font name="Segoe UI Semibold" size="14.0" />
          </font>
@@ -199,5 +199,17 @@
             <Font name="Segoe UI Semilight" size="13.0" />
          </font>
       </Label>
+      <MFXButton fx:id="topUpQuantity" layoutX="547.0" layoutY="244.0" onMouseClicked="#topUpQuantity" style="-fx-background-color: TRANSPARENT;" text="TOP UP GOOD QUANTITY" textFill="#1445a9">
+         <graphic>
+            <ImageView fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@upgrade_48px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Segoe UI Semibold Italic" size="13.0" />
+         </font>
+      </MFXButton>
     </children>
 </AnchorPane>

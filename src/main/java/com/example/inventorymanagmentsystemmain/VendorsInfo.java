@@ -1,6 +1,6 @@
 package com.example.inventorymanagmentsystemmain;
 
-public class ViewVendorsInfo {
+public class VendorsInfo {
     private int number;
     private String name;
     private String vendor_id;
@@ -11,11 +11,30 @@ public class ViewVendorsInfo {
 
 
 
-    public ViewVendorsInfo(int number, String name, String vendor_id, String status, String gender,
-                           String date_registered, String telephone_number){
+    public VendorsInfo(int number, String name, String vendor_id, String status, String gender,
+                       String date_registered, String telephone_number){
         this.number = number;
         this.name = name;
         this.vendor_id = vendor_id;
+        this.status = status;
+        this.gender =gender;
+        this.date_registered = date_registered;
+        this.telephone_number = telephone_number;
+    }
+
+    public VendorsInfo(int number, String name, String status, String gender,
+                       String date_registered, String telephone_number) {
+        this.number = number;
+        this.name = name;
+        this.status = status;
+        this.gender = gender;
+        this.date_registered = date_registered;
+        this.telephone_number = telephone_number;
+    }
+
+    public VendorsInfo(String name, String status, String gender,
+                       String telephone_number, String date_registered){
+        this.name = name;
         this.status = status;
         this.gender =gender;
         this.date_registered = date_registered;

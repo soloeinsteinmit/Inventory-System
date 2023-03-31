@@ -65,17 +65,19 @@ public class InventoryLoginController implements Initializable {
 
             if (DataAccess.login(idField.getText(), passwordField.getText())){
                 DataAccess.getLoggedInUserId = idField.getText();
-                AlertNotification.trayNotification("SUCCESS", "YOU HAVE SUCCESSFUL LOGGED IN", 3.0, NotificationType.SUCCESS);
+
 
                 if (DataAccess.getUserProfile()){
                     if (DataAccess.myProfileData.get(2).equals("Admin")){
-//                        ChangingScenes.changeWindow(event, "Dashboard");
-                        ChangingScenes.toHome(event, "Dashboard", mfxSpinner);
+                        ChangingScenes.changeWindow(event, "Dashboard");
+//                        ChangingScenes.toHome(event, "Dashboard", mfxSpinner);
                     }else{
-//                        ChangingScenes.changeWindow(event, "DashboardNonAdmin");
-                        ChangingScenes.toHome(event, "DashboardNonAdmin", mfxSpinner);
+                        ChangingScenes.changeWindow(event, "DashboardNonAdmin");
+//                        ChangingScenes.toHome(event, "DashboardNonAdmin", mfxSpinner);
                     }
-
+                    idField.clear();
+                    passwordField.clear();
+                    AlertNotification.trayNotification("SUCCESS", "YOU HAVE SUCCESSFUL LOGGED IN", 3.0, NotificationType.SUCCESS);
                 }
 
 

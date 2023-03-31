@@ -4,12 +4,11 @@ import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 
-public class ViewVendorsInfoList {
-    public static ObservableList<VendorsInfo> vendorsInfo;
-
+public class ViewBillsInfoList {
+    public static ObservableList<ViewBillsInfo> billsInfo;
     static {
         try {
-            vendorsInfo = DataAccess.allVendorsInfo();
+            billsInfo = DataAccess.allBillsInfo();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

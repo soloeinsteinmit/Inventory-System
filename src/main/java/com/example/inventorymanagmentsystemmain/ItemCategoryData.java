@@ -29,6 +29,10 @@ public class ItemCategoryData {
         return DataAccess.allGoodsName(categoryName);
     }
 
+    public static ObservableList<String> allProducts() throws SQLException {
+        return DataAccess.getAllGods();
+    }
+
     public static ObservableList<String> attendance(){
         ArrayList<String> attendanceData = new ArrayList<String>();
         for(int i = 0; i <= 150; i++){

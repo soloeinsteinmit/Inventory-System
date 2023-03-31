@@ -20,6 +20,8 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class RegisterVendorController implements Initializable {
@@ -80,6 +82,12 @@ public class RegisterVendorController implements Initializable {
 
     private static String dateRegistered;
 
+    public HashMap<String, VendorsInfo> getVendorInfo() {
+        return vendorInfo;
+    }
+
+    private HashMap<String, VendorsInfo> vendorInfo = new HashMap<String, VendorsInfo>();
+
     GetDatetime getDatetime = new GetDatetime();
 
     @Override
@@ -106,8 +114,17 @@ public class RegisterVendorController implements Initializable {
                 s = nonAdminCheckbox.getText();
             }
 
-            DataAccess.registerVendor(fullNameField.getText(), idField.getText(),
-                    s, g, telephoneNoField.getText(), getDatetime.todatDate());
+            // place vendors info into
+            vendorInfo.put(idField.getText(), new VendorsInfo(fullNameField.getText(), s, g,
+                    telephoneNoField.getText(), getDatetime.todayDate()));
+
+            for (Map.Entry<String, VendorsInfo> vendorInfo : vendorInfo.entrySet()){
+                DataAccess.registerVendor(vendorInfo.getValue().getName(), vendorInfo.getKey(),
+                    vendorInfo.getValue().getStatus(), vendorInfo.getValue().getGender(),
+                        vendorInfo.getValue().getTelephone_number(), vendorInfo.getValue().getDate_registered());
+            }
+
+
 
             System.out.println("Gender  = "+ g);
 

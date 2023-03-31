@@ -17,13 +17,16 @@ public class GoodsCategoryDSChecker {
     public static int arrayIndexPaperGoods = 9;
     public static int arrayIndexPersonalCare = 10;
 
-    public static final ArrayList<String> stackGoodsCategory = new ArrayList<>(List.of(
+    public static ArrayList<String> assignDS = new ArrayList<>(List.of(
+            "s", "q", "l"
+    ));
+    public static ArrayList<String> stackGoodsCategory = new ArrayList<>(List.of(
             "Beverages", "Bread/Bakery", "Canned/Jarred Goods", "Dairy"
     ));
-    public static final ArrayList<String> queueGoodsCategory = new ArrayList<>(List.of(
-            "Dry/Baking Goods", "Frozen Foods", "Meat"
+    public static ArrayList<String> queueGoodsCategory = new ArrayList<>(List.of(
+            "Dry/Baking Goods", "Frozen Foods", "Meat", "Fruits"
     ));
-    public static final ArrayList<String> arrayListGoodsCategory = new ArrayList<>(List.of(
+    public static ArrayList<String> arrayListGoodsCategory = new ArrayList<>(List.of(
             "Produce", "Cleaners", "Paper Goods", "Personal Care"
     ));
 

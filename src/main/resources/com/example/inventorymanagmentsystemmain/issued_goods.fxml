@@ -1,18 +1,169 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXFilterComboBox?>
+<?import io.github.palexdev.materialfx.controls.MFXPaginatedTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.inventorymanagmentsystemmain.IssuedGoodsController"
-            prefHeight="400.0" prefWidth="600.0">
 
-    <children>
-        <Label layoutX="278.0" layoutY="267.0" text="Issued goods">
-            <font>
-                <Font size="63.0" />
-            </font>
-        </Label>
-    </children>
+<AnchorPane prefHeight="594.0" prefWidth="930.0" style="-fx-background-color: WHITE;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inventorymanagmentsystemmain.IssuedGoodsController">
+   <children>
+      <MFXFilterComboBox fx:id="goodsNameComboBox" floatMode="DISABLED" layoutX="35.0" layoutY="80.0" onAction="#getSellingPrice" prefHeight="36.0" prefWidth="386.0" promptText="Manish" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="13.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+      </MFXFilterComboBox>
+      <MFXTextField fx:id="quantityField" floatMode="DISABLED" layoutX="439.0" layoutY="81.0" prefHeight="35.0" prefWidth="124.0" promptText="1000" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTextField>
+      <Label layoutX="438.0" layoutY="60.0" text="Quantity" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <Label layoutX="35.0" layoutY="60.0" text="Product Name" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <MFXTextField fx:id="priceField" allowEdit="false" floatMode="DISABLED" layoutX="606.0" layoutY="81.0" prefHeight="35.0" prefWidth="143.0" promptText="1000" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTextField>
+      <Label layoutX="606.0" layoutY="60.0" text="Selling price" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+      <MFXButton fx:id="addToCartBtn" graphicTextGap="9.0" layoutX="779.0" layoutY="83.0" onMouseClicked="#addToCart" style="-fx-background-color: TRANSPARENT;" text="ADD TO CART" textFill="#1445a9">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@cart.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Segoe UI Semibold" size="12.0" />
+         </font>
+      </MFXButton>
+      <ImageView fitHeight="46.0" fitWidth="40.0" layoutX="824.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@shopping_cart_96px.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="noOfGoodsLabel" alignment="CENTER" layoutX="847.0" layoutY="23.0" prefHeight="19.0" prefWidth="18.0" style="-fx-background-color: #1445A9; -fx-background-radius: 9;" text="10" textAlignment="CENTER" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Black" size="11.0" />
+         </font>
+      </Label>
+      <MFXPaginatedTableView fx:id="issuedProductsTableView" layoutX="31.0" layoutY="151.0" minHeight="312.0" pagesToShow="20" prefHeight="312.0" prefWidth="661.0" rowsPerPage="7" style="-fx-font-size: 14;" />
+      <MFXButton fx:id="proceedBtn" layoutX="577.0" layoutY="518.0" onMouseClicked="#proceed" prefHeight="38.0" prefWidth="95.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="PROCEED" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="13.0" />
+         </font>
+      </MFXButton>
+      <MFXTableColumn fx:id="productColumn" layoutX="31.0" layoutY="153.0" prefHeight="40.0" prefWidth="239.0" text="PRODUCT">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font></MFXTableColumn>
+      <MFXTableColumn fx:id="quantityColumn" layoutX="270.0" layoutY="154.0" prefHeight="40.0" prefWidth="215.0" text="QUANTITY">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font></MFXTableColumn>
+      <MFXTableColumn fx:id="unitPriceColumn" layoutX="485.0" layoutY="154.0" prefHeight="41.0" prefWidth="206.0" text="AMOUNT" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font></MFXTableColumn>
+      <Label layoutX="533.0" layoutY="468.0" text="TOTAL: GHC ">
+         <font>
+            <Font name="Segoe UI Semilight" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalPriceLabel" layoutX="623.0" layoutY="466.0" prefHeight="28.0" prefWidth="108.0" text="1012.90">
+         <font>
+            <Font name="Segoe UI Semibold" size="16.0" />
+         </font>
+      </Label>
+      <MFXButton fx:id="removeFromCartBtn" graphicTextGap="9.0" layoutX="723.0" layoutY="151.0" onMouseClicked="#removeFromCart" style="-fx-background-color: TRANSPARENT;" text="REMOVE FROM CART" textFill="#1445a9">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@clear_shopping_cart_48px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXButton>
+      <Label layoutX="578.0" layoutY="89.0" prefHeight="20.0" prefWidth="34.0" text="GHC ">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="processingGoodsLabel" layoutX="756.0" layoutY="537.0" text="Processing goods..." textFill="#1445a9" visible="false">
+         <font>
+            <Font name="Segoe UI Semilight" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="refreshingImage" fitHeight="21.0" fitWidth="24.0" layoutX="877.0" layoutY="536.0" pickOnBounds="true" preserveRatio="true" visible="false">
+         <image>
+            <Image url="@refresh_48px.png" />
+         </image>
+      </ImageView>
+      <MFXButton fx:id="clearCartBtn" graphicTextGap="9.0" layoutX="747.0" layoutY="431.0" onMouseClicked="#clearCarts" style="-fx-background-color: TRANSPARENT;" text="CLEAR CART" textFill="#1445a9">
+         <graphic>
+            <ImageView fitHeight="22.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@return_purchase_48px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXButton>
+      <Label layoutX="718.0" layoutY="247.0" prefHeight="139.0" prefWidth="186.0" text="To remove a product from the cart, select the product from the cart. Then after click on the remove from cart button to remove the product from cart." wrapText="true">
+         <font>
+            <Font name="Segoe UI Semilight" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="717.0" layoutY="237.0" prefHeight="21.0" prefWidth="48.0" text="Guide:" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semibold" size="15.0" />
+         </font>
+      </Label>
+      <MFXButton fx:id="refreshBtn" contentDisplay="GRAPHIC_ONLY" layoutX="31.0" layoutY="22.0" onMouseClicked="#refreshViewGoodsTable" rippleAnimateShadow="true" rippleRadius="100.0" style="-fx-background-radius: 100; -fx-background-color: transparent;">
+         <graphic>
+            <ImageView fx:id="refreshImg" fitHeight="25.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@refresh_48px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+      <MFXTextField fx:id="clientNameField" floatMode="DISABLED" layoutX="35.0" layoutY="516.0" prefHeight="35.0" prefWidth="339.0" promptText="Ebenezer Ogoe" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0;" stylesheets="@TextFieldsStyleSheet.css">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTextField>
+      <Label layoutX="35.0" layoutY="499.0" text="Client name" textFill="#1445a9">
+         <font>
+            <Font name="Segoe UI Semilight" size="13.0" />
+         </font>
+      </Label>
+   </children>
 </AnchorPane>

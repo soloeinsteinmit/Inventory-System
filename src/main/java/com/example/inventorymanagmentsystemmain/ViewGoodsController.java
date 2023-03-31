@@ -4,7 +4,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
-import io.github.palexdev.materialfx.filter.IntegerFilter;
 import io.github.palexdev.materialfx.filter.StringFilter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -62,7 +61,6 @@ public class ViewGoodsController implements Initializable {
 
         viewGoodsTableView.getTableColumns().addAll(number, goodsName, categoryName, quantity, sellingPrice);
         viewGoodsTableView.getFilters().addAll(
-                new IntegerFilter<>("NO.", ViewGoodsInfo::getNumber),
                 new StringFilter<>("GOODS NAME", ViewGoodsInfo::getGoodsName),
                 new StringFilter<>("CATEGORY NAME", ViewGoodsInfo::getCategoryName)
         );

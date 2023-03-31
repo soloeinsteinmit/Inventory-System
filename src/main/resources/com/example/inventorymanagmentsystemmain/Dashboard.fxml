@@ -10,6 +10,18 @@
    <children>
       <TabPane id="tabPane" fx:id="tabPane" prefHeight="594.0" prefWidth="940.0" side="LEFT" stylesheets="@TabPaneStyleSheet.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
+            <Tab fx:id="myProfileTab">
+              <content>
+                <fx:include source="my_profile.fxml" />
+              </content>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@contact_details_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Tab>
           <Tab fx:id="viewVendorTab">
             <content>
               <fx:include source="view_vendors.fxml" />
@@ -48,7 +60,7 @@
             </Tab>
             <Tab fx:id="viewBillsTab">
               <content>
-                <fx:include source="view_bills.fxml" />
+                <fx:include source="bills_dashboard.fxml" />
               </content>
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -90,18 +102,6 @@
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@register.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Tab>
-            <Tab fx:id="myProfileTab">
-              <content>
-                <fx:include source="my_profile.fxml" />
-              </content>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@contact_details_48px.png" />
                      </image>
                   </ImageView>
                </graphic>

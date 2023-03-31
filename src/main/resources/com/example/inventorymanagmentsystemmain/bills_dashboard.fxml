@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXTextField?>
+<?import io.github.palexdev.materialfx.controls.legacy.MFXLegacyListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.GaussianBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<StackPane fx:id="parentStackPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inventorymanagmentsystemmain.BillsDashboardController">
+   <children>
+      <AnchorPane fx:id="billsDashboardAnchorPane" prefHeight="594.0" prefWidth="930.0" style="-fx-background-color: #EBEEF5;">
+         <children>
+            <ImageView fitHeight="538.0" fitWidth="699.0" layoutX="155.0" layoutY="29.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@inventory-management-system.png" />
+               </image>
+               <effect>
+                  <GaussianBlur />
+               </effect>
+            </ImageView>
+            <MFXButton fx:id="getReceiptBtn" layoutX="340.0" layoutY="310.0" onMouseClicked="#getReceipt" prefHeight="46.0" prefWidth="251.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="GET RECEIPT" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Semibold" size="15.0" />
+               </font>
+            </MFXButton>
+            <MFXTextField fx:id="receiptId" alignment="CENTER" floatMode="DISABLED" layoutX="339.0" layoutY="240.0" prefHeight="46.0" prefWidth="251.0" promptText="23457" style="-fx-border-radius: 0 0 0 0; -fx-border-width: 0 0 1 0; -fx-background-color: transparent; -fx-background-radius: 0;" stylesheets="@TextFieldsStyleSheet.css">
+               <font>
+                  <Font name="Segoe UI Semibold" size="18.0" />
+               </font>
+            </MFXTextField>
+            <Label layoutX="395.0" layoutY="204.0" text="Enter receipt id here" textFill="#1445a9">
+               <font>
+                  <Font name="Segoe UI Semilight" size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="retrievingReceiptLabel" layoutX="765.0" layoutY="17.0" text="Retrieving receipt..." textFill="#1445a9" visible="false">
+               <font>
+                  <Font name="Segoe UI Semilight" size="15.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="refreshingImage" fitHeight="21.0" fitWidth="24.0" layoutX="888.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@refresh_48px.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="81.0" layoutY="120.0" text="Recently view receipts" textFill="#1445a9">
+               <font>
+                  <Font name="Segoe UI Semilight" size="16.0" />
+               </font>
+            </Label>
+            <MFXLegacyListView fx:id="recentReceiptsListView" layoutX="56.0" layoutY="153.0" prefHeight="289.0" prefWidth="200.0" style="-fx-font-size: 14;" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

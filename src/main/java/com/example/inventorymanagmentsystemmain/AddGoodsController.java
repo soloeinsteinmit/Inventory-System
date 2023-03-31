@@ -72,11 +72,11 @@ public class AddGoodsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // ADD ALL INITIAL SUM IN DATABASE TO ARRAY
-        try {
-            GoodsCategoryDSChecker.addInitialSum();
+        /*try {
+//            GoodsCategoryDSChecker.addInitialSum();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }
+        }*/
 
         MyProfileController.goodsCategoryComboBox = goodsCategoryComboBox;
         grossPriceField.setEditable(false);
@@ -150,35 +150,35 @@ public class AddGoodsController implements Initializable {
 
 //        System.out.println("pushed items array = " + items);
 //        System.out.println("before push = " + stackGoods);
-        if (Algorithms.linearSearch(goodsCategoryComboBox.getSelectedItem(), GoodsCategoryDSChecker.stackGoodsCategory)){
+        if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "s")){
 //            GoodsCategoryDSChecker.stackGoodsCategory.contains(goodsCategoryComboBox.getSelectedItem())
             GET_ITEM_INDEX = Algorithms.getIndexOfItemFound(goodsCategoryComboBox.
                     getSelectedItem(), GoodsCategoryDSChecker.allCategory);
 
-            GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.add(GET_ITEM_INDEX,
-                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) + Integer.parseInt(quantityField.getText()));
+//            GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.add(GET_ITEM_INDEX,
+//                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) + Integer.parseInt(quantityField.getText()));
 
 
-            if (DataAccess.isStockHigh(goodsCategoryComboBox.getSelectedItem()) ||
-                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) > DataAccess.HIGH_STOCK_VALUE){
-                overStockingMessage.setVisible(true);
-                overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
-                isOverstocked = true;
-                System.out.println("HIGH STOCK");
-                AlertNotification.trayNotification("HIGH STOCK", "OVERSTOCKING "+
-                        goodsCategoryComboBox.getSelectedItem().toUpperCase() + " CATEGORY", 4, NotificationType.WARNING);
-            }else {
+//            if (DataAccess.isStockHigh(goodsCategoryComboBox.getSelectedItem()) ||
+//                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) > DataAccess.HIGH_STOCK_VALUE){
+//                overStockingMessage.setVisible(true);
+//                overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
+//                isOverstocked = true;
+//                System.out.println("HIGH STOCK");
+//                AlertNotification.trayNotification("HIGH STOCK", "OVERSTOCKING "+
+//                        goodsCategoryComboBox.getSelectedItem().toUpperCase() + " CATEGORY", 4, NotificationType.WARNING);
+//            }else {
                 stackGoods.push(new ArrayList<>(items));
                 addedCollection = 's';
                 trackItemAdded.push(addedCollection);
-            }
-        } else if (Algorithms.linearSearch(goodsCategoryComboBox.getSelectedItem(), GoodsCategoryDSChecker.queueGoodsCategory)) {
+//            }
+        } else if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "q")) {
             //GoodsCategoryDSChecker.queueGoodsCategory.contains(goodsCategoryComboBox.getSelectedItem())
             GET_ITEM_INDEX = Algorithms.getIndexOfItemFound(goodsCategoryComboBox.
                     getSelectedItem(), GoodsCategoryDSChecker.allCategory);
 
-            GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.add(GET_ITEM_INDEX,
-                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) + Integer.parseInt(quantityField.getText()));
+//            GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.add(GET_ITEM_INDEX,
+//                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) + Integer.parseInt(quantityField.getText()));
 
             if (DataAccess.isStockHigh(goodsCategoryComboBox.getSelectedItem())){
                 overStockingMessage.setVisible(true);
@@ -192,13 +192,13 @@ public class AddGoodsController implements Initializable {
                 addedCollection = 'q';
                 trackItemAdded.push(addedCollection);
             }
-        } else if (Algorithms.linearSearch(goodsCategoryComboBox.getSelectedItem(), GoodsCategoryDSChecker.arrayListGoodsCategory)) {
+        } else if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "l")) {
             //GoodsCategoryDSChecker.arrayListGoodsCategory.contains(goodsCategoryComboBox.getSelectedItem())
             GET_ITEM_INDEX = Algorithms.getIndexOfItemFound(goodsCategoryComboBox.
                     getSelectedItem(), GoodsCategoryDSChecker.allCategory);
 
-            GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.add(GET_ITEM_INDEX,
-                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) + Integer.parseInt(quantityField.getText()));
+//            GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.add(GET_ITEM_INDEX,
+//                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) + Integer.parseInt(quantityField.getText()));
 
             if (DataAccess.isStockHigh(goodsCategoryComboBox.getSelectedItem())){
                 overStockingMessage.setVisible(true);
@@ -306,9 +306,17 @@ public class AddGoodsController implements Initializable {
     @FXML
     void addNewCategory(MouseEvent event) throws SQLException{
         DataAccess.addNewCategory(RandomIdGenerator.randomId(111, 999), newCategoryName.getText());
-        AlertNotification.trayNotification("SUCCESS", "A NEW CATEGORY "+
-                newCategoryName.getText()+" HAS BEEN ADDED SUCCESSFULLY.", 4, NotificationType.NOTICE);
+        AlertNotification.trayNotification("SUCCESS", "A NEW CATEGORY\n "+
+                newCategoryName.getText().toUpperCase()+" HAS BEEN ADDED SUCCESSFULLY.", 4, NotificationType.NOTICE);
         newCategoryName.clear();
+
+
+        String assignDSCheckerGroup = GoodsCategoryDSChecker.assignDS.get(Integer.parseInt(RandomIdGenerator.randomId(0, GoodsCategoryDSChecker.assignDS.size()-1)));
+        switch (assignDSCheckerGroup) {
+            case "s" -> GoodsCategoryDSChecker.stackGoodsCategory.add(newCategoryName.getText());
+            case "q" -> GoodsCategoryDSChecker.queueGoodsCategory.add(newCategoryName.getText());
+            case "l" -> GoodsCategoryDSChecker.arrayListGoodsCategory.add(newCategoryName.getText());
+        }
     }
 
     @FXML
@@ -318,13 +326,22 @@ public class AddGoodsController implements Initializable {
         }
 
     }
+    @FXML
+    void topUpQuantity(MouseEvent event)throws SQLException{
+        if (!quantityField.getText().isEmpty() && !goodsName1.getText().isEmpty() && !goodsCategoryComboBox.getText().isEmpty()){
+            DataAccess.updateQuantity(goodsName1.getSelectedItem(), Integer.parseInt(quantityField.getText()), 'a');
+        }else {
+            AlertNotification.trayNotification("ERROR", "PLEASE FILL IN THE GOODS NAME, CATEGORY NAME \nAND THE QUANTITY FIELD", 4, NotificationType.NOTICE);
+        }
+
+    }
 
     @FXML
     void addNewGoods(MouseEvent event) throws SQLException{
         DataAccess.addNewGoods(RandomIdGenerator.randomId(111, 999), newGoodsName.getText(), 0.00, 0.00,
                 0.00, 0, GetDatetime.todayDateTime(), goodsCategoryComboBoxNew.getSelectedItem());
-        AlertNotification.trayNotification("SUCCESS", "A NEW GOOD "+
-                newGoodsName.getText()+" HAS BEEN ADDED SUCCESSFULLY.", 4, NotificationType.NOTICE);
+        AlertNotification.trayNotification("SUCCESS", "A NEW GOOD\n "+
+                newGoodsName.getText().toUpperCase()+" HAS BEEN ADDED SUCCESSFULLY.", 4, NotificationType.NOTICE);
         newGoodsName.clear();
         goodsCategoryComboBoxNew.clearSelection();
 

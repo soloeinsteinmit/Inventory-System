@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class ChangingScenes {
-    public static void translateFoward(StackPane parentContainer, AnchorPane container, String filename){
+    public static void translateForward(StackPane parentContainer, AnchorPane container, String filename){
         Parent fxmlName = null;
         try {
             fxmlName = FXMLLoader.load(
@@ -36,7 +36,7 @@ public class ChangingScenes {
         fxmlName.translateXProperty().set(container.getWidth());
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(fxmlName.translateXProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.3), kv);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(event1 -> parentContainer.getChildren().remove(container));
         timeline.play();
@@ -58,7 +58,7 @@ public class ChangingScenes {
         fxmlName.translateXProperty().set(-container.getWidth());
         Timeline timeline = new Timeline();
         KeyValue kv = new KeyValue(fxmlName.translateXProperty(), 0, Interpolator.EASE_IN);
-        KeyFrame kf = new KeyFrame(Duration.seconds(0.3), kv);
+        KeyFrame kf = new KeyFrame(Duration.seconds(0.5), kv);
         timeline.getKeyFrames().add(kf);
         timeline.setOnFinished(event1 -> parentContainer.getChildren().remove(container));
         timeline.play();

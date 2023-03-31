@@ -1,10 +1,10 @@
-// this category table
+-- this category table
 CREATE TABLE `inventory_management_system`.`category_table` (
   `category_id` VARCHAR(10) NOT NULL,
   `category_name` VARCHAR(45) NULL,
   PRIMARY KEY (`category_id`));
 
-//goods table
+-- goods table
 CREATE TABLE `inventory_management_system`.`goods_table` (
   `goods_id` VARCHAR(10) NOT NULL,
   `goods_name` VARCHAR(45) NULL,
@@ -22,7 +22,7 @@ CREATE TABLE `inventory_management_system`.`goods_table` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-// view issued goods table
+-- view issued goods table
 CREATE TABLE `inventory_management_system`.`view_issued_goods` (
   `user_id` VARCHAR(10) NULL,
   `receipt_id` VARCHAR(10) NULL,
@@ -42,7 +42,7 @@ CREATE TABLE `inventory_management_system`.`view_issued_goods` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-//category table data
+-- category table data
 INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('001', 'Beverages');
 INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('002', 'Bread/Bakery');
 INSERT INTO `inventory_management_system`.`category_table` (`category_id`, `category_name`) VALUES ('003', 'Canned/Jarred Goods');

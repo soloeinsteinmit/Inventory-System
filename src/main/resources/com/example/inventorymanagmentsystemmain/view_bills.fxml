@@ -1,18 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import io.github.palexdev.materialfx.controls.MFXPaginatedTableView?>
+<?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.inventorymanagmentsystemmain.ViewBillsController"
-            prefHeight="400.0" prefWidth="600.0">
 
-    <children>
-        <Label layoutX="333.0" layoutY="275.0" text="View Bills">
-            <font>
-                <Font size="63.0" />
-            </font>
-        </Label>
-    </children>
+<AnchorPane fx:id="viewBillsAnchorPane" prefHeight="594.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inventorymanagmentsystemmain.ViewBillsController">
+   <children>
+      <Rectangle arcWidth="5.0" fill="#1445a9" height="46.0" layoutX="-2.0" layoutY="30.0" stroke="TRANSPARENT" strokeType="INSIDE" width="478.0" />
+      <Rectangle arcWidth="5.0" fill="#1445a9" height="46.0" layoutX="778.0" layoutY="30.0" stroke="TRANSPARENT" strokeType="INSIDE" width="152.0" />
+      <Label layoutX="490.0" layoutY="27.0" text="Payment Receipt">
+         <font>
+            <Font name="Segoe UI Semibold" size="36.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="83.0" text="Invoice to:">
+         <font>
+            <Font name="Segoe UI Semibold" size="26.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="123.0" text="Name:">
+         <font>
+            <Font name="Segoe UI Semibold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="151.0" text="Date:">
+         <font>
+            <Font name="Segoe UI Semibold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="177.0" text="Receipt Id:">
+         <font>
+            <Font name="Segoe UI Semibold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="clientNameLabel" layoutX="478.0" layoutY="123.0" prefHeight="21.0" prefWidth="307.0" text="Dr. Ebenezer Ogoe" textFill="#757575" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semibold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="dateIssuedLabel" layoutX="478.0" layoutY="151.0" prefHeight="21.0" prefWidth="307.0" text="Thursday, April 18, 2019" textFill="#757575">
+         <font>
+            <Font name="Segoe UI Semibold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="receiptIdLabel" layoutX="478.0" layoutY="177.0" prefHeight="21.0" prefWidth="113.0" text="12392" textFill="#757575">
+         <font>
+            <Font name="Segoe UI Semibold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="204.0" text="Receipt issued by:">
+         <font>
+            <Font name="Segoe UI Semibold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="vendorNameLabel" layoutX="478.0" layoutY="204.0" prefHeight="21.0" prefWidth="300.0" text="Miki Johnson" textFill="#757575">
+         <font>
+            <Font name="Segoe UI Semibold" size="15.0" />
+         </font>
+      </Label>
+      <Rectangle arcWidth="5.0" fill="#1445a9" height="46.0" layoutX="551.0" layoutY="538.0" stroke="TRANSPARENT" strokeType="INSIDE" width="379.0" />
+      <Label layoutX="577.0" layoutY="546.0" text="Total" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalPriceLabel" layoutX="685.0" layoutY="550.0" prefHeight="25.0" prefWidth="123.0" text="2399.09" textFill="WHITE">
+         <font>
+            <Font name="Segoe UI Semibold" size="16.0" />
+         </font>
+      </Label>
+      <MFXPaginatedTableView fx:id="issuedProductsTableView" layoutX="120.0" layoutY="233.0" minHeight="228.0" pagesToShow="20" prefHeight="294.0" prefWidth="661.0" rowsPerPage="6" style="-fx-font-size: 15;" />
+      <MFXTableColumn fx:id="productColumn" layoutX="120.0" layoutY="235.0" prefHeight="40.0" prefWidth="239.0" text="PRODUCT">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTableColumn>
+      <MFXTableColumn fx:id="quantityColumn" layoutX="358.0" layoutY="235.0" prefHeight="40.0" prefWidth="215.0" text="QUANTITY">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTableColumn>
+      <MFXTableColumn fx:id="unitPriceColumn" layoutX="573.0" layoutY="235.0" prefHeight="42.0" prefWidth="207.0" text="AMOUNT" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font>
+      </MFXTableColumn>
+      <MFXButton fx:id="backBtn" contentDisplay="GRAPHIC_ONLY" layoutX="17.0" layoutY="545.0" onMouseClicked="#back" rippleAnimationSpeed="2.0" rippleRadius="100.0" style="-fx-background-radius: 100; -fx-background-color: transparent;" text="Button">
+         <graphic>
+            <ImageView fitHeight="24.0" fitWidth="24.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@back_48px.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </MFXButton>
+   </children>
 </AnchorPane>

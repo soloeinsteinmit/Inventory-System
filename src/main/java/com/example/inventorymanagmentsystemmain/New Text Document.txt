@@ -1,0 +1,5 @@
+for (Map.Entry<String, Vendor>entry : register.getVendorHashMap().entrySet()){
+           if (Objects.equals(entry.getKey(), valueSearchingFor)){
+               System.out.println(entry.getValue());
+           }
+       }

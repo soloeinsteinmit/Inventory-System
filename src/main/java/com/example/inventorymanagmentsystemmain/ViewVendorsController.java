@@ -19,28 +19,28 @@ import java.util.ResourceBundle;
 public class ViewVendorsController implements Initializable {
 
     @FXML
-    private MFXTableColumn<ViewVendorsInfo> dateRegistered;
+    private MFXTableColumn<VendorsInfo> dateRegistered;
 
     @FXML
-    private MFXTableColumn<ViewVendorsInfo> number;
+    private MFXTableColumn<VendorsInfo> number;
 
     @FXML
-    private MFXTableColumn<ViewVendorsInfo> gender;
+    private MFXTableColumn<VendorsInfo> gender;
 
     @FXML
-    private MFXTableColumn<ViewVendorsInfo> status;
+    private MFXTableColumn<VendorsInfo> status;
 
     @FXML
-    private MFXTableColumn<ViewVendorsInfo> telepnoneNumber;
+    private MFXTableColumn<VendorsInfo> telepnoneNumber;
 
     @FXML
-    private MFXTableColumn<ViewVendorsInfo> vendorId;
+    private MFXTableColumn<VendorsInfo> vendorId;
 
     @FXML
-    private MFXTableColumn<ViewVendorsInfo> vendorName;
+    private MFXTableColumn<VendorsInfo> vendorName;
 
     @FXML
-    private MFXTableView<ViewVendorsInfo> viewVendorsTableView;
+    private MFXTableView<VendorsInfo> viewVendorsTableView;
 
     @FXML
     private MFXButton refreshBtn;
@@ -54,30 +54,30 @@ public class ViewVendorsController implements Initializable {
     }
 
     private void setUpViewVendorsTable(){
-        number.setComparator(Comparator.comparing(ViewVendorsInfo::getNumber));
-        vendorName.setComparator(Comparator.comparing(ViewVendorsInfo::getName));
-        vendorId.setComparator(Comparator.comparing(ViewVendorsInfo::getVendor_id));
-        status.setComparator(Comparator.comparing(ViewVendorsInfo::getStatus));
-        gender.setComparator(Comparator.comparing(ViewVendorsInfo::getGender));
-        dateRegistered.setComparator(Comparator.comparing(ViewVendorsInfo::getDate_registered));
-        telepnoneNumber.setComparator(Comparator.comparing(ViewVendorsInfo::getTelephone_number));
+        number.setComparator(Comparator.comparing(VendorsInfo::getNumber));
+        vendorName.setComparator(Comparator.comparing(VendorsInfo::getName));
+        vendorId.setComparator(Comparator.comparing(VendorsInfo::getVendor_id));
+        status.setComparator(Comparator.comparing(VendorsInfo::getStatus));
+        gender.setComparator(Comparator.comparing(VendorsInfo::getGender));
+        dateRegistered.setComparator(Comparator.comparing(VendorsInfo::getDate_registered));
+        telepnoneNumber.setComparator(Comparator.comparing(VendorsInfo::getTelephone_number));
 
-        number.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(ViewVendorsInfo::getNumber));
-        vendorName.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(ViewVendorsInfo::getName));
-        vendorId.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(ViewVendorsInfo::getVendor_id));
-        status.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(ViewVendorsInfo::getStatus));
-        gender.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(ViewVendorsInfo::getGender));
-        dateRegistered.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(ViewVendorsInfo::getDate_registered));
-        telepnoneNumber.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(ViewVendorsInfo::getTelephone_number));
+        number.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(VendorsInfo::getNumber));
+        vendorName.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(VendorsInfo::getName));
+        vendorId.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(VendorsInfo::getVendor_id));
+        status.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(VendorsInfo::getStatus));
+        gender.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(VendorsInfo::getGender));
+        dateRegistered.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(VendorsInfo::getDate_registered));
+        telepnoneNumber.setRowCellFactory(viewVendorsInfo -> new MFXTableRowCell<>(VendorsInfo::getTelephone_number));
 
         viewVendorsTableView.getTableColumns().addAll(number, vendorName, vendorId, status, gender, dateRegistered, telepnoneNumber);
         viewVendorsTableView.getFilters().addAll(
-                new IntegerFilter<>("NO.", ViewVendorsInfo::getNumber),
-                new StringFilter<>("VENDOR NAME", ViewVendorsInfo::getName),
-                new StringFilter<>("VENDOR ID", ViewVendorsInfo::getVendor_id),
-                new StringFilter<>("STATUS", ViewVendorsInfo::getStatus),
-                new StringFilter<>("GENDER", ViewVendorsInfo::getGender),
-                new StringFilter<>("TELEPHONE NUMBER", ViewVendorsInfo::getTelephone_number)
+                new IntegerFilter<>("NO.", VendorsInfo::getNumber),
+                new StringFilter<>("VENDOR NAME", VendorsInfo::getName),
+                new StringFilter<>("VENDOR ID", VendorsInfo::getVendor_id),
+                new StringFilter<>("STATUS", VendorsInfo::getStatus),
+                new StringFilter<>("GENDER", VendorsInfo::getGender),
+                new StringFilter<>("TELEPHONE NUMBER", VendorsInfo::getTelephone_number)
         );
         viewVendorsTableView.setItems(ViewVendorsInfoList.vendorsInfo);
     }
