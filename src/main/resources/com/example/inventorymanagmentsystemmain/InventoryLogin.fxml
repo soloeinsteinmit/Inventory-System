@@ -31,7 +31,7 @@
                           <Glow />
                       </effect>
                </MFXButton>
-               <TextField fx:id="idField" layoutX="72.0" layoutY="180.0" prefHeight="39.0" prefWidth="283.0" promptText="Eg:123456" style="-fx-background-color: #FFFFFF; -fx-border-color: #F2F2F2; -fx-background-radius: 3; -fx-border-radius: 3;">
+               <TextField fx:id="idField" layoutX="72.0" layoutY="174.0" prefHeight="39.0" prefWidth="283.0" promptText="Eg:123456" style="-fx-background-color: #FFFFFF; -fx-border-color: #F2F2F2; -fx-background-radius: 3; -fx-border-radius: 3;">
                   <font>
                      <Font size="13.0" />
                   </font>
@@ -39,17 +39,17 @@
                      <Insets left="10.0" />
                   </padding>
                </TextField>
-                  <Text layoutX="72.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Welcome back" wrappingWidth="221.0">
+                  <Text layoutX="73.0" layoutY="89.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Welcome to" wrappingWidth="289.0">
                       <font>
                           <Font name="Segoe UI Semibold" size="31.0" />
                       </font>
                </Text>
-                  <Text layoutX="74.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="ID">
+                  <Text layoutX="74.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="ID">
                       <font>
                           <Font name="Segoe UI Semibold" size="13.0" />
                       </font>
                </Text>
-                  <Text layoutX="75.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Password">
+                  <Text layoutX="75.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Password">
                       <font>
                           <Font name="Segoe UI Semibold" size="13.0" />
                       </font>
@@ -67,7 +67,7 @@
                      <Font name="Segoe UI Bold" size="13.0" />
                   </font>
                </Label>
-               <MFXPasswordField fx:id="passwordField" floatMode="DISABLED" layoutX="72.0" layoutY="259.0" minHeight="40.0" prefHeight="30.0" prefWidth="283.0" promptText="Your password here" style="-fx-border-color: #F2F2F2;">
+               <MFXPasswordField fx:id="passwordField" floatMode="DISABLED" layoutX="72.0" layoutY="253.0" minHeight="40.0" prefHeight="30.0" prefWidth="283.0" promptText="Your password here" style="-fx-border-color: #F2F2F2;">
                   <padding>
                      <Insets left="10.0" />
                   </padding></MFXPasswordField>
@@ -86,7 +86,7 @@
                      <Font name="Segoe UI Semibold" size="13.0" />
                   </font>
                </Text>
-               <Text fill="#bfb6b6" layoutX="74.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Welcome back! Please enter your details" wrappingWidth="261.0">
+               <Text fill="#bfb6b6" layoutX="73.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="iMangeInventory, please enter your details" wrappingWidth="283.0">
                   <font>
                      <Font name="Segoe UI Semibold" size="14.0" />
                   </font>
