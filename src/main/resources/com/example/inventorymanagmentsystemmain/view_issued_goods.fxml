@@ -3,6 +3,7 @@
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTableColumn?>
 <?import io.github.palexdev.materialfx.controls.MFXTableView?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -11,7 +12,7 @@
 <AnchorPane prefHeight="594.0" prefWidth="930.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inventorymanagmentsystemmain.ViewIssuedGoodsController">
    <children>
       <MFXTableView fx:id="viewIssuedGoodsTableView" layoutX="5.0" layoutY="8.0" prefHeight="583.0" prefWidth="918.0" style="-fx-font-size: 13;" />
-      <MFXTableColumn fx:id="goodsName" layoutX="78.0" layoutY="9.0" prefHeight="42.0" prefWidth="197.0" text="GOOD NAME" wrapText="true">
+      <MFXTableColumn fx:id="goodsName" layoutX="57.0" layoutY="9.0" prefHeight="42.0" prefWidth="174.0" text="GOOD NAME" wrapText="true">
          <font>
             <Font name="Segoe UI Semilight" size="14.0" />
          </font>
@@ -25,27 +26,33 @@
             </ImageView>
          </graphic>
       </MFXButton>
-      <MFXTableColumn fx:id="number" layoutX="6.0" layoutY="9.0" minWidth="72.0" prefHeight="42.0" prefWidth="72.0" text="NO." wrapText="true">
+      <MFXTableColumn fx:id="number" layoutX="6.0" layoutY="9.0" minWidth="51.0" prefHeight="42.0" prefWidth="51.0" text="NO." wrapText="true">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+         <padding>
+            <Insets left="10.0" />
+         </padding>
+      </MFXTableColumn>
+      <MFXTableColumn fx:id="categoryName" layoutX="231.0" layoutY="9.0" prefHeight="42.0" prefWidth="205.0" text="CATEGORY NAME" wrapText="true">
          <font>
             <Font name="Segoe UI Semilight" size="14.0" />
          </font>
       </MFXTableColumn>
-      <MFXTableColumn fx:id="categoryName" layoutX="275.0" layoutY="9.0" prefHeight="42.0" prefWidth="205.0" text="CATEGORY NAME" wrapText="true">
+      <MFXTableColumn fx:id="quantitySold" layoutX="436.0" layoutY="9.0" minWidth="99.0" prefHeight="42.0" prefWidth="121.0" text="QUANTITY SOLD" wrapText="true">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+         <padding>
+            <Insets left="12.0" />
+         </padding>
+      </MFXTableColumn>
+      <MFXTableColumn fx:id="receiptId" layoutX="557.0" layoutY="9.0" minWidth="99.0" prefHeight="42.0" prefWidth="106.0" text="RECEIPT ID" wrapText="true">
          <font>
             <Font name="Segoe UI Semilight" size="14.0" />
          </font>
       </MFXTableColumn>
-      <MFXTableColumn fx:id="quantitySold" layoutX="480.0" layoutY="9.0" minWidth="99.0" prefHeight="42.0" prefWidth="129.0" text="QUANTITY SOLD" wrapText="true">
-         <font>
-            <Font name="Segoe UI Semilight" size="14.0" />
-         </font>
-      </MFXTableColumn>
-      <MFXTableColumn fx:id="receiptId" layoutX="609.0" layoutY="9.0" minWidth="99.0" prefHeight="42.0" prefWidth="106.0" text="RECEIPT ID" wrapText="true">
-         <font>
-            <Font name="Segoe UI Semilight" size="14.0" />
-         </font>
-      </MFXTableColumn>
-      <MFXTableColumn fx:id="datetimeSold" layoutX="714.0" layoutY="9.0" minWidth="99.0" prefHeight="42.0" prefWidth="211.0" text="DATETIME SOLD" wrapText="true">
+      <MFXTableColumn fx:id="datetimeSold" layoutX="663.0" layoutY="9.0" minWidth="99.0" prefHeight="42.0" prefWidth="258.0" text="DATETIME SOLD" wrapText="true">
          <font>
             <Font name="Segoe UI Semilight" size="14.0" />
          </font>

@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author .py_ML_ai_MIT (Solomon Eshun)
@@ -29,9 +30,25 @@ public class ItemCategoryData {
         return DataAccess.allGoodsName(categoryName);
     }
 
+    /**
+     * @return all goods  from database for issuing of goods.
+     * */
     public static ObservableList<String> allProducts() throws SQLException {
         return DataAccess.getAllGods();
     }
+
+    /**
+     * An array list for containing all guides notes at login.
+     * */
+    public static ArrayList<String> guideNotes = new ArrayList<>(List.of(
+            "\"Use filters in the tableview to narrow down your search in tables...\"",
+            "\"Second guide note here\"",
+            "\"third guide note here\"",
+            "\"forth guide note here\"",
+            "\"fifth guide note here\"",
+            "\"sixth guide note here\"",
+            "\"seventh guide note here\""
+    ));
 
     public static ObservableList<String> attendance(){
         ArrayList<String> attendanceData = new ArrayList<String>();

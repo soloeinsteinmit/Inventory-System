@@ -325,15 +325,15 @@ public class DataAccess {
         }
         return viewIssuedGoodsInfo;
     }
+    /**
+     *
+     * */
     public static ObservableList<VendorsInfo> allVendorsInfo() throws SQLException {
-        int i = 1;
-        Connection connection;
-        PreparedStatement psGetDetails;
-        ResultSet resultSet;
-        HashMap<String, VendorsInfo> vInfo = new HashMap<String, VendorsInfo>();
+        int i = 1; Connection connection;
+        PreparedStatement psGetDetails; ResultSet resultSet;
+        HashMap<String, VendorsInfo> vInfo = new HashMap<String, VendorsInfo>(); // hashmap to store vendor info
         connection = DriverManager.getConnection(DBConstantConnection.root_URL,
                 DBConstantConnection.user, DBConstantConnection.password);
-
         psGetDetails = connection.prepareStatement("""
                 SELECT user_name, user_id, status,\s
                 \tgender, date_registered, telephone_number
@@ -342,23 +342,19 @@ public class DataAccess {
         if (resultSet.isBeforeFirst()){
             while (resultSet.next()){
                 name = resultSet.getString("user_name");
-                id = resultSet.getString("user_id");
-                status = resultSet.getString("status");
-                gender = resultSet.getString("gender");
-                date_registered = resultSet.getString("date_registered");
+                id = resultSet.getString("user_id"); status = resultSet.getString("status");
+                gender = resultSet.getString("gender"); date_registered = resultSet.getString("date_registered");
                 telephone_number = resultSet.getString("telephone_number");
 
-                vInfo.put(id, new VendorsInfo(i, name, status, gender, date_registered, telephone_number));
+                vInfo.put(id, new VendorsInfo(i, name, status, gender, date_registered, telephone_number)); //puts data into hashmap
                 i++;
             }
         }
-        for(Map.Entry<String, VendorsInfo> eachVendorInfo : vInfo.entrySet()){
-            viewVendorsInfo.add(new VendorsInfo(eachVendorInfo.getValue().getNumber(),
-                eachVendorInfo.getValue().getName(), eachVendorInfo.getKey(), eachVendorInfo.getValue().getStatus(),
+        for(Map.Entry<String, VendorsInfo> eachVendorInfo : vInfo.entrySet()){ // displays data into hashmap
+            viewVendorsInfo.add(new VendorsInfo(eachVendorInfo.getValue().getNumber(), eachVendorInfo.getValue().getName(), eachVendorInfo.getKey(), eachVendorInfo.getValue().getStatus(),
                 eachVendorInfo.getValue().getGender(), eachVendorInfo.getValue().getDate_registered(),
                     eachVendorInfo.getValue().getTelephone_number()));
         }
-
         return viewVendorsInfo;
     }
 
@@ -672,7 +668,7 @@ public class DataAccess {
 
     }
 
-    public static void addNewCategory(String cId, String categoryName) throws SQLException {
+    public static void addNewCategory(String cId, String categoryName, String ds) throws SQLException {
         Connection connection;
         PreparedStatement psAddNewCategory;
         PreparedStatement psCheckCategoryExist;
@@ -692,10 +688,11 @@ public class DataAccess {
             AlertNotification.trayNotification("ERROR", "GOOD CATEGORY ALREADY EXIST", 4, NotificationType.NOTICE);
         }else {
             psAddNewCategory = connection.prepareStatement("""
-                INSERT INTO category_table VALUES(?, ?)
+                INSERT INTO category_table VALUES(?, ?, ?)
                 """);
             psAddNewCategory.setString(1, cId);
             psAddNewCategory.setString(2, categoryName);
+            psAddNewCategory.setString(3, ds);
             psAddNewCategory.executeUpdate();
         }
 

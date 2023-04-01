@@ -29,6 +29,15 @@ public class InventoryLoginController implements Initializable {
     private AnchorPane container;
 
     @FXML
+    private MFXButton previousGuideBtn;
+
+    @FXML
+    private Label guideLabel;
+
+    @FXML
+    private MFXButton nextGuideBtn;
+
+    @FXML
     private Label forgotPassword;
 
     @FXML
@@ -48,11 +57,23 @@ public class InventoryLoginController implements Initializable {
 
     @FXML
     private MFXProgressSpinner mfxSpinner;
-
+    MyAnimationsClass myAnimationsClass = new MyAnimationsClass();
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        TooltipClass.tooltipMessage("Next Guide", nextGuideBtn);
+        TooltipClass.tooltipMessage("Previous Guide", previousGuideBtn);
+
+
+        //next guide
+        nextGuideBtn.setOnMouseClicked(event -> {
+            myAnimationsClass.loginGuideNotesAnimationNext(guideLabel);
+        });
+        //previous guide
+        previousGuideBtn.setOnMouseClicked(event -> {
+            myAnimationsClass.loginGuideNotesAnimationPrevious(guideLabel);
+        });
     }
 
     @FXML

@@ -1,0 +1,22 @@
+.navigation-button{
+    -fx-background-color : TRANSPARENT;
+    -fx-border-color : WHITE;
+    -fx-background-radius : 100;
+    -fx-border-radius : 100px;
+    -fx-border-width: 0.8;
+}
+.navigation-button:hover{
+    -fx-background-color : #a4a4a4;
+    -fx-background-radius : 100;
+    -fx-border-color : WHITE;
+    -fx-border-radius : 100px;
+    -fx-border-width: 0.8;
+}
+
+.navigation-button:pressed{
+    -fx-background-color : #b8b8b8;
+    -fx-background-radius : 100;
+    -fx-border-color : WHITE;
+    -fx-border-radius : 100px;
+    -fx-border-width: 0.8;
+}

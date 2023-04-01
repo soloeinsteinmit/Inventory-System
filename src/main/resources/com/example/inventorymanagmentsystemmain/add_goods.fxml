@@ -211,5 +211,50 @@
             <Font name="Segoe UI Semibold Italic" size="13.0" />
          </font>
       </MFXButton>
+      <Label layoutX="410.0" layoutY="76.0" text="*" textFill="RED">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="689.0" layoutY="76.0" text="*" textFill="RED">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="426.0" layoutY="151.0" text="*" textFill="RED">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="635.0" layoutY="151.0" text="*" textFill="RED">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="143.0" layoutY="73.0" text="*" textFill="RED">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="129.0" layoutY="151.0" text="*" textFill="RED">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="155.0" layoutY="335.0" text="*" textFill="RED">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="491.0" layoutY="335.0" text="*" textFill="RED">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="177.0" layoutY="464.0" text="*" textFill="RED">
+         <font>
+            <Font name="Segoe UI Semilight" size="14.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

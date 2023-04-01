@@ -74,7 +74,8 @@ public class ViewIssuedGoodsController implements Initializable {
         viewIssuedGoodsTableView.getFilters().addAll(
                 new StringFilter<>("GOOD(S) NAME", ViewIssuedGoodsInfo::getGoodsName),
                 new StringFilter<>("CATEGORY NAME", ViewIssuedGoodsInfo::getCategoryName),
-                new StringFilter<>("DATETIME SOLD", ViewIssuedGoodsInfo::getDatetimeSold)
+                new StringFilter<>("DATETIME SOLD", ViewIssuedGoodsInfo::getDatetimeSold),
+                new StringFilter<>("RECEIPT ID", ViewIssuedGoodsInfo::getReceiptId)
         );
         viewIssuedGoodsTableView.setItems(ViewIssuedGoodsInfoList.issuedGoodsInfo);
     }

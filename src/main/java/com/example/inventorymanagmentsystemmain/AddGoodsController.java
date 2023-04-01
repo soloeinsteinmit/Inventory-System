@@ -305,18 +305,20 @@ public class AddGoodsController implements Initializable {
 
     @FXML
     void addNewCategory(MouseEvent event) throws SQLException{
-        DataAccess.addNewCategory(RandomIdGenerator.randomId(111, 999), newCategoryName.getText());
-        AlertNotification.trayNotification("SUCCESS", "A NEW CATEGORY\n "+
-                newCategoryName.getText().toUpperCase()+" HAS BEEN ADDED SUCCESSFULLY.", 4, NotificationType.NOTICE);
-        newCategoryName.clear();
-
-
         String assignDSCheckerGroup = GoodsCategoryDSChecker.assignDS.get(Integer.parseInt(RandomIdGenerator.randomId(0, GoodsCategoryDSChecker.assignDS.size()-1)));
         switch (assignDSCheckerGroup) {
             case "s" -> GoodsCategoryDSChecker.stackGoodsCategory.add(newCategoryName.getText());
             case "q" -> GoodsCategoryDSChecker.queueGoodsCategory.add(newCategoryName.getText());
             case "l" -> GoodsCategoryDSChecker.arrayListGoodsCategory.add(newCategoryName.getText());
         }
+
+        DataAccess.addNewCategory(RandomIdGenerator.randomId(111, 999), newCategoryName.getText(), assignDSCheckerGroup);
+        AlertNotification.trayNotification("SUCCESS", "A NEW CATEGORY\n "+
+                newCategoryName.getText().toUpperCase()+" HAS BEEN ADDED SUCCESSFULLY.", 4, NotificationType.NOTICE);
+        newCategoryName.clear();
+
+
+
     }
 
     @FXML

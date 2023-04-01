@@ -1,5 +1,6 @@
 package com.example.inventorymanagmentsystemmain;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.Interpolator;
 import javafx.animation.RotateTransition;
 import javafx.scene.control.Label;
@@ -68,5 +69,64 @@ public class MyAnimationsClass {
             image.setVisible(false);
 
         });
+    }
+
+    public void loginGuideNotesAnimationNext(Label notes){
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setNode(notes);
+        fadeTransition.setDuration(Duration.millis(500));
+        fadeTransition.setInterpolator(Interpolator.LINEAR);
+        fadeTransition.setFromValue(1);
+        fadeTransition.setToValue(0);
+        fadeTransition.play();
+
+        fadeTransition.setOnFinished(event -> {
+            int currentIndex = ItemCategoryData.guideNotes.indexOf(notes.getText());
+            notes.setText(ItemCategoryData.guideNotes.get(currentIndex + 1));
+            int currentIndex1 = ItemCategoryData.guideNotes.indexOf(notes.getText());
+            if (currentIndex1 == ItemCategoryData.guideNotes.size()-1){
+                System.out.println("cI n= "+currentIndex1);
+                System.out.println("s n= "+ (ItemCategoryData.guideNotes.size() -1));
+                notes.setText(ItemCategoryData.guideNotes.get(0));
+            }
+            FadeTransition fade = new FadeTransition();
+            fade.setNode(notes);
+            fade.setDuration(Duration.millis(500));
+            fade.setInterpolator(Interpolator.LINEAR);
+            fade.setFromValue(0);
+            fade.setToValue(1);
+            fade.play();
+        });
+
+    }
+
+    public void loginGuideNotesAnimationPrevious(Label notes){
+        FadeTransition fadeTransition = new FadeTransition();
+        fadeTransition.setNode(notes);
+        fadeTransition.setDuration(Duration.millis(500));
+        fadeTransition.setInterpolator(Interpolator.LINEAR);
+        fadeTransition.setFromValue(1);
+        fadeTransition.setToValue(0);
+        fadeTransition.play();
+
+        fadeTransition.setOnFinished(event -> {
+            int currentIndex = ItemCategoryData.guideNotes.indexOf(notes.getText());
+            if (currentIndex == 0){
+                System.out.println("cI n= "+currentIndex);
+                System.out.println("s n= "+ (ItemCategoryData.guideNotes.size() -1));
+                notes.setText(ItemCategoryData.guideNotes.get(ItemCategoryData.guideNotes.size()-1));
+            }
+            int currentIndex1 = ItemCategoryData.guideNotes.indexOf(notes.getText());
+            notes.setText(ItemCategoryData.guideNotes.get(currentIndex1-1));
+
+            FadeTransition fade = new FadeTransition();
+            fade.setNode(notes);
+            fade.setDuration(Duration.millis(500));
+            fade.setInterpolator(Interpolator.LINEAR);
+            fade.setFromValue(0);
+            fade.setToValue(1);
+            fade.play();
+        });
+
     }
 }

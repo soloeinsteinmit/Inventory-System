@@ -11,7 +11,7 @@
 <AnchorPane prefHeight="594.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inventorymanagmentsystemmain.ViewGoodsController">
    <children>
       <MFXTableView fx:id="viewGoodsTableView" layoutX="7.0" layoutY="5.0" prefHeight="583.0" prefWidth="918.0" style="-fx-font-size: 13;" />
-      <MFXTableColumn fx:id="goodsName" layoutX="80.0" layoutY="6.0" prefHeight="42.0" prefWidth="279.0" style="-fx-alignment: CENTER;" text="GOOD NAME" wrapText="true">
+      <MFXTableColumn fx:id="goodsName" layoutX="80.0" layoutY="6.0" prefHeight="42.0" prefWidth="279.0" text="GOOD NAME" wrapText="true">
          <font>
             <Font name="Segoe UI Semilight" size="14.0" />
          </font>
@@ -25,22 +25,22 @@
             </ImageView>
          </graphic>
       </MFXButton>
-      <MFXTableColumn fx:id="number" layoutX="8.0" layoutY="6.0" minWidth="72.0" prefHeight="42.0" prefWidth="72.0" style="-fx-alignment: CENTER;" text="NO." wrapText="true">
+      <MFXTableColumn fx:id="number" layoutX="8.0" layoutY="6.0" minWidth="72.0" prefHeight="42.0" prefWidth="72.0" text="NO." wrapText="true">
          <font>
             <Font name="Segoe UI Semilight" size="14.0" />
          </font>
       </MFXTableColumn>
-      <MFXTableColumn fx:id="categoryName" layoutX="359.0" layoutY="6.0" prefHeight="42.0" prefWidth="279.0" style="-fx-alignment: CENTER;" text="CATEGORY NAME" wrapText="true">
+      <MFXTableColumn fx:id="categoryName" layoutX="359.0" layoutY="6.0" prefHeight="42.0" prefWidth="279.0" text="CATEGORY NAME" wrapText="true">
          <font>
             <Font name="Segoe UI Semilight" size="14.0" />
          </font>
       </MFXTableColumn>
-      <MFXTableColumn fx:id="quantity" layoutX="638.0" layoutY="6.0" minWidth="99.0" prefHeight="42.0" prefWidth="99.0" style="-fx-alignment: CENTER;" text="QUANTITY" wrapText="true">
+      <MFXTableColumn fx:id="quantity" layoutX="638.0" layoutY="6.0" minWidth="99.0" prefHeight="42.0" prefWidth="99.0" text="QUANTITY" wrapText="true">
          <font>
             <Font name="Segoe UI Semilight" size="14.0" />
          </font>
       </MFXTableColumn>
-      <MFXTableColumn fx:id="sellingPrice" layoutX="737.0" layoutY="6.0" minWidth="99.0" prefHeight="42.0" prefWidth="187.0" style="-fx-alignment: CENTER;" text="SELLING PRICE" wrapText="true">
+      <MFXTableColumn fx:id="sellingPrice" layoutX="737.0" layoutY="6.0" minWidth="99.0" prefHeight="42.0" prefWidth="187.0" text="SELLING PRICE" wrapText="true">
          <font>
             <Font name="Segoe UI Semilight" size="14.0" />
          </font>

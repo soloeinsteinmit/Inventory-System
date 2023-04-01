@@ -5,36 +5,22 @@
 <?import io.github.palexdev.materialfx.controls.MFXProgressSpinner?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <StackPane fx:id="parent_container" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inventorymanagmentsystemmain.InventoryLoginController">
    <children>
-      <AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="924.0">
-          <AnchorPane layoutX="-1.0" prefHeight="654.0" prefWidth="369.0" style="-fx-background-color: #1445a9;" />
-          <AnchorPane id="showshadow" layoutX="47.0" layoutY="52.0" prefHeight="417.0" prefWidth="689.0">
-              <Rectangle id="showshadow" arcHeight="5.0" arcWidth="5.0" disable="true" fill="WHITE" height="548.0" layoutX="5.0" stroke="WHITE" strokeType="INSIDE" width="819.0">
-                  <effect>
-                      <DropShadow height="88.53" radius="43.69" width="88.23">
-                          <color>
-                              <Color red="0.19736842811107635" green="0.18000730872154236" blue="0.18000730872154236" />
-                          </color>
-                      </DropShadow>
-                  </effect>
-              </Rectangle>
-              <AnchorPane layoutX="298.0" prefHeight="548.0" prefWidth="527.0">
-                  <MFXButton fx:id="loginButton" buttonType="RAISED" layoutX="127.0" layoutY="332.0" onMouseClicked="#loginButton" prefHeight="41.0" prefWidth="283.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="Login" textAlignment="CENTER" textFill="WHITE">
+      <AnchorPane fx:id="container" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="654.0" prefWidth="924.0" style="-fx-background-color: #E3E7EB;">
+          <AnchorPane layoutX="61.0" layoutY="52.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="804.0" style="-fx-background-color: transparent;">
+              <AnchorPane layoutX="378.0" layoutY="-1.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="426.0" style="-fx-background-color: white; -fx-background-radius: 0 10 10 0;">
+                  <MFXButton fx:id="loginButton" buttonType="RAISED" layoutX="72.0" layoutY="329.0" onMouseClicked="#loginButton" prefHeight="41.0" prefWidth="283.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="Login" textAlignment="CENTER" textFill="WHITE">
                       <font>
                           <Font name="Segoe UI Bold" size="13.0" />
                       </font>
@@ -45,7 +31,7 @@
                           <Glow />
                       </effect>
                </MFXButton>
-               <TextField fx:id="idField" layoutX="127.0" layoutY="190.0" prefHeight="39.0" prefWidth="283.0" promptText="Eg:123456" style="-fx-background-color: #FFFFFF; -fx-border-color: #F2F2F2; -fx-background-radius: 3; -fx-border-radius: 3;">
+               <TextField fx:id="idField" layoutX="72.0" layoutY="180.0" prefHeight="39.0" prefWidth="283.0" promptText="Eg:123456" style="-fx-background-color: #FFFFFF; -fx-border-color: #F2F2F2; -fx-background-radius: 3; -fx-border-radius: 3;">
                   <font>
                      <Font size="13.0" />
                   </font>
@@ -53,30 +39,22 @@
                      <Insets left="10.0" />
                   </padding>
                </TextField>
-                  <Text layoutX="214.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Log in" wrappingWidth="99.0">
+                  <Text layoutX="72.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Welcome back" wrappingWidth="221.0">
                       <font>
                           <Font name="Segoe UI Semibold" size="31.0" />
                       </font>
                </Text>
-                  <Text layoutX="129.0" layoutY="179.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="ID">
+                  <Text layoutX="74.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="ID">
                       <font>
                           <Font name="Segoe UI Semibold" size="13.0" />
                       </font>
                </Text>
-                  <Text layoutX="130.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Password">
+                  <Text layoutX="75.0" layoutY="251.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Password">
                       <font>
                           <Font name="Segoe UI Semibold" size="13.0" />
                       </font>
                   </Text>
-                  <Label id="soften" layoutX="460.0" layoutY="5.0" stylesheets="@InventorySystemStylesheet.css" text="Need Help?">
-                      <font>
-                          <Font name="Segoe UI Bold" size="10.0" />
-                      </font>
-                      <cursor>
-                          <Cursor fx:constant="HAND" />
-                      </cursor>
-                  </Label>
-                  <Label id="soften" fx:id="forgotPassword" layoutX="219.0" layoutY="391.0" stylesheets="@InventorySystemStylesheet.css" text="forgot password?">
+                  <Label id="soften" fx:id="forgotPassword" layoutX="164.0" layoutY="388.0" stylesheets="@InventorySystemStylesheet.css" text="forgot password?">
                       <font>
                           <Font name="Segoe UI Bold" size="13.0" />
                       </font>
@@ -89,54 +67,72 @@
                      <Font name="Segoe UI Bold" size="13.0" />
                   </font>
                </Label>
-               <MFXPasswordField fx:id="passwordField" floatMode="DISABLED" layoutX="127.0" layoutY="262.0" minHeight="40.0" prefHeight="30.0" prefWidth="283.0" promptText="Your password here" style="-fx-border-color: #F2F2F2;">
+               <MFXPasswordField fx:id="passwordField" floatMode="DISABLED" layoutX="72.0" layoutY="259.0" minHeight="40.0" prefHeight="30.0" prefWidth="283.0" promptText="Your password here" style="-fx-border-color: #F2F2F2;">
                   <padding>
                      <Insets left="10.0" />
                   </padding></MFXPasswordField>
-               <Text fill="#f20000" layoutX="53.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Quick Notice:">
+               <Text fill="#f20000" layoutX="37.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Quick Notice:">
                   <font>
                      <Font name="Segoe UI Semibold" size="13.0" />
                   </font>
                </Text>
-               <Text layoutX="54.0" layoutY="497.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Newly registered vendors should login with the default password &quot;12345&quot;.">
+               <Text layoutX="39.0" layoutY="457.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Newly registered vendors should login with the default password &quot;12345&quot;." wrappingWidth="350.28125">
                   <font>
                      <Font name="Segoe UI Semibold" size="13.0" />
                   </font>
                </Text>
-               <Text layoutX="54.0" layoutY="512.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Password should be changed at the &quot;My Profile Tab&quot; once you have log in successfully." wrappingWidth="443.28125">
+               <Text layoutX="38.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Password should be changed at the &quot;My Profile Tab&quot; once you have logged in successfully." wrappingWidth="350.28125">
                   <font>
                      <Font name="Segoe UI Semibold" size="13.0" />
+                  </font>
+               </Text>
+               <Text fill="#bfb6b6" layoutX="74.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Welcome back! Please enter your details" wrappingWidth="261.0">
+                  <font>
+                     <Font name="Segoe UI Semibold" size="14.0" />
                   </font>
                </Text>
               </AnchorPane>
-              <AnchorPane focusTraversable="true" prefHeight="548.0" prefWidth="321.0" style="-fx-background-color: #1445a9;">
-                  <children>
-                      <ImageView fitHeight="226.0" fitWidth="272.0" layoutX="30.0" layoutY="120.0" preserveRatio="true">
-                          <image>
-                              <Image url="@inventory-management-system.png" />
-                          </image>
-                      </ImageView>
-                      <Text fill="#eee4da" layoutX="101.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to">
-                          <font>
-                              <Font name="Segoe UI Semibold Italic" size="18.0" />
-                          </font>
-                      </Text>
-                  <Button layoutX="53.0" layoutY="7.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#minimizePage" prefHeight="20.0" prefWidth="30.0" styleClass="minimizeButtons" stylesheets="@InventorySystemStylesheet.css" text="_" visible="false">
+              <AnchorPane focusTraversable="true" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="380.0" style="-fx-background-color: transparent;">
+               <children>
+                  <ImageView fitHeight="549.0" fitWidth="416.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@imgwork.png" />
+                     </image>
+                  </ImageView>
+                  <MFXButton fx:id="nextGuideBtn" contentDisplay="GRAPHIC_ONLY" depthLevel="LEVEL0" graphicTextGap="0.0" layoutX="307.0" layoutY="476.0" prefHeight="39.0" prefWidth="38.0" rippleBackgroundOpacity="0.0" rippleColor="#a4a4a469" rippleRadius="0.0" rippleRadiusMultiplier="0.0" styleClass="navigation-button" stylesheets="@LoginStyleSheet.css">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@right_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <MFXButton fx:id="previousGuideBtn" contentDisplay="GRAPHIC_ONLY" depthLevel="LEVEL0" graphicTextGap="0.0" layoutX="241.0" layoutY="476.0" prefHeight="39.0" prefWidth="38.0" rippleBackgroundOpacity="0.0" rippleColor="#a4a4a469" rippleRadius="0.0" rippleRadiusMultiplier="0.0" styleClass="navigation-button" stylesheets="@LoginStyleSheet.css">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@left_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MFXButton>
+                  <Text fill="WHITE" layoutX="41.0" layoutY="354.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="bolden" text="Guide" wrappingWidth="63.833984375">
                      <font>
-                        <Font name="Segoe UI Semibold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="7.0" minWidth="30.0" mnemonicParsing="false" onMouseClicked="#closePage" prefHeight="20.0" prefWidth="30.0" styleClass="minimizeButtons" stylesheets="@InventorySystemStylesheet.css" text="X" visible="false">
-                     <font>
-                        <Font name="Segoe UI Semibold" size="15.0" />
-                     </font>
-                  </Button>
-                  <Text fill="#eee4da" layoutX="40.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="InventoryManagementSystem">
-                     <font>
-                        <Font name="Segoe UI Semibold Italic" size="18.0" />
+                        <Font name="Segoe UI Semibold" size="21.0" />
                      </font>
                   </Text>
-                  </children>
+                  <ImageView fitHeight="31.0" fitWidth="20.0" layoutX="103.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@guide.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="guideLabel" alignment="TOP_LEFT" layoutX="46.0" layoutY="366.0" prefHeight="110.0" prefWidth="289.0" text="&quot;Use filters in the tableview to narrow down your search in tables...&quot;" textFill="WHITE" wrapText="true">
+                     <font>
+                        <Font name="Franklin Gothic Book Italic" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
             </AnchorPane>
           </AnchorPane>
          <MFXProgressSpinner fx:id="mfxSpinner" layoutX="861.0" layoutY="597.0" prefHeight="51.0" prefWidth="56.0" visible="false" />

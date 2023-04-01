@@ -43,7 +43,7 @@ public class BillsDashboardController implements Initializable {
     @FXML
     private MFXLegacyListView<String> recentReceiptsListView;
 
-    private static   ObservableList<String> recentlyGeneratedReceipts;
+    private static ObservableList<String> recentlyGeneratedReceipts;
     private ArrayList<String> recentReceipts = new ArrayList<>();
 
     /**

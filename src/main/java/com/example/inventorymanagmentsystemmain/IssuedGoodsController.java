@@ -186,7 +186,9 @@ public class IssuedGoodsController implements Initializable {
 
             processingGoodsLabel.setVisible(true);
             refreshingImage.setVisible(true);
-
+            if (clientNameField.getText().isEmpty()){
+                AlertNotification.trayNotification("ERROR PROCESSING GOODS", "PLEASE CLIENT NAME", 4, NotificationType.WARNING);
+            }
             processingGoodsLabel.setText("Processing carts...");
             MyAnimationsClass.refreshIssueGoods(refreshingImage, "CARTS HAS BEEN PROCESSED SUCCESSFULLY", processingGoodsLabel);
             final String receiptId = RandomIdGenerator.randomId(11111, 99999);

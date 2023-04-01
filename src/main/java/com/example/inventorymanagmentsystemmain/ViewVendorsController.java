@@ -4,7 +4,6 @@ import io.github.palexdev.materialfx.controls.MFXButton;
 import io.github.palexdev.materialfx.controls.MFXTableColumn;
 import io.github.palexdev.materialfx.controls.MFXTableView;
 import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
-import io.github.palexdev.materialfx.filter.IntegerFilter;
 import io.github.palexdev.materialfx.filter.StringFilter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -72,12 +71,10 @@ public class ViewVendorsController implements Initializable {
 
         viewVendorsTableView.getTableColumns().addAll(number, vendorName, vendorId, status, gender, dateRegistered, telepnoneNumber);
         viewVendorsTableView.getFilters().addAll(
-                new IntegerFilter<>("NO.", VendorsInfo::getNumber),
                 new StringFilter<>("VENDOR NAME", VendorsInfo::getName),
                 new StringFilter<>("VENDOR ID", VendorsInfo::getVendor_id),
                 new StringFilter<>("STATUS", VendorsInfo::getStatus),
-                new StringFilter<>("GENDER", VendorsInfo::getGender),
-                new StringFilter<>("TELEPHONE NUMBER", VendorsInfo::getTelephone_number)
+                new StringFilter<>("GENDER", VendorsInfo::getGender)
         );
         viewVendorsTableView.setItems(ViewVendorsInfoList.vendorsInfo);
     }
