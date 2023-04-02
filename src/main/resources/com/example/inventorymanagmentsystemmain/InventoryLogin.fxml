@@ -127,9 +127,9 @@
                         <Image url="@guide.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="guideLabel" alignment="TOP_LEFT" layoutX="46.0" layoutY="366.0" prefHeight="110.0" prefWidth="289.0" text="&quot;Use filters in the tableview to narrow down your search in tables...&quot;" textFill="WHITE" wrapText="true">
+                  <Label fx:id="guideLabel" alignment="TOP_LEFT" layoutX="46.0" layoutY="359.0" prefHeight="117.0" prefWidth="289.0" text="&quot;Use filters in the tableview to narrow down your search in tables...&quot;" textFill="WHITE" wrapText="true">
                      <font>
-                        <Font name="Franklin Gothic Book Italic" size="20.0" />
+                        <Font name="Franklin Gothic Book Italic" size="15.0" />
                      </font>
                   </Label>
                </children>

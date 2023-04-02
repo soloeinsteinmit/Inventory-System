@@ -71,12 +71,6 @@ public class AddGoodsController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // ADD ALL INITIAL SUM IN DATABASE TO ARRAY
-        /*try {
-//            GoodsCategoryDSChecker.addInitialSum();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }*/
 
         MyProfileController.goodsCategoryComboBox = goodsCategoryComboBox;
         grossPriceField.setEditable(false);
@@ -260,25 +254,27 @@ public class AddGoodsController implements Initializable {
     void saveGoods(MouseEvent event) throws SQLException{
 
         while(!stackGoods.isEmpty()){
-            System.out.println("print hererererererererer1");
+//            System.out.println("print hererererererererer1");
             ArrayList<String> getEachGoodsDataStack = stackGoods.pop();
             System.out.println("popped data stack = " + getEachGoodsDataStack);
             DataAccess.addGoods(getEachGoodsDataStack.get(0), getEachGoodsDataStack.get(1), getEachGoodsDataStack.get(2),
-                getEachGoodsDataStack.get(3), getEachGoodsDataStack.get(4), getEachGoodsDataStack.get(5));
+                getEachGoodsDataStack.get(3), getEachGoodsDataStack.get(4), getEachGoodsDataStack.get(5), overStockingMessage);
+
+
 
         }
 
         while (!queueGoods.isEmpty()){
-            System.out.println("print hererererererererer2");
+//            System.out.println("print hererererererererer2");
             ArrayList<String> getEachGoodsDataQueue = queueGoods.poll();
             System.out.println("polled data queue = " + getEachGoodsDataQueue);
             assert getEachGoodsDataQueue != null;
                 DataAccess.addGoods(getEachGoodsDataQueue.get(0), getEachGoodsDataQueue.get(1), getEachGoodsDataQueue.get(2),
-                        getEachGoodsDataQueue.get(3), getEachGoodsDataQueue.get(4), getEachGoodsDataQueue.get(5));
+                        getEachGoodsDataQueue.get(3), getEachGoodsDataQueue.get(4), getEachGoodsDataQueue.get(5), overStockingMessage);
 
         }
         while (!listGoods.isEmpty()){
-            System.out.println("print hererererererererer");
+//            System.out.println("print hererererererererer");
             for (int i = 0; i < itemsListSize; i++){
                 System.out.println("count value = "+ i);
                 ArrayList<String> getEachGoodsDataList = listGoods.remove(i);
@@ -286,7 +282,7 @@ public class AddGoodsController implements Initializable {
                 System.out.println("removed data list = " + getEachGoodsDataList);
                 assert getEachGoodsDataList != null;
                 DataAccess.addGoods(getEachGoodsDataList.get(0), getEachGoodsDataList.get(1), getEachGoodsDataList.get(2),
-                        getEachGoodsDataList.get(3), getEachGoodsDataList.get(4), getEachGoodsDataList.get(5));
+                        getEachGoodsDataList.get(3), getEachGoodsDataList.get(4), getEachGoodsDataList.get(5), overStockingMessage);
 
             }
         }
@@ -296,8 +292,6 @@ public class AddGoodsController implements Initializable {
             AlertNotification.trayNotification("SUCCESS", "GOODS SUCCESSFULLY SAVED TO INVENTORY",
                     4, NotificationType.SUCCESS);
             trackItemAdded.clear();
-            // set all item to zero
-            GoodsCategoryDSChecker.setAllQuantityArrayElementZero();
         }
 
 
@@ -331,7 +325,13 @@ public class AddGoodsController implements Initializable {
     @FXML
     void topUpQuantity(MouseEvent event)throws SQLException{
         if (!quantityField.getText().isEmpty() && !goodsName1.getText().isEmpty() && !goodsCategoryComboBox.getText().isEmpty()){
-            DataAccess.updateQuantity(goodsName1.getSelectedItem(), Integer.parseInt(quantityField.getText()), 'a');
+            if (DataAccess.updateQuantity(goodsName1.getSelectedItem(), Integer.parseInt(quantityField.getText()),
+                    'a')){
+                overStockingMessage.setVisible(true);
+                overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
+            }else {
+                overStockingMessage.setVisible(false);
+            }
         }else {
             AlertNotification.trayNotification("ERROR", "PLEASE FILL IN THE GOODS NAME, CATEGORY NAME \nAND THE QUANTITY FIELD", 4, NotificationType.NOTICE);
         }

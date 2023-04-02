@@ -72,11 +72,12 @@ public class ChangingScenes {
         stage.show();
 
     }
+    DashboardController dc = new DashboardController();
 
     /**
      * @param fxmlFileName name of fxml to be changed to.
      */
-    public static void toHome(MouseEvent event, String fxmlFileName, MFXProgressSpinner spinner) throws IOException {
+    public void toHome(MouseEvent event, String fxmlFileName, MFXProgressSpinner spinner) throws IOException {
         Task<Parent> fxmlTask = new Task<Parent>() {
             @Override
             protected Parent call() throws Exception {
@@ -93,6 +94,10 @@ public class ChangingScenes {
             stage.setScene(scene);
             stage.show();
 
+            stage.setOnCloseRequest(windowEvent -> {
+//                dc.closeWindowAlert(stage);
+//                dc.closeWindowAlert();
+            });
         });
         fxmlTask.setOnFailed(e->{
             spinner.setVisible(false);

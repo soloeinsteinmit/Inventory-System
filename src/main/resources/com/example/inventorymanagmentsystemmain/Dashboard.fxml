@@ -1,112 +1,163 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXDialog?>
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="dashboardPane" prefHeight="594.0" prefWidth="993.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inventorymanagmentsystemmain.DashboardController">
+<StackPane fx:id="parentStackContainer" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.inventorymanagmentsystemmain.DashboardController">
    <children>
-      <TabPane id="tabPane" fx:id="tabPane" prefHeight="594.0" prefWidth="940.0" side="LEFT" stylesheets="@TabPaneStyleSheet.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <tabs>
-            <Tab fx:id="myProfileTab">
-              <content>
-                <fx:include source="my_profile.fxml" />
-              </content>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@contact_details_48px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Tab>
-          <Tab fx:id="viewVendorTab">
-            <content>
-              <fx:include source="view_vendors.fxml" />
-            </content>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@viewVendors.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-          </Tab>
-          <Tab fx:id="addGoodsTab">
-            <content>
-                <fx:include source="add_goods.fxml" />
-            </content>
-               <graphic>
-                  <ImageView fitHeight="34.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@add_goods.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-          </Tab>
-            <Tab fx:id="viewGoods">
-              <content>
-                  <fx:include source="view_goods.fxml" />
-              </content>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@storage_48px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Tab>
-            <Tab fx:id="viewBillsTab">
-              <content>
-                <fx:include source="bills_dashboard.fxml" />
-              </content>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@folder_bills_48px.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Tab>
-            <Tab fx:id="issuedGoodsTab">
-              <content>
-                  <fx:include source="issued_goods.fxml" />
-              </content>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@checkout_issued_goods.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Tab>
-            <Tab fx:id="viewIssuedGoodsTab">
-              <content>
-                <fx:include source="view_issued_goods.fxml" />
-              </content>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@inventory_flow_view_issued.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Tab>
-            <Tab fx:id="register_vendor">
-               <content>
-                  <fx:include source="register_vendor.fxml" />
-               </content>
-               <graphic>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@register.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-            </Tab>
-        </tabs>
-      </TabPane>
+      <AnchorPane fx:id="dashboardPane" prefHeight="594.0" prefWidth="993.0">
+         <children>
+            <TabPane id="tabPane" fx:id="tabPane" prefHeight="594.0" prefWidth="940.0" side="LEFT" stylesheets="@TabPaneStyleSheet.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                  <Tab fx:id="myProfileTab">
+                    <content>
+                      <fx:include source="my_profile.fxml" />
+                    </content>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@contact_details_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                <Tab fx:id="viewVendorTab">
+                  <content>
+                    <fx:include source="view_vendors.fxml" />
+                  </content>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@viewVendors.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                </Tab>
+                <Tab fx:id="addGoodsTab">
+                  <content>
+                      <fx:include source="add_goods.fxml" />
+                  </content>
+                     <graphic>
+                        <ImageView fitHeight="34.0" fitWidth="36.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@add_goods.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                </Tab>
+                  <Tab fx:id="viewGoods">
+                    <content>
+                        <fx:include source="view_goods.fxml" />
+                    </content>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@storage_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                  <Tab fx:id="viewBillsTab">
+                    <content>
+                      <fx:include source="bills_dashboard.fxml" />
+                    </content>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@folder_bills_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                  <Tab fx:id="issuedGoodsTab">
+                    <content>
+                        <fx:include source="issued_goods.fxml" />
+                    </content>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@checkout_issued_goods.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                  <Tab fx:id="viewIssuedGoodsTab">
+                    <content>
+                      <fx:include source="view_issued_goods.fxml" />
+                    </content>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@inventory_flow_view_issued.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+                  <Tab fx:id="register_vendor">
+                     <content>
+                        <fx:include source="register_vendor.fxml" />
+                     </content>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@register.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Tab>
+              </tabs>
+            </TabPane>
+            <JFXDialog fx:id="dialog" layoutX="260.0" layoutY="203.0" prefHeight="190.0" prefWidth="436.0">
+               <children>
+                  <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="436.0" style="-fx-background-color: WHITE; -fx-background-radius: 10 10 10 10;">
+                     <children>
+                        <MFXButton fx:id="noBtn" layoutX="333.0" layoutY="148.0" prefHeight="37.0" prefWidth="103.0" style="-fx-background-radius: 0 0 10 0;" text="CANCEL">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="14.0" />
+                           </font>
+                        </MFXButton>
+                        <Label fx:id="signOutMessage" layoutX="12.0" layoutY="76.0" text="Are you sure you want to close this application?">
+                           <font>
+                              <Font name="Segoe UI Semibold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="32.0" prefWidth="436.0" style="-fx-background-color: #EBEEF5; -fx-background-radius: 10 10 0 0;">
+                           <children>
+                              <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@laptop_alert_48px.png" />
+                                 </image>
+                              </ImageView>
+                              <Label layoutX="35.0" layoutY="7.0" text="Closing window alert">
+                                 <font>
+                                    <Font name="Segoe UI Semibold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <MFXButton fx:id="closeDialog" contentDisplay="GRAPHIC_ONLY" layoutX="396.0" layoutY="2.0" prefHeight="28.0" prefWidth="26.0" style="-fx-background-color: transparent; -fx-background-radius: 100;">
+                                 <graphic>
+                                    <ImageView fitHeight="20.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@close_48px.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </MFXButton>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </JFXDialog>
+         </children>
+      </AnchorPane>
    </children>
-</AnchorPane>
+</StackPane>

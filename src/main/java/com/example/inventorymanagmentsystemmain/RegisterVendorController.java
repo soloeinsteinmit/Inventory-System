@@ -178,9 +178,7 @@ public class RegisterVendorController implements Initializable {
 
         closeBtn.setOnMouseClicked(event1 -> {
             anchorPane.setDisable(false);
-            dialog.setOnDialogClosed(e->{
-                anchorPane.setEffect(null);
-            });
+            dialog.setOnDialogClosed(e-> anchorPane.setEffect(null));
             vendorIdField.clear();
             dialog.close();
         });
@@ -191,9 +189,7 @@ public class RegisterVendorController implements Initializable {
                     DataAccess.removeVendor(vendorIdField.getText());
 
                     anchorPane.setDisable(false);
-                    dialog.setOnDialogClosed(e->{
-                        anchorPane.setEffect(null);
-                    });
+                    dialog.setOnDialogClosed(e-> anchorPane.setEffect(null));
                     vendorIdField.clear();
                     dialog.close();
                 }else {

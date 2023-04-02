@@ -9,7 +9,6 @@ import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import tray.notification.NotificationType;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -54,6 +53,9 @@ public class MyProfileController implements Initializable {
     @FXML
     private Label telephoneNoLabel;
 
+
+
+
     public static MFXFilterComboBox<String> goodsCategoryComboBox;
 
     @Override
@@ -90,9 +92,12 @@ public class MyProfileController implements Initializable {
         TooltipClass.tooltipMessage("Logout", logoutBtn);
     }
 
+    DashboardController dc = new DashboardController();
     @FXML
-    void logout(MouseEvent event) throws IOException {
-        ChangingScenes.changeWindow(event, "InventoryLogin");
+    void logout(MouseEvent event) {
+
+
+        dc.signOut("ARE YOU SURE YOU WANT TO SIGN OUT?");
         DataAccess.myProfileData.clear();
 
         System.out.println("category list = "+ goodsCategoryComboBox.getItems());

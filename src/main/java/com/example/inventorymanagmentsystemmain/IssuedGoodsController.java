@@ -197,6 +197,8 @@ public class IssuedGoodsController implements Initializable {
                 assert products != null;
                 DataAccess.issueGoods(products.get(0), receiptId, Integer.parseInt(products.get(1)), Float.parseFloat(products.get(2)), clientNameField.getText());
                 DataAccess.updateQuantity(products.get(0), Integer.parseInt(products.get(1)), 'i'); // subtract initial quantity in db from currently issued
+                //TODO: HAVE TO WRITE SOME IF STATEMENT HERE
+
 
                 productSales.put(DataAccess.getGoodsId(products.get(0)), Integer.valueOf(products.get(1)));
             }

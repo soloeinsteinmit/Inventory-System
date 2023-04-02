@@ -42,7 +42,7 @@ public class ItemCategoryData {
      * */
     public static ArrayList<String> guideNotes = new ArrayList<>(List.of(
             "\"Use filters in the tableview to narrow down your search in tables...\"",
-            "\"Second guide note here\"",
+            "\"To remove a product from the cart, select the product from the cart. Then after click on the remove from cart button to remove the product from cart.\"",
             "\"third guide note here\"",
             "\"forth guide note here\"",
             "\"fifth guide note here\"",

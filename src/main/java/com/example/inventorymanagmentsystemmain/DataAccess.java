@@ -2,6 +2,7 @@ package com.example.inventorymanagmentsystemmain;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.util.Duration;
 import tray.animations.AnimationType;
 import tray.notification.NotificationType;
@@ -48,7 +49,9 @@ public class DataAccess {
      * */
     public static int GET_EACH_GOOD_QUANTITY;
     public static int HIGH_STOCK_VALUE = 1000;
+    public static int HIGHEST_STOCK_VALUE = 1200;
     public static int LOW_STOCK_VALUE = 100;
+    public static int LOWEST_STOCK_VALUE = 50;
     public static int SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY;
 
     /**
@@ -404,7 +407,6 @@ public class DataAccess {
                 dataStructure = resultSet.getString("data_structure");
             }
         }
-
         return dataStructure;
     }
 
@@ -641,7 +643,7 @@ public class DataAccess {
 
 
     public static void addGoods(String goodsName, String buyingPrice,String sellingPrice, String grossPrice,
-                String quantity,String datetimeRegistered) throws SQLException {
+                String quantity,String datetimeRegistered, Label overStockingMessage) throws SQLException {
 
         Connection connection;
         PreparedStatement psAddGoods;
@@ -660,7 +662,27 @@ public class DataAccess {
         psAddGoods.setDouble(1, Double.parseDouble(buyingPrice));
         psAddGoods.setDouble(2, Double.parseDouble(sellingPrice));
         psAddGoods.setDouble(3, Double.parseDouble(grossPrice));
-        psAddGoods.setInt(4, Integer.parseInt(quantity) + getGoodQuantity(goodsName));
+        if (Integer.parseInt(quantity) + getGoodQuantity(goodsName) >= HIGH_STOCK_VALUE &&
+                Integer.parseInt(quantity) + getGoodQuantity(goodsName) < HIGHEST_STOCK_VALUE){
+            psAddGoods.setInt(4, Integer.parseInt(quantity) + getGoodQuantity(goodsName));
+
+            overStockingMessage.setVisible(true);
+            overStockingMessage.setText("OVERSTOCKING "+ goodsName.toUpperCase());
+            AlertNotification.trayNotification("OVERSTOCKING", gName.toUpperCase()+ " IS BEING OVERSTOCKED", 4, NotificationType.NOTICE);
+
+
+        }else if(Integer.parseInt(quantity) + getGoodQuantity(goodsName) > HIGHEST_STOCK_VALUE){
+            psAddGoods.setInt(4, Integer.parseInt(quantity));
+            overStockingMessage.setVisible(true);
+            overStockingMessage.setText("OVERSTOCKING "+ goodsName.toUpperCase());
+            AlertNotification.trayNotification("OVERSTOCKING", gName.toUpperCase()+ " IS BEING OVERSTOCKED \n" +
+                    "CANNOT ADD ANYMORE GOODS TO INVENTORY.", 4, NotificationType.NOTICE);
+
+        }else {
+            psAddGoods.setInt(4, Integer.parseInt(quantity) + getGoodQuantity(goodsName));
+        }
+
+
         psAddGoods.setString(5, datetimeRegistered);
         psAddGoods.setString(6, getGoodsId(goodsName));
 
@@ -775,34 +797,6 @@ public class DataAccess {
         return SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY > HIGH_STOCK_VALUE;
     }
 
-    public static int getSumQuantity(String categoryName) throws SQLException {
-        Connection connection;
-        PreparedStatement psGetSumQuantity;
-        ResultSet resultSet;
-        connection = DriverManager.getConnection(DBConstantConnection.root_URL,
-                DBConstantConnection.user, DBConstantConnection.password);
-
-        psGetSumQuantity = connection.prepareStatement("""
-                SELECT SUM(goods_table.quantity)\s
-                FROM goods_table
-                INNER JOIN category_table
-                ON category_table.category_id = goods_table.category_id
-                WHERE category_name = ?
-                """);
-
-        psGetSumQuantity.setString(1, categoryName);
-        resultSet = psGetSumQuantity.executeQuery();
-
-
-        if (resultSet.isBeforeFirst()){
-            while (resultSet.next()){
-                SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY = resultSet.getInt("SUM(goods_table.quantity)");
-                System.out.println(SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY+ " sum here top");
-            }
-        }
-        return SUM_OF_GOODS_QUANTITY_UNDER_EACH_CATEGORY;
-    }
-
 
 
     public static ObservableList<String> getAllGods() throws SQLException{
@@ -876,7 +870,7 @@ public class DataAccess {
 
         return initialQuantity;
     }
-    public static void updateQuantity(String gName, int quantity, char updateQuantityType) throws SQLException {
+    public static boolean updateQuantity(String gName, int quantity, char updateQuantityType) throws SQLException {
         Connection connection;
         PreparedStatement psUpdateQuantity;
 
@@ -888,22 +882,54 @@ public class DataAccess {
                 SET quantity = ?
                 WHERE goods_name = ?
                 """);
-        if (updateQuantityType == 'a'){
-            psUpdateQuantity.setInt(1, getEachProductQuantity(gName) + quantity);
-            System.out.println("Initial quantity of "+ gName +" "+ getEachProductQuantity(gName));
-            System.out.println("DataAccess line 694 updated db= "+ (getEachProductQuantity(gName) + quantity));
-        }else if(updateQuantityType == 'i'){
-            if (getEachProductQuantity(gName) - quantity <= 0){
-                AlertNotification.trayNotification("OUT OF STOCK", gName.toUpperCase()+ " IS OUT OF STOCK", 4, NotificationType.NOTICE);
+        if (updateQuantityType == 'a'){ // a - adding of goods into table
+            if(getEachProductQuantity(gName) + quantity >= HIGH_STOCK_VALUE && getEachProductQuantity(gName) + quantity < HIGHEST_STOCK_VALUE){
+                psUpdateQuantity.setInt(1, getEachProductQuantity(gName) + quantity);
+                AlertNotification.trayNotification("OVERSTOCKING", gName.toUpperCase()+ " IS BEING OVERSTOCKED",
+                        4, NotificationType.NOTICE);
+                return true;
+
+            } else if(getEachProductQuantity(gName) + quantity >= HIGHEST_STOCK_VALUE){
+                psUpdateQuantity.setInt(1, getEachProductQuantity(gName));
+                AlertNotification.trayNotification("OVERSTOCKING", gName.toUpperCase()+ " IS BEING OVERSTOCKED\n" +
+                        "CANNOT ADD ANYMORE GOODS TO INVENTORY", 4, NotificationType.NOTICE);
+                return false;
             }else {
+                psUpdateQuantity.setInt(1, getEachProductQuantity(gName) + quantity);
+                System.out.println("Initial quantity of "+ gName +" "+ getEachProductQuantity(gName));
+                System.out.println("DataAccess updated db= "+ (getEachProductQuantity(gName) + quantity));
+                return true;
+            }
+
+        }else if(updateQuantityType == 'i'){ // i - issuing of goods
+            if ( getEachProductQuantity(gName) - quantity <= LOW_STOCK_VALUE){
                 psUpdateQuantity.setInt(1, getEachProductQuantity(gName) - quantity);
+                AlertNotification.trayNotification("OUT OF STOCK", gName.toUpperCase()+ " IS GETTING OUT OF STOCK",
+                        4, NotificationType.NOTICE);
                 System.out.println("Initial quantity of "+ gName +" "+ getEachProductQuantity(gName));
                 System.out.println("DataAccess line 694 updated db= "+ (getEachProductQuantity(gName) - quantity));
+                return true;
+
+            } else if (getEachProductQuantity(gName) - quantity <= LOWEST_STOCK_VALUE){
+                psUpdateQuantity.setInt(1, getEachProductQuantity(gName) - quantity);
+                AlertNotification.trayNotification("OUT OF STOCK", gName.toUpperCase()+ " VERY IS LOW IN STOCK",
+                        4, NotificationType.NOTICE);
+                System.out.println("Initial quantity of "+ gName +" "+ getEachProductQuantity(gName));
+                System.out.println("DataAccess line 694 updated db= "+ (getEachProductQuantity(gName) - quantity));
+                return true;
+
+            }else if (getEachProductQuantity(gName) - quantity <= 0){
+                psUpdateQuantity.setInt(1, getEachProductQuantity(gName));
+                AlertNotification.trayNotification("OUT OF STOCK", gName.toUpperCase()+ " IS OUT IN STOCK", 4, NotificationType.NOTICE);
+                System.out.println("Initial quantity of "+ gName +" "+ getEachProductQuantity(gName));
+                System.out.println("DataAccess line 694 updated db= "+ (getEachProductQuantity(gName) - quantity));
+                return false;
             }
 
         }
         psUpdateQuantity.setString(2, gName);
         psUpdateQuantity.executeUpdate();
+        return false;
     }
 
     public static void issueGoods(String gName, String rId, int quantitySold, float amt, String cName) throws SQLException {

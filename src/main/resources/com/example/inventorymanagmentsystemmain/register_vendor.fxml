@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXDialog?>
 <?import io.github.palexdev.materialfx.controls.MFXButton?>
-<?import io.github.palexdev.materialfx.controls.MFXDatePicker?>
 <?import io.github.palexdev.materialfx.controls.MFXRadioButton?>
 <?import io.github.palexdev.materialfx.controls.MFXTextField?>
 <?import javafx.geometry.Insets?>
@@ -166,12 +165,12 @@
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
                         </Text>
-                        <Text layoutX="54.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                        <Text layoutX="54.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
                         </Text>
-                        <JFXButton fx:id="addVendorButton" layoutX="56.0" layoutY="373.0" minWidth="52.0" onMouseClicked="#addVendor" prefHeight="38.0" prefWidth="298.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="Add vendor" textFill="WHITE">
+                        <JFXButton fx:id="addVendorButton" layoutX="55.0" layoutY="340.0" minWidth="52.0" onMouseClicked="#addVendor" prefHeight="38.0" prefWidth="298.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="Add vendor" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
@@ -179,7 +178,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <JFXButton fx:id="generateIdBtn" layoutX="223.0" layoutY="207.0" minWidth="52.0" onMouseClicked="#generateId" prefHeight="39.0" prefWidth="126.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="Generate ID" textFill="WHITE">
+                        <JFXButton fx:id="generateIdBtn" layoutX="223.0" layoutY="146.0" minWidth="52.0" onMouseClicked="#generateId" prefHeight="39.0" prefWidth="126.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="Generate ID" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
@@ -198,7 +197,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </MFXTextField>
-                        <MFXTextField fx:id="idField" alignment="CENTER" allowEdit="false" floatMode="DISABLED" layoutX="54.0" layoutY="206.0" minHeight="40.0" prefHeight="40.0" prefWidth="153.0" promptText="123456" stylesheets="@TextFieldsStyleSheet.css">
+                        <MFXTextField fx:id="idField" alignment="CENTER" allowEdit="false" floatMode="DISABLED" layoutX="54.0" layoutY="145.0" minHeight="40.0" prefHeight="40.0" prefWidth="153.0" promptText="123456" stylesheets="@TextFieldsStyleSheet.css">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
@@ -209,20 +208,7 @@
                               <Insets left="10.0" />
                            </padding>
                         </MFXTextField>
-                        <MFXDatePicker fx:id="dateRegisteredField" layoutX="55.0" layoutY="141.0" onAction="#getDate" prefHeight="38.0" prefWidth="294.0" promptText="Jan 15, 2014" stylesheets="@TextFieldsStyleSheet.css">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="13.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </MFXDatePicker>
-                        <Text layoutX="55.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date registered">
-                           <font>
-                              <Font name="Segoe UI Semibold" size="13.0" />
-                           </font>
-                        </Text>
-                        <JFXButton fx:id="removeVendorBtn" layoutX="55.0" layoutY="416.0" minWidth="52.0" onMouseClicked="#removeVendor" prefHeight="38.0" prefWidth="299.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="Remove vendor" textFill="WHITE">
+                        <JFXButton fx:id="removeVendorBtn" layoutX="54.0" layoutY="389.0" minWidth="52.0" onMouseClicked="#removeVendor" prefHeight="38.0" prefWidth="299.0" styleClass="softenColor" stylesheets="@InventorySystemStylesheet.css" text="Remove vendor" textFill="WHITE">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
@@ -230,7 +216,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </JFXButton>
-                        <MFXRadioButton fx:id="maleCheckbox" gap="5.0" layoutX="112.0" layoutY="256.0" radioGap="4.5" radius="7.0" text="Male">
+                        <MFXRadioButton fx:id="maleCheckbox" gap="5.0" layoutX="111.0" layoutY="199.0" radioGap="4.5" radius="7.0" text="Male">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
@@ -238,17 +224,17 @@
                               <ToggleGroup fx:id="gender" />
                            </toggleGroup>
                         </MFXRadioButton>
-                        <MFXRadioButton fx:id="femaleCheckbox" gap="5.0" layoutX="172.0" layoutY="256.0" radioGap="4.5" radius="7.0" text="Female" toggleGroup="$gender">
+                        <MFXRadioButton fx:id="femaleCheckbox" gap="5.0" layoutX="171.0" layoutY="199.0" radioGap="4.5" radius="7.0" text="Female" toggleGroup="$gender">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
                         </MFXRadioButton>
-                        <Text layoutX="54.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
+                        <Text layoutX="53.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
                         </Text>
-                        <MFXRadioButton fx:id="adminCheckbox" gap="5.0" layoutX="114.0" layoutY="283.0" radioGap="4.5" radius="7.0" text="Admin">
+                        <MFXRadioButton fx:id="adminCheckbox" gap="5.0" layoutX="111.0" layoutY="232.0" radioGap="4.5" radius="7.0" text="Admin">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
@@ -256,22 +242,22 @@
                               <ToggleGroup fx:id="status" />
                            </toggleGroup>
                         </MFXRadioButton>
-                        <MFXRadioButton fx:id="nonAdminCheckbox" gap="5.0" layoutX="193.0" layoutY="283.0" radioGap="4.5" radius="7.0" text="Non-Admin" toggleGroup="$status">
+                        <MFXRadioButton fx:id="nonAdminCheckbox" gap="5.0" layoutX="190.0" layoutY="232.0" radioGap="4.5" radius="7.0" text="Non-Admin" toggleGroup="$status">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
                         </MFXRadioButton>
-                        <Text layoutX="56.0" layoutY="297.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
+                        <Text layoutX="53.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
                         </Text>
-                        <Text layoutX="55.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone number">
+                        <Text layoutX="55.0" layoutY="279.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telephone number">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>
                         </Text>
-                        <MFXTextField fx:id="telephoneNoField" floatMode="DISABLED" layoutX="56.0" layoutY="325.0" minHeight="40.0" prefHeight="40.0" prefWidth="291.0" promptText="1234567890" stylesheets="@TextFieldsStyleSheet.css">
+                        <MFXTextField fx:id="telephoneNoField" floatMode="DISABLED" layoutX="56.0" layoutY="286.0" minHeight="40.0" prefHeight="40.0" prefWidth="291.0" promptText="1234567890" stylesheets="@TextFieldsStyleSheet.css">
                            <font>
                               <Font name="Segoe UI Semibold" size="13.0" />
                            </font>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import io.github.palexdev.materialfx.controls.MFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="185.0" prefWidth="436.0" style="-fx-background-color: WHITE; -fx-background-radius: 20;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MFXButton fx:id="closeBtn" layoutX="333.0" layoutY="148.0" prefHeight="37.0" prefWidth="103.0" text="CANCEL">
+         <font>
+            <Font name="Segoe UI Semibold" size="14.0" />
+         </font></MFXButton>
+      <Label layoutX="25.0" layoutY="77.0" text="Are you want to close this application?">
+         <font>
+            <Font name="Segoe UI Semibold" size="22.0" />
+         </font>
+      </Label>
+      <Pane prefHeight="32.0" prefWidth="436.0" style="-fx-background-color: #EBEEF5;">
+         <children>
+            <ImageView fitHeight="20.0" fitWidth="21.0" layoutX="8.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@laptop_alert_48px.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="35.0" layoutY="7.0" text="Closing window alert">
+               <font>
+                  <Font name="Segoe UI Semibold" size="14.0" />
+               </font>
+            </Label>
+            <MFXButton fx:id="closeDialog" contentDisplay="GRAPHIC_ONLY" layoutX="396.0" layoutY="2.0" prefHeight="28.0" prefWidth="26.0" style="-fx-background-color: transparent; -fx-background-radius: 100;">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@close_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MFXButton>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
