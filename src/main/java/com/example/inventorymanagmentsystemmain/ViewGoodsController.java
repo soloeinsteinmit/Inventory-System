@@ -7,6 +7,7 @@ import io.github.palexdev.materialfx.controls.cell.MFXTableRowCell;
 import io.github.palexdev.materialfx.filter.StringFilter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
@@ -35,15 +36,21 @@ public class ViewGoodsController implements Initializable {
     private ImageView refreshImg;
 
     @FXML
+    private Label totalProfitLabel;
+
+    @FXML
     private MFXTableColumn<ViewGoodsInfo> sellingPrice;
 
     @FXML
     private MFXTableView<ViewGoodsInfo> viewGoodsTableView;
+    @FXML
+    private MFXTableColumn<ViewGoodsInfo> profitColumn;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         setUpViewGoodsTable();
+        totalProfitLabel.setText(String.valueOf(DataAccess.totalProfit));
         TooltipClass.tooltipMessage("Refresh Table", refreshBtn);
     }
     private void setUpViewGoodsTable(){
@@ -52,14 +59,16 @@ public class ViewGoodsController implements Initializable {
         categoryName.setComparator(Comparator.comparing(ViewGoodsInfo::getCategoryName));
         quantity.setComparator(Comparator.comparing(ViewGoodsInfo::getQuantity));
         sellingPrice.setComparator(Comparator.comparing(ViewGoodsInfo::getSellingPrice));
+        profitColumn.setComparator(Comparator.comparing(ViewGoodsInfo::getProfit));
 
         number.setRowCellFactory(viewGoodsInfo -> new MFXTableRowCell<>(ViewGoodsInfo::getNumber));
         goodsName.setRowCellFactory(viewGoodsInfo -> new MFXTableRowCell<>(ViewGoodsInfo::getGoodsName));
         categoryName.setRowCellFactory(viewGoodsInfo -> new MFXTableRowCell<>(ViewGoodsInfo::getCategoryName));
         quantity.setRowCellFactory(viewGoodsInfo -> new MFXTableRowCell<>(ViewGoodsInfo::getQuantity));
         sellingPrice.setRowCellFactory(viewGoodsInfo -> new MFXTableRowCell<>(ViewGoodsInfo::getSellingPrice));
+        profitColumn.setRowCellFactory(viewGoodsInfo -> new MFXTableRowCell<>(ViewGoodsInfo::getProfit));
 
-        viewGoodsTableView.getTableColumns().addAll(number, goodsName, categoryName, quantity, sellingPrice);
+        viewGoodsTableView.getTableColumns().addAll(number, goodsName, categoryName, quantity, sellingPrice, profitColumn);
         viewGoodsTableView.getFilters().addAll(
                 new StringFilter<>("GOODS NAME", ViewGoodsInfo::getGoodsName),
                 new StringFilter<>("CATEGORY NAME", ViewGoodsInfo::getCategoryName)

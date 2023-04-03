@@ -9,6 +9,7 @@ import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.*;
 import java.util.regex.Matcher;
@@ -35,6 +36,8 @@ public class DataAccess {
     private static String categoryNames;
     private static int quantity;
     private static String sellingPrice;
+    private static double profit;
+    public static double totalProfit;
 
     /**
      * goods and category ids
@@ -241,15 +244,25 @@ public class DataAccess {
 
     }
 
-    public static void registerVendor(String name, String id, String status, String gender,
+    public static boolean registerVendor(String name, String id, String status, String gender,
              String telephoneNo, String date) throws SQLException {
 
         Connection connection;
         PreparedStatement psRegisterVendor;
+        PreparedStatement checkId;
+        ResultSet resultset;
         connection = DriverManager.getConnection(DBConstantConnection.root_URL,
                 DBConstantConnection.user, DBConstantConnection.password);
-
-
+        checkId =connection.prepareStatement("""
+                SELECT user_id
+                FROM users
+                WHERE user_id = ?
+                """);
+        checkId.setString(1, id);
+        resultset = checkId.executeQuery();
+        if (resultset.isBeforeFirst()){
+            return true;
+        }else {
             psRegisterVendor = connection.prepareStatement("""
                             INSERT INTO users VALUES(?, ?, ?, ?, ?, ?, ?)
                             """);
@@ -268,7 +281,8 @@ public class DataAccess {
             psRegisterVendor.setString(6, date);
             psRegisterVendor.setString(7, telephoneNo);
             psRegisterVendor.executeUpdate();
-
+            return false;
+        }
 
     }
 
@@ -421,7 +435,7 @@ public class DataAccess {
 
         psGetDetails = connection.prepareStatement("""
                 SELECT goods_table.goods_name, category_table.category_name,
-                	goods_table.quantity, goods_table.selling_price
+                	goods_table.quantity, goods_table.selling_price, goods_table.profit
                 FROM goods_table
                 INNER JOIN category_table
                 ON category_table.category_id = goods_table.category_id
@@ -433,11 +447,16 @@ public class DataAccess {
                 categoryNames = resultSet.getString("category_name");
                 quantity = resultSet.getInt("quantity");
                 sellingPrice = resultSet.getString("selling_price");
+                profit = resultSet.getDouble("profit");
+
+                DecimalFormat df = new DecimalFormat("#.00");
+                String formattedNumber = df.format(profit);
 
                 getEachItem.add(0, goodsNames);
                 getEachItem.add(1, categoryNames);
                 getEachItem.add(2, String.valueOf(quantity));
                 getEachItem.add(3, sellingPrice);
+                getEachItem.add(4, String.valueOf(formattedNumber));
 
                 /*if (Algorithms.linearSearch(categoryNames, GoodsCategoryDSChecker.stackGoodsCategory)){
                     stackItems.push(new ArrayList<>(getEachItem));
@@ -464,21 +483,24 @@ public class DataAccess {
             while (!stackItems.isEmpty()){
                 ArrayList<String> getEachGoodsDataStack = stackItems.pop();
                 viewGoodsInfo.add(new ViewGoodsInfo(i, getEachGoodsDataStack.get(0), getEachGoodsDataStack.get(1),
-                        Integer.parseInt(getEachGoodsDataStack.get(2)), "GHC "+getEachGoodsDataStack.get(3)));
+                        Integer.parseInt(getEachGoodsDataStack.get(2)), "GHC "+getEachGoodsDataStack.get(3), "GHC "+getEachGoodsDataStack.get(4)));
+                totalProfit += Double.parseDouble(getEachGoodsDataStack.get(4));
                 i++;
             }
 
             while (!queueItems.isEmpty()){
                 ArrayList<String> getEachGoodsDataQueue = queueItems.poll();
                 viewGoodsInfo.add(new ViewGoodsInfo(i, getEachGoodsDataQueue.get(0), getEachGoodsDataQueue.get(1),
-                        Integer.parseInt(getEachGoodsDataQueue.get(2)), "GHC "+getEachGoodsDataQueue.get(3)));
+                        Integer.parseInt(getEachGoodsDataQueue.get(2)), "GHC "+getEachGoodsDataQueue.get(3), "GHC "+getEachGoodsDataQueue.get(4)));
+                totalProfit += Double.parseDouble(getEachGoodsDataQueue.get(4));
                 i++;
             }
             while (!arrayListItems.isEmpty()){
                 for (int j = 0; j < arrayListItems.size(); j++){
                     ArrayList<String> getEachGoodsDataList = arrayListItems.remove(j);
                     viewGoodsInfo.add(new ViewGoodsInfo(i, getEachGoodsDataList.get(0), getEachGoodsDataList.get(1),
-                            Integer.parseInt(getEachGoodsDataList.get(2)), "GHC "+getEachGoodsDataList.get(3)));
+                            Integer.parseInt(getEachGoodsDataList.get(2)), "GHC "+getEachGoodsDataList.get(3), "GHC "+getEachGoodsDataList.get(4)));
+                    totalProfit += Double.parseDouble(getEachGoodsDataList.get(4));
                     i++;
                 }
 
@@ -488,6 +510,21 @@ public class DataAccess {
 
         }
         return viewGoodsInfo;
+    }
+    public static void removeGoodFromInventory(String goodName) throws SQLException {
+        Connection connection;
+        PreparedStatement psRemoveGood;
+
+        connection = DriverManager.getConnection(DBConstantConnection.root_URL,
+                DBConstantConnection.user, DBConstantConnection.password);
+        psRemoveGood = connection.prepareStatement("""
+                DELETE
+                FROM goods_table
+                WHERE goods_name = ?
+                """);
+        psRemoveGood.setString(1, goodName);
+        psRemoveGood.executeUpdate();
+
     }
 
     public static ObservableList<String> allItemCategory() throws SQLException {
@@ -642,7 +679,7 @@ public class DataAccess {
 
 
 
-    public static void addGoods(String goodsName, String buyingPrice,String sellingPrice, String grossPrice,
+    public static void addGoods(String goodsName, String buyingPrice,String sellingPrice, String profit,
                 String quantity,String datetimeRegistered, Label overStockingMessage) throws SQLException {
 
         Connection connection;
@@ -653,7 +690,7 @@ public class DataAccess {
 
         psAddGoods = connection.prepareStatement("""
                 UPDATE goods_table
-                SET buying_price = ?, selling_price = ?, gross_price = ?,
+                SET buying_price = ?, selling_price = ?, profit = ?,
                 	quantity = ?, datetime_added = ?
                 WHERE goods_id = ?
                 """);
@@ -661,7 +698,8 @@ public class DataAccess {
 
         psAddGoods.setDouble(1, Double.parseDouble(buyingPrice));
         psAddGoods.setDouble(2, Double.parseDouble(sellingPrice));
-        psAddGoods.setDouble(3, Double.parseDouble(grossPrice));
+        psAddGoods.setDouble(3, Double.parseDouble(profit));
+
         if (Integer.parseInt(quantity) + getGoodQuantity(goodsName) >= HIGH_STOCK_VALUE &&
                 Integer.parseInt(quantity) + getGoodQuantity(goodsName) < HIGHEST_STOCK_VALUE){
             psAddGoods.setInt(4, Integer.parseInt(quantity) + getGoodQuantity(goodsName));

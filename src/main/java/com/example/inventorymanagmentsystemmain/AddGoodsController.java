@@ -20,10 +20,19 @@ import java.util.*;
 public class AddGoodsController implements Initializable {
 
     @FXML
+    private MFXTextField totalProfitField;
+
+    @FXML
+    private MFXTextField totalSellingField;
+
+    @FXML
     private MFXFilterComboBox<String> goodsCategoryComboBox;
 
     @FXML
     private MFXFilterComboBox<String> goodsName1;
+
+    @FXML
+    private MFXFilterComboBox<String> removeGoodComboBox;
     @FXML
     private MFXFilterComboBox<String> goodsCategoryComboBoxNew;
 
@@ -90,6 +99,7 @@ public class AddGoodsController implements Initializable {
 
         // adding goods to combo box
         try {
+            removeGoodComboBox.setItems(ItemCategoryData.allProducts());
             goodsCategoryComboBox.setItems(ItemCategoryData.goodsCategoryItems());
             System.out.println("Items list =  "+ItemCategoryData.goodsCategoryItems());
             goodsCategoryComboBoxNew.setItems(ItemCategoryData.goodsCategoryItems());
@@ -120,7 +130,6 @@ public class AddGoodsController implements Initializable {
     private int itemsListSize;
     private final Stack<Character> trackItemAdded = new Stack<>(); // keeps track of goods added each time
     private static boolean isOverstocked = false; // keeps track of overstocked goods category to determine whether to clear fields or maintain inputs in fields
-    private static int GET_ITEM_INDEX;
 
 
     // TODO: THERE IS A BUG IN CHECKING OF HIGH STOCK GOODS FOR EACH CATEGORY. ARRAYLIST SEEMS TO BE INCREASING IN SIZE INSTEAD OF MAINTAIN ITS ORIGINAL SIZE
@@ -132,67 +141,30 @@ public class AddGoodsController implements Initializable {
         System.out.println("good id = "+DataAccess.getGoodsId(goodsName1.getSelectedItem()));
         items.add(1, buyingPrice.getText());
         items.add(2, sellingPriceField.getText());
-        items.add(3, grossPriceField.getText());
+        items.add(3, totalProfitField.getText());
         items.add(4, quantityField.getText());
         items.add(5, GetDatetime.todayDateTime());
 
 
         System.out.println(itemsListSize+" size here");
-        /*items.add(6, goodsCategoryComboBox.getSelectedItem());
-        System.out.println("category id = "+DataAccess.getCategoryId(goodsCategoryComboBox.getSelectedItem()));*/
 
 
 //        System.out.println("pushed items array = " + items);
 //        System.out.println("before push = " + stackGoods);
         if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "s")){
-//            GoodsCategoryDSChecker.stackGoodsCategory.contains(goodsCategoryComboBox.getSelectedItem())
-            GET_ITEM_INDEX = Algorithms.getIndexOfItemFound(goodsCategoryComboBox.
-                    getSelectedItem(), GoodsCategoryDSChecker.allCategory);
-
-//            GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.add(GET_ITEM_INDEX,
-//                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) + Integer.parseInt(quantityField.getText()));
 
 
-//            if (DataAccess.isStockHigh(goodsCategoryComboBox.getSelectedItem()) ||
-//                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) > DataAccess.HIGH_STOCK_VALUE){
-//                overStockingMessage.setVisible(true);
-//                overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
-//                isOverstocked = true;
-//                System.out.println("HIGH STOCK");
-//                AlertNotification.trayNotification("HIGH STOCK", "OVERSTOCKING "+
-//                        goodsCategoryComboBox.getSelectedItem().toUpperCase() + " CATEGORY", 4, NotificationType.WARNING);
-//            }else {
                 stackGoods.push(new ArrayList<>(items));
                 addedCollection = 's';
                 trackItemAdded.push(addedCollection);
-//            }
+
         } else if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "q")) {
-            //GoodsCategoryDSChecker.queueGoodsCategory.contains(goodsCategoryComboBox.getSelectedItem())
-            GET_ITEM_INDEX = Algorithms.getIndexOfItemFound(goodsCategoryComboBox.
-                    getSelectedItem(), GoodsCategoryDSChecker.allCategory);
 
-//            GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.add(GET_ITEM_INDEX,
-//                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) + Integer.parseInt(quantityField.getText()));
-
-            if (DataAccess.isStockHigh(goodsCategoryComboBox.getSelectedItem())){
-                overStockingMessage.setVisible(true);
-                overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
-                isOverstocked = true;
-                System.out.println("HIGH STOCK");
-                AlertNotification.trayNotification("HIGH STOCK", "OVERSTOCKING "+
-                        goodsCategoryComboBox.getSelectedItem().toUpperCase() + " CATEGORY", 4, NotificationType.WARNING);
-            }else {
                 queueGoods.offer(new ArrayList<>(items));
                 addedCollection = 'q';
                 trackItemAdded.push(addedCollection);
-            }
         } else if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "l")) {
-            //GoodsCategoryDSChecker.arrayListGoodsCategory.contains(goodsCategoryComboBox.getSelectedItem())
-            GET_ITEM_INDEX = Algorithms.getIndexOfItemFound(goodsCategoryComboBox.
-                    getSelectedItem(), GoodsCategoryDSChecker.allCategory);
 
-//            GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.add(GET_ITEM_INDEX,
-//                    GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory.get(GET_ITEM_INDEX) + Integer.parseInt(quantityField.getText()));
 
             if (DataAccess.isStockHigh(goodsCategoryComboBox.getSelectedItem())){
                 overStockingMessage.setVisible(true);
@@ -212,12 +184,12 @@ public class AddGoodsController implements Initializable {
 
         items.clear();
 //        System.out.println("pushed items after array clear = " + items);
-        System.out.println("pushed after = " + stackGoods);
+       /* System.out.println("pushed after = " + stackGoods);
         System.out.println("offered after = " + queueGoods);
         System.out.println("added after = " + listGoods);
         System.out.println("tracked items = " + trackItemAdded);
         System.out.println("overstocked = " + isOverstocked);
-        System.out.println("Quantiyy = " + GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory);
+        System.out.println("Quantiyy = " + GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory);*/
 
         if (!isOverstocked){
             goodsCategoryComboBox.clearSelection();
@@ -226,6 +198,8 @@ public class AddGoodsController implements Initializable {
             sellingPriceField.clear();
             buyingPrice.clear();
             grossPriceField.clear();
+            totalSellingField.clear();
+            totalProfitField.clear();
         }
 
     }
@@ -252,48 +226,60 @@ public class AddGoodsController implements Initializable {
     //TODO: adding each item collected in stack to data base... error in loop
     @FXML
     void saveGoods(MouseEvent event) throws SQLException{
-
-        while(!stackGoods.isEmpty()){
+        if (stackGoods.isEmpty() && queueGoods.isEmpty() && listGoods.isEmpty()){
+            AlertNotification.trayNotification("ERROR", "PLEASE ADD GOODS TO THE INVENTORY",
+                    4, NotificationType.SUCCESS);
+        }else {
+            while(!stackGoods.isEmpty()){
 //            System.out.println("print hererererererererer1");
-            ArrayList<String> getEachGoodsDataStack = stackGoods.pop();
-            System.out.println("popped data stack = " + getEachGoodsDataStack);
-            DataAccess.addGoods(getEachGoodsDataStack.get(0), getEachGoodsDataStack.get(1), getEachGoodsDataStack.get(2),
-                getEachGoodsDataStack.get(3), getEachGoodsDataStack.get(4), getEachGoodsDataStack.get(5), overStockingMessage);
+                ArrayList<String> getEachGoodsDataStack = stackGoods.pop();
+                System.out.println("popped data stack = " + getEachGoodsDataStack);
+                DataAccess.addGoods(getEachGoodsDataStack.get(0), getEachGoodsDataStack.get(1), getEachGoodsDataStack.get(2),
+                        getEachGoodsDataStack.get(3), getEachGoodsDataStack.get(4), getEachGoodsDataStack.get(5), overStockingMessage);
 
+            }
 
-
-        }
-
-        while (!queueGoods.isEmpty()){
+            while (!queueGoods.isEmpty()){
 //            System.out.println("print hererererererererer2");
-            ArrayList<String> getEachGoodsDataQueue = queueGoods.poll();
-            System.out.println("polled data queue = " + getEachGoodsDataQueue);
-            assert getEachGoodsDataQueue != null;
+                ArrayList<String> getEachGoodsDataQueue = queueGoods.poll();
+                System.out.println("polled data queue = " + getEachGoodsDataQueue);
+                assert getEachGoodsDataQueue != null;
                 DataAccess.addGoods(getEachGoodsDataQueue.get(0), getEachGoodsDataQueue.get(1), getEachGoodsDataQueue.get(2),
                         getEachGoodsDataQueue.get(3), getEachGoodsDataQueue.get(4), getEachGoodsDataQueue.get(5), overStockingMessage);
 
-        }
-        while (!listGoods.isEmpty()){
+            }
+            while (!listGoods.isEmpty()){
 //            System.out.println("print hererererererererer");
-            for (int i = 0; i < itemsListSize; i++){
-                System.out.println("count value = "+ i);
-                ArrayList<String> getEachGoodsDataList = listGoods.remove(i);
-                System.out.println(getEachGoodsDataList);
-                System.out.println("removed data list = " + getEachGoodsDataList);
-                assert getEachGoodsDataList != null;
-                DataAccess.addGoods(getEachGoodsDataList.get(0), getEachGoodsDataList.get(1), getEachGoodsDataList.get(2),
-                        getEachGoodsDataList.get(3), getEachGoodsDataList.get(4), getEachGoodsDataList.get(5), overStockingMessage);
+                for (int i = 0; i < itemsListSize; i++){
+                    System.out.println("count value = "+ i);
+                    ArrayList<String> getEachGoodsDataList = listGoods.remove(i);
+                    System.out.println(getEachGoodsDataList);
+                    System.out.println("removed data list = " + getEachGoodsDataList);
+                    assert getEachGoodsDataList != null;
 
+                    DataAccess.addGoods(getEachGoodsDataList.get(0), getEachGoodsDataList.get(1), getEachGoodsDataList.get(2),
+                            getEachGoodsDataList.get(3), getEachGoodsDataList.get(4), getEachGoodsDataList.get(5), overStockingMessage);
+
+                }
+            }
+
+            if (stackGoods.isEmpty() && queueGoods.isEmpty() && listGoods.size() == 0){
+                System.out.println("print hererererererererer3");
+
+                goodsCategoryComboBox.clearSelection();
+                goodsName1.clear();
+                quantityField.clear();
+                sellingPriceField.clear();
+                buyingPrice.clear();
+                grossPriceField.clear();
+                totalSellingField.clear();
+                totalProfitField.clear();
+
+                AlertNotification.trayNotification("SUCCESS", "GOODS SUCCESSFULLY SAVED TO INVENTORY",
+                        4, NotificationType.SUCCESS);
+                trackItemAdded.clear();
             }
         }
-
-        if (stackGoods.isEmpty() && queueGoods.isEmpty() && listGoods.size() == 0){
-            System.out.println("print hererererererererer3");
-            AlertNotification.trayNotification("SUCCESS", "GOODS SUCCESSFULLY SAVED TO INVENTORY",
-                    4, NotificationType.SUCCESS);
-            trackItemAdded.clear();
-        }
-
 
     }
 
@@ -364,5 +350,26 @@ public class AddGoodsController implements Initializable {
 
         /*AlertNotification.trayNotification("REFRESH SUCCESSFUL",
                 "GOODS NAME AND GOODS CATEGORY HAS BEEN UPDATED.", 5, NotificationType.NOTICE);*/
+    }
+
+    @FXML
+    void calculateTotalSellingPrice(MouseEvent event){
+        if (!quantityField.getText().isEmpty() && !sellingPriceField.getText().isEmpty()){
+            float totalSellingPrice = (Float.parseFloat(sellingPriceField.getText()) * Integer.parseInt(quantityField.getText()));
+            totalSellingField.setText(String.valueOf(totalSellingPrice));
+        }
+    }
+
+    @FXML
+    void calculateTotalProfit(MouseEvent event){
+        if (!totalSellingField.getText().isEmpty() && !grossPriceField.getText().isEmpty()){
+            float profit = Float.parseFloat(totalSellingField.getText()) - Float.parseFloat(grossPriceField.getText());
+            totalProfitField.setText(String.valueOf(profit));
+        }
+    }
+
+    @FXML
+    void removeGoodFromIventory(MouseEvent event){
+
     }
 }

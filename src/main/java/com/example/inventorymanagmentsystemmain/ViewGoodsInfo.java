@@ -6,14 +6,16 @@ public class ViewGoodsInfo {
     private String categoryName;
     private int quantity;
     private String sellingPrice;
+    private String profit;
 
     public ViewGoodsInfo(int number, String goodsName, String categoryName,
-                 int quantity, String sellingPrice){
+                 int quantity, String sellingPrice, String profit){
         this.number = number;
         this.goodsName = goodsName;
         this.categoryName = categoryName;
         this.quantity = quantity;
         this.sellingPrice = sellingPrice;
+        this.profit = profit;
 
     }
 
@@ -55,6 +57,9 @@ public class ViewGoodsInfo {
 
     public void setSellingPrice(String sellingPrice) {
         this.sellingPrice = sellingPrice;
+    }
+    public String getProfit() {
+        return profit;
     }
 
 

@@ -3,10 +3,8 @@ package com.example.inventorymanagmentsystemmain;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDialog;
 import io.github.palexdev.materialfx.controls.MFXButton;
-import io.github.palexdev.materialfx.controls.MFXDatePicker;
 import io.github.palexdev.materialfx.controls.MFXRadioButton;
 import io.github.palexdev.materialfx.controls.MFXTextField;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ToggleGroup;
@@ -18,8 +16,6 @@ import tray.notification.NotificationType;
 
 import java.net.URL;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -35,8 +31,6 @@ public class RegisterVendorController implements Initializable {
     @FXML
     private AnchorPane anchorPane;
 
-    @FXML
-    private MFXDatePicker dateRegisteredField;
 
     @FXML
     private MFXRadioButton femaleCheckbox;
@@ -119,9 +113,14 @@ public class RegisterVendorController implements Initializable {
                     telephoneNoField.getText(), getDatetime.todayDate()));
 
             for (Map.Entry<String, VendorsInfo> vendorInfo : vendorInfo.entrySet()){
-                DataAccess.registerVendor(vendorInfo.getValue().getName(), vendorInfo.getKey(),
-                    vendorInfo.getValue().getStatus(), vendorInfo.getValue().getGender(),
-                        vendorInfo.getValue().getTelephone_number(), vendorInfo.getValue().getDate_registered());
+                if (DataAccess.registerVendor(vendorInfo.getValue().getName(), vendorInfo.getKey(),
+                        vendorInfo.getValue().getStatus(), vendorInfo.getValue().getGender(),
+                        vendorInfo.getValue().getTelephone_number(), vendorInfo.getValue().getDate_registered())){
+                    System.out.println("Success");
+                }else {
+                    System.out.println("aaaaa");
+                }
+
             }
 
 
@@ -148,7 +147,7 @@ public class RegisterVendorController implements Initializable {
         idField.clear();
         fullNameField.clear();
         telephoneNoField.clear();
-        dateRegisteredField.clear();
+
         maleCheckbox.setSelected(false);
         femaleCheckbox.setSelected(false);
         adminCheckbox.setSelected(false);
@@ -203,10 +202,6 @@ public class RegisterVendorController implements Initializable {
         });
     }
 
-    @FXML
-    void getDate(ActionEvent event) {
-        LocalDate date = dateRegisteredField.getValue();
-        dateRegistered = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-    }
+
 
 }
