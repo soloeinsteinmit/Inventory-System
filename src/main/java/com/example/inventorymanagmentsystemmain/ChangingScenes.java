@@ -72,7 +72,7 @@ public class ChangingScenes {
         stage.show();
 
     }
-    DashboardController dc = new DashboardController();
+
 
     /**
      * @param fxmlFileName name of fxml to be changed to.
@@ -90,22 +90,28 @@ public class ChangingScenes {
             spinner.setVisible(false);
             Parent root = fxmlTask.getValue();
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
 
-            stage.setOnCloseRequest(windowEvent -> {
-//                dc.closeWindowAlert(stage);
-//                dc.closeWindowAlert();
-            });
+            /*stage.setOnCloseRequest(windowEvent -> {
+                stage.close();
+            });*/
         });
         fxmlTask.setOnFailed(e->{
             spinner.setVisible(false);
-            AlertNotification.trayNotification("ERROR", "INVALID CREDENTIALS... PLEASE TRY AGAIN",
+            AlertNotification.trayNotification("ERROR", "INTERNAL ERROR",
                     4, NotificationType.ERROR);
         });
         Thread thread = new Thread(fxmlTask);
         thread.start();
 
+    }
+
+    public static void close(MouseEvent mouseEvent){
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
+        stage.close();
     }
 }

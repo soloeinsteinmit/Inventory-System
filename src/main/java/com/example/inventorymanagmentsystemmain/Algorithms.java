@@ -1,5 +1,7 @@
 package com.example.inventorymanagmentsystemmain;
 
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 /**
  * @author .py_ML_ai_MIT(Solomon Eshun):
@@ -12,6 +14,20 @@ public class Algorithms {
      * @implNote The linear search algorithm was used here. Its time complexity is 0(n)
      * */
     public static boolean linearSearch(String findString, ArrayList<String> searchArray){
+
+        for (int i = 0; i <= searchArray.size()-1;){
+            if (findString.equals(searchArray.get(i))){
+                return true;
+            }
+            else {
+                i++;
+            }
+        }
+        return false;
+    }
+
+
+    public static boolean linearSearch(String findString, ObservableList<String> searchArray){
 
         for (int i = 0; i <= searchArray.size()-1;){
             if (findString.equals(searchArray.get(i))){

@@ -97,6 +97,12 @@ public class AddGoodsController implements Initializable {
             }
         });
 
+        quantityField.setOnMouseClicked(event -> {
+            if (overStockingMessage.isVisible()){
+                overStockingMessage.setVisible(false);
+            }
+        });
+
         // adding goods to combo box
         try {
             removeGoodComboBox.setItems(ItemCategoryData.allProducts());
@@ -154,26 +160,43 @@ public class AddGoodsController implements Initializable {
         if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "s")){
 
 
+            if (DataAccess.updateQuantity(goodsName1.getSelectedItem(), Integer.parseInt(quantityField.getText()),
+                    'a')){
+                overStockingMessage.setVisible(true);
+                overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
+            }else {
+                overStockingMessage.setVisible(false);
                 stackGoods.push(new ArrayList<>(items));
                 addedCollection = 's';
                 trackItemAdded.push(addedCollection);
+            }
+
+
 
         } else if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "q")) {
 
+
+            if (DataAccess.updateQuantity(goodsName1.getSelectedItem(), Integer.parseInt(quantityField.getText()),
+                    'a')){
+                overStockingMessage.setVisible(true);
+                overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
+            }else {
+                overStockingMessage.setVisible(false);
                 queueGoods.offer(new ArrayList<>(items));
                 addedCollection = 'q';
                 trackItemAdded.push(addedCollection);
+            }
+
         } else if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "l")) {
 
 
-            if (DataAccess.isStockHigh(goodsCategoryComboBox.getSelectedItem())){
+
+            if (DataAccess.updateQuantity(goodsName1.getSelectedItem(), Integer.parseInt(quantityField.getText()),
+                    'a')){
                 overStockingMessage.setVisible(true);
                 overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
-                isOverstocked = true;
-                System.out.println("HIGH STOCK");
-                AlertNotification.trayNotification("HIGH STOCK", "OVERSTOCKING "+
-                        goodsCategoryComboBox.getSelectedItem().toUpperCase() + " CATEGORY", 4, NotificationType.WARNING);
             }else {
+                overStockingMessage.setVisible(false);
                 listGoods.add(new ArrayList<>(items));
                 itemsListSize = listGoods.size();
                 addedCollection = 'l';
@@ -231,30 +254,26 @@ public class AddGoodsController implements Initializable {
                     4, NotificationType.SUCCESS);
         }else {
             while(!stackGoods.isEmpty()){
-//            System.out.println("print hererererererererer1");
                 ArrayList<String> getEachGoodsDataStack = stackGoods.pop();
-                System.out.println("popped data stack = " + getEachGoodsDataStack);
                 DataAccess.addGoods(getEachGoodsDataStack.get(0), getEachGoodsDataStack.get(1), getEachGoodsDataStack.get(2),
                         getEachGoodsDataStack.get(3), getEachGoodsDataStack.get(4), getEachGoodsDataStack.get(5), overStockingMessage);
 
             }
 
             while (!queueGoods.isEmpty()){
-//            System.out.println("print hererererererererer2");
                 ArrayList<String> getEachGoodsDataQueue = queueGoods.poll();
-                System.out.println("polled data queue = " + getEachGoodsDataQueue);
+//                System.out.println("polled data queue = " + getEachGoodsDataQueue);
                 assert getEachGoodsDataQueue != null;
                 DataAccess.addGoods(getEachGoodsDataQueue.get(0), getEachGoodsDataQueue.get(1), getEachGoodsDataQueue.get(2),
                         getEachGoodsDataQueue.get(3), getEachGoodsDataQueue.get(4), getEachGoodsDataQueue.get(5), overStockingMessage);
 
             }
             while (!listGoods.isEmpty()){
-//            System.out.println("print hererererererererer");
                 for (int i = 0; i < itemsListSize; i++){
                     System.out.println("count value = "+ i);
                     ArrayList<String> getEachGoodsDataList = listGoods.remove(i);
-                    System.out.println(getEachGoodsDataList);
-                    System.out.println("removed data list = " + getEachGoodsDataList);
+//                    System.out.println(getEachGoodsDataList);
+//                    System.out.println("removed data list = " + getEachGoodsDataList);
                     assert getEachGoodsDataList != null;
 
                     DataAccess.addGoods(getEachGoodsDataList.get(0), getEachGoodsDataList.get(1), getEachGoodsDataList.get(2),

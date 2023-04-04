@@ -62,12 +62,19 @@ public class DashboardController implements Initializable {
     @FXML
     private Label signOutMessage;
     public static AnchorPane blurAnchorPane;
-    public JFXDialog myDialog;
-    Stage stage;
+    public static JFXDialog myDialog;
+    public static MFXButton noButton;
+    public static MFXButton close;
+    public static StackPane parentStack;
+    static Stage stage1;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        noButton = noBtn;
         myDialog = dialog;
+        close = closeDialog;
+        parentStack = parentStackContainer;
+
         myDialog.setDialogContainer(parentStackContainer);
         blurAnchorPane = dashboardPane;
 
@@ -82,24 +89,27 @@ public class DashboardController implements Initializable {
         TooltipClass.tooltipMessage("REGISTER VENDOR", register_vendor);
     }
 
-    BoxBlur blur = new BoxBlur(3, 3, 3);
-    public void closeWindowAlert(){
+    static BoxBlur blur = new BoxBlur(3, 3, 3);
+
+    public static void closeWindowAlert(){
         blurAnchorPane.setEffect(blur);
         myDialog.show();
 
         blurAnchorPane.setDisable(true);
 
-        noBtn.setOnMouseClicked(event -> {
+        noButton.setOnMouseClicked(event -> {
             blurAnchorPane.setDisable(false);
             myDialog.setOnDialogClosed(e-> blurAnchorPane.setEffect(null));
             myDialog.close();
+
+            ChangingScenes.close(event);
+
         });
-        closeDialog.setOnMouseClicked(e1->{
+        close.setOnMouseClicked(e1->{
             blurAnchorPane.setDisable(false);
             myDialog.setOnDialogClosed(e-> blurAnchorPane.setEffect(null));
             myDialog.close();
-            stage = (Stage) parentStackContainer.getScene().getWindow();
-            stage.close();
+
         });
     }
 
