@@ -348,7 +348,9 @@ public class DataAccess {
     public static ObservableList<VendorsInfo> allVendorsInfo() throws SQLException {
         int i = 1; Connection connection;
         PreparedStatement psGetDetails; ResultSet resultSet;
+
         HashMap<String, VendorsInfo> vInfo = new HashMap<String, VendorsInfo>(); // hashmap to store vendor info
+
         connection = DriverManager.getConnection(DBConstantConnection.root_URL,
                 DBConstantConnection.user, DBConstantConnection.password);
         psGetDetails = connection.prepareStatement("""
@@ -1015,6 +1017,30 @@ public class DataAccess {
         psGetReceiptId.setString(1, rId);
         resultSet = psGetReceiptId.executeQuery();
         return resultSet.isBeforeFirst();
+    }
+    public static ObservableList<String> receiptIds = FXCollections.observableArrayList();
+    public static ObservableList<String> getReceiptIds() throws SQLException {
+        Connection connection;
+        PreparedStatement psGetReceiptId;
+        ResultSet resultSet;
+        String eachId;
+
+        connection = DriverManager.getConnection(DBConstantConnection.root_URL,
+                DBConstantConnection.user, DBConstantConnection.password);
+        psGetReceiptId = connection.prepareStatement("""
+                SELECT DISTINCT(receipt_id)\s
+                FROM view_issued_goods
+                """);
+        resultSet = psGetReceiptId.executeQuery();
+        if (resultSet.isBeforeFirst()){
+            while (resultSet.next()){
+                eachId = resultSet.getString("receipt_id");
+                receiptIds.add(eachId);
+            }
+        }
+
+
+        return receiptIds;
     }
 
 

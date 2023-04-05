@@ -26,6 +26,9 @@ public class BillsDashboardController implements Initializable {
     private AnchorPane billsDashboardAnchorPane;
 
     @FXML
+    private MFXButton clearSearch;
+
+    @FXML
     private MFXButton getReceiptBtn;
 
     @FXML
@@ -33,6 +36,8 @@ public class BillsDashboardController implements Initializable {
 
     @FXML
     private MFXTextField receiptId;
+    @FXML
+    private ImageView refreshImg;
 
     @FXML
     private ImageView refreshingImage;
@@ -40,6 +45,11 @@ public class BillsDashboardController implements Initializable {
     @FXML
     private Label retrievingReceiptLabel;
 
+    @FXML
+    private MFXButton searchBtn;
+
+    @FXML
+    private MFXTextField searchField;
     @FXML
     private MFXLegacyListView<String> recentReceiptsListView;
 
@@ -53,6 +63,11 @@ public class BillsDashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         ViewBillsController.parentContainerStackPane = parentStackPane;
+        try {
+            recentReceiptsListView.setItems(DataAccess.getReceiptIds());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
     public static boolean clearRecentReceipt = false;
     @FXML
@@ -60,16 +75,6 @@ public class BillsDashboardController implements Initializable {
 
 
         if (!receiptId.getText().isEmpty() && DataAccess.checkReceiptIdExist(receiptId.getText())){
-            if (!clearRecentReceipt){
-                recentReceipts.add(receiptId.getText());
-                recentlyGeneratedReceipts = recentReceiptsListView.getItems();
-
-                recentlyGeneratedReceipts.add(String.valueOf(recentReceipts));
-                recentReceiptsListView.setItems(recentlyGeneratedReceipts);
-            }else {
-                recentReceiptsListView.getItems().clear();
-            }
-
 
             ViewBillsController.receiptId = receiptId.getText();
             retrievingReceiptLabel.setVisible(true);
@@ -82,5 +87,26 @@ public class BillsDashboardController implements Initializable {
             AlertNotification.trayNotification("ERROR", "PLEASE ENTER THE RECEIPT ID", 4, NotificationType.NOTICE);
 
         }
+    }
+
+    @FXML
+    void getReceiptIds(MouseEvent event){
+        receiptId.setText(recentReceiptsListView.getSelectionModel().getSelectedItem());
+    }
+
+    @FXML
+    void search(MouseEvent event) throws SQLException {
+        if (!searchField.getText().isEmpty()){
+            if (Algorithms.linearSearch(searchField.getText(), DataAccess.getReceiptIds())){
+                recentReceiptsListView.getItems().clear();
+                recentReceiptsListView.setItems(Algorithms.searchItems);
+            }
+        }
+    }
+
+    @FXML
+    void clearSearch(MouseEvent event) throws SQLException {
+        recentReceiptsListView.getItems().clear();
+        recentReceiptsListView.setItems(DataAccess.getReceiptIds());
     }
 }

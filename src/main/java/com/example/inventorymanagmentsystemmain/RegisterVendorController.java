@@ -156,10 +156,6 @@ public class RegisterVendorController implements Initializable {
 
     @FXML
     void generateId(MouseEvent event) {
-        /*Random acc_id = new Random();
-        int min = 111111;
-        int max = 999999;
-        idField.setText(String.valueOf(acc_id.nextInt(max - min + 1)+min));*/
         idField.setText(RandomIdGenerator.randomId(111111, 999999));
         if (!idField.getText().isEmpty()){
             generateIdBtn.setDisable(true);

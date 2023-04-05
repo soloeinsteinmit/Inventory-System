@@ -48,12 +48,38 @@
                   <Image url="@refresh_48px.png" />
                </image>
             </ImageView>
-            <Label layoutX="81.0" layoutY="120.0" text="Recently view receipts" textFill="#1445a9">
+            <Label layoutX="117.0" layoutY="72.0" text="Receipt IDs" textFill="#1445a9">
                <font>
                   <Font name="Segoe UI Semilight" size="16.0" />
                </font>
             </Label>
-            <MFXLegacyListView fx:id="recentReceiptsListView" layoutX="56.0" layoutY="153.0" prefHeight="289.0" prefWidth="200.0" style="-fx-font-size: 14;" />
+            <MFXLegacyListView fx:id="recentReceiptsListView" layoutX="56.0" layoutY="162.0" onMouseClicked="#getReceiptIds" onMousePressed="#getReceiptIds" prefHeight="289.0" prefWidth="200.0" style="-fx-font-size: 14;" />
+            <MFXTextField fx:id="searchField" alignment="CENTER" floatMode="BORDER" floatingText="Enter receipt id here" layoutX="56.0" layoutY="112.0" prefHeight="38.0" prefWidth="158.0" style="-fx-background-color: transparent; -fx-border-width: 0 0 1 0; -fx-border-radius: 0;" stylesheets="@TextFieldsStyleSheet.css">
+               <font>
+                  <Font name="Segoe UI Semibold" size="13.0" />
+               </font>
+            </MFXTextField>
+            <MFXButton fx:id="searchBtn" contentDisplay="GRAPHIC_ONLY" layoutX="217.0" layoutY="115.0" onMouseClicked="#search" prefHeight="32.0" prefWidth="28.0" style="-fx-background-color: transparent;">
+               <graphic>
+                  <ImageView fx:id="refreshImg" fitHeight="24.0" fitWidth="31.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@search_in_list_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </MFXButton>
+            <MFXButton fx:id="clearSearch" layoutX="90.0" layoutY="464.0" onMouseClicked="#clearSearch" style="-fx-background-color: TRANSPARENT;" text="CLEAR SEARCH" textFill="#1445a9">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@clear_search_48px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Segoe UI Semibold Italic" size="13.0" />
+               </font>
+            </MFXButton>
          </children>
       </AnchorPane>
    </children>

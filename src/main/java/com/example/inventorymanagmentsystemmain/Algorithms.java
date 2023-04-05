@@ -1,8 +1,13 @@
 package com.example.inventorymanagmentsystemmain;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author .py_ML_ai_MIT(Solomon Eshun):
  * @implNote A class for writing algorithms
@@ -26,11 +31,12 @@ public class Algorithms {
         return false;
     }
 
-
+    public static ObservableList<String> searchItems = FXCollections.observableArrayList();
     public static boolean linearSearch(String findString, ObservableList<String> searchArray){
 
         for (int i = 0; i <= searchArray.size()-1;){
             if (findString.equals(searchArray.get(i))){
+                searchItems.add(searchArray.get(i));
                 return true;
             }
             else {
@@ -39,6 +45,14 @@ public class Algorithms {
         }
         return false;
     }
+    private List<String> searchList(String searchClass, List<String> listOfClass) {
+        List<String> searchClasses = Arrays.asList(searchClass.trim().split(" "));
+        return listOfClass.stream().filter(input ->{
+            return searchClasses.stream().allMatch(class_names -> input.toLowerCase().contains(class_names.toLowerCase()));
+        }).collect(Collectors.toList());
+    }
+
+
 
     public static int getIndexOfItemFound(String findString, ArrayList<String> searchArray){
 
@@ -51,5 +65,60 @@ public class Algorithms {
             }
         }
         return -1;
+    }
+
+    /**
+    * using merge sort recursive algorithm for sorting of items
+     * run in O(n log n)
+    * */
+    public static void mergeSort(ArrayList<Integer> array){
+        int length = array.size();
+        if (length <= 1) return; //base case
+
+        int middle = length / 2;
+        ArrayList<Integer> leftArray = new ArrayList<>(middle);
+        ArrayList<Integer> rightArray = new ArrayList<>(length - middle);
+
+        int i = 0;
+        int j = 0;
+
+        for (; i <length; i++){
+            if (i < middle){
+                leftArray.add(i, array.get(i));
+            }else {
+                rightArray.add(j, array.get(j));
+            }
+        }
+        mergeSort(leftArray);
+        mergeSort(rightArray);
+        merge(leftArray, rightArray, array);
+    }
+    public static void merge(ArrayList<Integer> leftArray, ArrayList<Integer> rightArray, ArrayList<Integer> array){
+        int leftSize = array.size() / 2;
+        int rightSize = array.size() - leftSize;
+        int i = 0, l = 0, r = 0;//indices
+
+        // check conditions for merging
+        while (l < leftSize && r < rightSize){
+            if (leftArray.get(l) < rightArray.get(r)){
+                array.add(i, leftArray.get(l));
+                i++;
+                l++;
+            }else {
+                array.add(i, rightArray.get(r));
+                i++;
+                r++;
+            }
+        }
+        while (l < leftSize){
+            array.add(i, leftArray.get(l));
+            i++;
+            l++;
+        }
+        while (r < rightSize){
+            array.add(i, rightArray.get(r));
+            i++;
+            r++;
+        }
     }
 }
