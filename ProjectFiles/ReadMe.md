@@ -18,7 +18,7 @@ The login for the frontend logins
 - password: vendor
 
 ## Some Java files and their functions
-- The DBConstantConnection.java is the connection class to the database
+- The DBConstantConnection.java is the connection class to the database and you can MySqlWorkBench to work with the database.
 - Algorithms.java contains some algorithms
 - DataAccess.java contains some algorithms and database access. Also for keeping balance between high and low price.
 
