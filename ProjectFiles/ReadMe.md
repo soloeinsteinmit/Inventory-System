@@ -5,7 +5,7 @@
 
 ![](../src/main/resources/project_files_01.png)
 
-# The lib folder contains all the library dependancy you can import in to the project
+# The lib folder contains all the library dependency you can import in to the project
 
 > The main java class is the *InventoryManagementSystem.java*
 
