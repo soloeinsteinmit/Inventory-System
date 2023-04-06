@@ -18,23 +18,7 @@ public class GoodsCategoryDSChecker {
             "Produce", "Cleaners", "Paper Goods", "Personal Care"
     ));
 
-    public static ArrayList<Integer> checkQuantityOfUnderEachCategory = new ArrayList<>(List.of(
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
-    ));
 
-    public static ArrayList<String> allCategory = new ArrayList<>(List.of(
-            "Beverages",
-            "Bread/Bakery",
-            "Canned/Jarred Goods",
-            "Dairy",
-            "Dry/Baking Goods",
-            "Frozen Foods",
-            "Meat",
-            "Produce",
-            "Cleaners",
-            "Paper Goods",
-            "Personal Care"
-    ));
 
 
 }

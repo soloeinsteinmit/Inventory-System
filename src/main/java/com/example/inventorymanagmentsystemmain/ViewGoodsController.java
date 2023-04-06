@@ -53,6 +53,9 @@ public class ViewGoodsController implements Initializable {
         totalProfitLabel.setText(String.valueOf(DataAccess.totalProfit));
         TooltipClass.tooltipMessage("Refresh Table", refreshBtn);
     }
+    /**
+     * Setup up goods table
+     * */
     private void setUpViewGoodsTable(){
         number.setComparator(Comparator.comparing(ViewGoodsInfo::getNumber));
         goodsName.setComparator(Comparator.comparing(ViewGoodsInfo::getGoodsName));

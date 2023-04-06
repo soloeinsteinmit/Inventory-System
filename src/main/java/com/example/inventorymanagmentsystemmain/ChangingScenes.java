@@ -20,7 +20,16 @@ import tray.notification.NotificationType;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * @author .py_ML_ai_MIT (Solomon Eshun)
+ * <p>This is a class for the changing of scenes in the application</p>
+ **/
 public class ChangingScenes {
+
+    /**
+     * Performs a forward animation transition when moving from one scene to another in the application
+     * @param filename name of fxml to be changed to
+     * */
     public static void translateForward(StackPane parentContainer, AnchorPane container, String filename){
         Parent fxmlName = null;
         try {
@@ -43,6 +52,10 @@ public class ChangingScenes {
     }
 
 
+    /**
+     * Performs a forward animation transition when moving from one scene to another in the application
+     * @param filename name of fxml to be changed to
+     * */
     public static void translateBackward(StackPane parentContainer, AnchorPane container, String filename){
         Parent fxmlName = null;
         try {
@@ -64,6 +77,11 @@ public class ChangingScenes {
         timeline.play();
     }
 
+
+    /**
+     * @param event takes mouseEvent that should happen for the changing for a particular scene
+     * @param fxmlFileName name of fxml to be changed to.
+     * */
     public static void changeWindow(MouseEvent event, String fxmlFileName) throws IOException {
         Parent root = FXMLLoader.load(Objects.requireNonNull(ChangingScenes.class.getResource(fxmlFileName + ".fxml")));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -75,9 +93,12 @@ public class ChangingScenes {
 
 
     /**
-     * @param fxmlFileName name of fxml to be changed to.
+     * @code toHome method uses concurrency to load the next <i>fxmlFileName</i> while
+     * <p>retrieving data from the database to display content in the application</p>
+     * @param event takes mouseEvent that should happen for the changing for a particular scene
+     * @param fxmlFileName name of fxml to be changed to
      */
-    public void toHome(MouseEvent event, String fxmlFileName, MFXProgressSpinner spinner) throws IOException {
+    public static void toHome(MouseEvent event, String fxmlFileName, MFXProgressSpinner spinner) throws IOException {
         Task<Parent> fxmlTask = new Task<Parent>() {
             @Override
             protected Parent call() throws Exception {
@@ -110,8 +131,4 @@ public class ChangingScenes {
 
     }
 
-    public static void close(MouseEvent mouseEvent){
-        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow();
-        stage.close();
-    }
 }

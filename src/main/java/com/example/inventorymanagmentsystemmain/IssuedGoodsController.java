@@ -15,6 +15,11 @@ import java.net.URL;
 import java.sql.SQLException;
 import java.util.*;
 
+/**
+ * @author .py_ML_ai_MIT (Solomon)
+ * <p>Class for issueing of goods</p>
+ * */
+
 public class IssuedGoodsController implements Initializable {
 
     @FXML
@@ -64,6 +69,7 @@ public class IssuedGoodsController implements Initializable {
     private static int NUMBER_OF_CARTS = 0;
     public static boolean carts = true; // variable name will change
 
+    /** HashMap for tracking product sales*/
     private Map<String, Integer> productSales = new HashMap<String, Integer>();
 
     @Override
@@ -71,7 +77,7 @@ public class IssuedGoodsController implements Initializable {
         removeFromCartBtn.setDisable(issuedProductsTableView.getItems().isEmpty());
         totalPriceLabel.setText("0");
         // sets up table
-        setUpViewVendorsTable();
+        setUpIssueGoodsTable();
         try {
             noOfGoodsLabel.setText(String.valueOf(NUMBER_OF_CARTS));
             goodsNameComboBox.setItems(ItemCategoryData.allProducts());
@@ -80,7 +86,10 @@ public class IssuedGoodsController implements Initializable {
         }
     }
 
-    private void setUpViewVendorsTable(){
+    /**
+     * Sets up issue goods table
+     * */
+    private void setUpIssueGoodsTable(){
         productColumn.setComparator(Comparator.comparing(IssueGoodsInfo::getProduct));
         quantityColumn.setComparator(Comparator.comparing(IssueGoodsInfo::getQuantity));
         unitPriceColumn.setComparator(Comparator.comparing(IssueGoodsInfo::getUnitPrice));
@@ -98,9 +107,22 @@ public class IssuedGoodsController implements Initializable {
     }
 
     public static List<IssueGoodsInfo> productsToBeRemovedList = new ArrayList<>();
+
+    /**
+     * ArrayList for storing product, quantity bought and amount into a particular index in the array
+     * */
     public static ArrayList<String> eachProductsDetails = new ArrayList<>();
+    /**
+     * @code addToCartProductsQueue queue for adding of carts
+     * */
     public static Queue<ArrayList<String>> addToCartProductsQueue = new LinkedList<>();
+
+    /**
+     * Keeping track of total amount of products issued
+     * */
     float totalPrice = 0;
+
+    /*Adding to products to cart*/
     @FXML
     void addToCart(MouseEvent event) {
         if (!goodsNameComboBox.getText().isEmpty() && !quantityField.getText().isEmpty() && !priceField.getText().isEmpty()){
@@ -123,7 +145,6 @@ public class IssuedGoodsController implements Initializable {
             issuedProductsTableView.setItems(IssueGoodsInfoList.issuedGoods);
 
 
-
             totalPrice += amount;
 
             totalPriceLabel.setText(String.format("%.02f", totalPrice));
@@ -141,6 +162,9 @@ public class IssuedGoodsController implements Initializable {
 
     }
     float amountRemoved;
+    /**
+     * Removing of products from carts
+     * */
     @FXML
     void removeFromCart(MouseEvent event){
         if (Integer.parseInt(noOfGoodsLabel.getText())  == 0){
@@ -169,6 +193,10 @@ public class IssuedGoodsController implements Initializable {
 
     }
 
+
+    /**
+     * Adding of issued goods to database
+     * */
     @FXML
     void proceed(MouseEvent event) throws SQLException{
         carts = false;
@@ -176,8 +204,6 @@ public class IssuedGoodsController implements Initializable {
             AlertNotification.trayNotification("EMPTY CART", "CANNOT PROCESS ANY CART", 4, NotificationType.WARNING);
 
         }else {
-
-            // TODO: CODE HERE
             if (!issuedProductsTableView.getItems().isEmpty()){
                 removeFromCartBtn.setDisable(false);
             }else{
@@ -197,9 +223,8 @@ public class IssuedGoodsController implements Initializable {
                 assert products != null;
                 DataAccess.issueGoods(products.get(0), receiptId, Integer.parseInt(products.get(1)), Float.parseFloat(products.get(2)), clientNameField.getText());
                 DataAccess.updateQuantity(products.get(0), Integer.parseInt(products.get(1)), 'i'); // subtract initial quantity in db from currently issued
-                //TODO: HAVE TO WRITE SOME IF STATEMENT HERE
 
-
+                // tracking or product sales
                 productSales.put(DataAccess.getGoodsId(products.get(0)), Integer.valueOf(products.get(1)));
             }
             System.out.println("\nTracking product sales...");
@@ -209,7 +234,7 @@ public class IssuedGoodsController implements Initializable {
 
 
             NUMBER_OF_CARTS = 0;
-
+            //clear fields ones products as proceeded successfully
             issuedProductsTableView.getItems().clear();
             clientNameField.clear();
             totalPriceLabel.setText("0");
@@ -218,6 +243,7 @@ public class IssuedGoodsController implements Initializable {
 
     }
 
+    /**Clearing of carts*/
     @FXML
     void clearCarts(MouseEvent event){
         carts = false;
@@ -253,7 +279,7 @@ public class IssuedGoodsController implements Initializable {
     @FXML
     void refreshViewGoodsTable(MouseEvent event)throws SQLException{
         goodsNameComboBox.clear();
-        goodsNameComboBox.setItems(DataAccess.getAllGods());
+        goodsNameComboBox.setItems(DataAccess.getAllGoods());
 
         MyAnimationsClass.rotateRotateRefreshImages(refreshImg);
 

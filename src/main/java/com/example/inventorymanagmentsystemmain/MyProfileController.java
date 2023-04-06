@@ -97,7 +97,7 @@ public class MyProfileController implements Initializable {
     void logout(MouseEvent event) {
 
 
-        dc.signOut("ARE YOU SURE YOU WANT TO SIGN OUT?");
+
         DataAccess.myProfileData.clear();
 
         System.out.println("category list = "+ goodsCategoryComboBox.getItems());

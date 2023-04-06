@@ -55,6 +55,9 @@ public class ViewIssuedGoodsController implements Initializable {
         TooltipClass.tooltipMessage("Refresh Table", refreshBtn);
     }
 
+    /**
+     * sets up issued goods table
+     * */
     public void setUpViewIssuedGoodsTable(){
         number.setComparator(Comparator.comparing(ViewIssuedGoodsInfo::getNumber));
         goodsName.setComparator(Comparator.comparing(ViewIssuedGoodsInfo::getGoodsName));

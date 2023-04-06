@@ -76,7 +76,9 @@ public class ViewBillsController implements Initializable {
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * Set up receipt table
+     * */
     public void setUpReceiptTable() throws SQLException {
         productColumn.setComparator(Comparator.comparing(ViewBillsInfo::getProduct));
         quantityColumn.setComparator(Comparator.comparing(ViewBillsInfo::getQuantity));

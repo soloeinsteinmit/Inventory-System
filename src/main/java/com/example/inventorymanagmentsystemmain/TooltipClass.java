@@ -5,6 +5,9 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.Tooltip;
 import javafx.util.Duration;
 
+/**
+ * Class for showing tooltips
+ * */
 public class TooltipClass {
     public static double tooltipDuration = 0.0;
     public static void tooltipMessage(String message, Tab tab){

@@ -1,6 +1,5 @@
 package com.example.inventorymanagmentsystemmain;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.SQLException;
@@ -9,7 +8,7 @@ import java.util.List;
 
 /**
  * @author .py_ML_ai_MIT (Solomon Eshun)
- * @implNote This class receives item category and goods name from DB and places them into an ObservableList
+ * <p> This class receives item category and goods name from DB and places them into an ObservableList
  * to been shown at the AddGoodsController class for goods to be added to inventory.
  * */
 public class ItemCategoryData {
@@ -34,7 +33,7 @@ public class ItemCategoryData {
      * @return all goods  from database for issuing of goods.
      * */
     public static ObservableList<String> allProducts() throws SQLException {
-        return DataAccess.getAllGods();
+        return DataAccess.getAllGoods();
     }
 
     /**
@@ -49,12 +48,4 @@ public class ItemCategoryData {
             "\"sixth guide note here\"",
             "\"seventh guide note here\""
     ));
-
-    public static ObservableList<String> attendance(){
-        ArrayList<String> attendanceData = new ArrayList<String>();
-        for(int i = 0; i <= 150; i++){
-            attendanceData.add(String.valueOf(i));
-        }
-        return FXCollections.observableArrayList(attendanceData);
-    }
 }

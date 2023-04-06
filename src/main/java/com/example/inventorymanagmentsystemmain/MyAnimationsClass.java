@@ -15,11 +15,13 @@ import tray.notification.NotificationType;
  * this is a custom animation class
  * */
 public class MyAnimationsClass {
+    /**
+     * @param image takes image you want to perform rotation on
+     * */
     public static void rotateRotateRefreshImages(ImageView image){
         RotateTransition rotateTransition = new RotateTransition();
         rotateTransition.setNode(image);
         rotateTransition.setDuration(Duration.seconds(3));
-//        rotateTransition.setCycleCount(TranslateTransition.INDEFINITE);
         rotateTransition.setInterpolator(Interpolator.LINEAR);
         rotateTransition.setByAngle(360);
         rotateTransition.play();

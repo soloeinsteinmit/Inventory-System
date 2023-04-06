@@ -6,6 +6,9 @@ import tray.animations.AnimationType;
 import tray.notification.NotificationType;
 import tray.notification.TrayNotification;
 
+/**
+ * Takes care of all notification used in the application
+ * */
 public class AlertNotification {
     public static void trayNotification(String title, String message, double duration, NotificationType nt){
         TrayNotification tray = new TrayNotification();

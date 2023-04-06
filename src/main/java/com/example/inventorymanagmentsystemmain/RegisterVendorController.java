@@ -76,10 +76,11 @@ public class RegisterVendorController implements Initializable {
 
     private static String dateRegistered;
 
-    public HashMap<String, VendorsInfo> getVendorInfo() {
-        return vendorInfo;
-    }
-
+    /**
+     * HashMap for storing vendors information on registration
+     * <p>The <i><b>key</b></i> this hashmap is the <i>vendors id</i> while
+     * <p>the <i><b>values</b></i> for the hashmap is the <i>VendorInfo class</i>
+     * */
     private HashMap<String, VendorsInfo> vendorInfo = new HashMap<String, VendorsInfo>();
 
     GetDatetime getDatetime = new GetDatetime();
@@ -108,7 +109,7 @@ public class RegisterVendorController implements Initializable {
                 s = nonAdminCheckbox.getText();
             }
 
-            // place vendors info into
+            // place vendors info into hash map
             vendorInfo.put(idField.getText(), new VendorsInfo(fullNameField.getText(), s, g,
                     telephoneNoField.getText(), getDatetime.todayDate()));
 
@@ -118,7 +119,7 @@ public class RegisterVendorController implements Initializable {
                         vendorInfo.getValue().getTelephone_number(), vendorInfo.getValue().getDate_registered())){
                     System.out.println("Success");
                 }else {
-                    System.out.println("aaaaa");
+                    System.out.println("Error");
                 }
 
             }
@@ -130,13 +131,6 @@ public class RegisterVendorController implements Initializable {
             AlertNotification.trayNotification("SUCCESS", "YOU HAVE SUCCESSFULLY ADDED "+
                     fullNameField.getText().toUpperCase()+".", 5, NotificationType.SUCCESS);
 
-
-            /*
-            *
-            * && !idField.getText().isEmpty() && !fullNameField.getText().isEmpty()
-        && !telephoneNoField.getText().isEmpty() && !gender.getSelectedToggle().isSelected()
-                && !status.getSelectedToggle().isSelected()
-            * */
         }else {
             AlertNotification.trayNotification("ERROR", "PLEASE FILL IN ALL THE FORMS "
                     , 5, NotificationType.ERROR);
@@ -164,6 +158,9 @@ public class RegisterVendorController implements Initializable {
     }
 
     BoxBlur blur = new BoxBlur(3, 3, 3);
+    /**
+     * Removes vendor inventory
+     * */
     @FXML
     void removeVendor(MouseEvent event) {
         anchorPane.setEffect(blur);

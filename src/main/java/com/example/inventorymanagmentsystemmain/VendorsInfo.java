@@ -1,5 +1,8 @@
 package com.example.inventorymanagmentsystemmain;
 
+/**
+ * Class for storing each vendors info
+ * */
 public class VendorsInfo {
     private int number;
     private String name;

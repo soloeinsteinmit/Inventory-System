@@ -7,12 +7,9 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -66,7 +63,6 @@ public class DashboardController implements Initializable {
     public static MFXButton noButton;
     public static MFXButton close;
     public static StackPane parentStack;
-    static Stage stage1;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,57 +84,5 @@ public class DashboardController implements Initializable {
         TooltipClass.tooltipMessage("ADD GOODS", addGoodsTab);
         TooltipClass.tooltipMessage("REGISTER VENDOR", register_vendor);
     }
-
-    static BoxBlur blur = new BoxBlur(3, 3, 3);
-
-    public static void closeWindowAlert(){
-        blurAnchorPane.setEffect(blur);
-        myDialog.show();
-
-        blurAnchorPane.setDisable(true);
-
-        noButton.setOnMouseClicked(event -> {
-            blurAnchorPane.setDisable(false);
-            myDialog.setOnDialogClosed(e-> blurAnchorPane.setEffect(null));
-            myDialog.close();
-
-            ChangingScenes.close(event);
-
-        });
-        close.setOnMouseClicked(e1->{
-            blurAnchorPane.setDisable(false);
-            myDialog.setOnDialogClosed(e-> blurAnchorPane.setEffect(null));
-            myDialog.close();
-
-        });
-    }
-
-    public void signOut(String message){
-        blurAnchorPane.setEffect(blur);
-        myDialog.show();
-
-        blurAnchorPane.setDisable(true);
-        signOutMessage.setText(message);
-
-        noBtn.setOnMouseClicked(event -> {
-            blurAnchorPane.setDisable(false);
-            myDialog.setOnDialogClosed(e-> blurAnchorPane.setEffect(null));
-            myDialog.close();
-        });
-
-        closeDialog.setOnMouseClicked(e1->{
-            blurAnchorPane.setDisable(false);
-
-            myDialog.setOnDialogClosed(e-> blurAnchorPane.setEffect(null));
-            myDialog.close();
-            try {
-                ChangingScenes.changeWindow(e1, "InventoryLogin");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-    }
-
-
 
 }

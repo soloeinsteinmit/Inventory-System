@@ -96,12 +96,7 @@ public class BillsDashboardController implements Initializable {
 
     @FXML
     void search(MouseEvent event) throws SQLException {
-        if (!searchField.getText().isEmpty()){
-            if (Algorithms.linearSearch(searchField.getText(), DataAccess.getReceiptIds())){
-                recentReceiptsListView.getItems().clear();
-                recentReceiptsListView.setItems(Algorithms.searchItems);
-            }
-        }
+
     }
 
     @FXML

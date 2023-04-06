@@ -1,5 +1,7 @@
 package com.example.inventorymanagmentsystemmain;
-
+/**
+ * Class for storing bills information
+ * */
 public class ViewBillsInfo {
     public ViewBillsInfo(String product, int quantity, float amount) {
         this.product = product;
@@ -11,9 +13,6 @@ public class ViewBillsInfo {
         return product;
     }
 
-    public void setProduct(String product) {
-        this.product = product;
-    }
 
     public int getQuantity() {
         return quantity;
@@ -27,9 +26,6 @@ public class ViewBillsInfo {
         return amount;
     }
 
-    public void setAmount(float amount) {
-        this.amount = amount;
-    }
 
     private String product;
     private int quantity;

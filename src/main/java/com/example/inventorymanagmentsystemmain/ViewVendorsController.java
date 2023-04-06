@@ -52,6 +52,8 @@ public class ViewVendorsController implements Initializable {
         setUpViewVendorsTable();
     }
 
+    /**sets up vendors info table*/
+
     private void setUpViewVendorsTable(){
         number.setComparator(Comparator.comparing(VendorsInfo::getNumber));
         vendorName.setComparator(Comparator.comparing(VendorsInfo::getName));

@@ -78,6 +78,10 @@ public class AddGoodsController implements Initializable {
     @FXML
     private Label overStockingMessage;
 
+
+    /**
+     * {@code initialize} method runs every code in it as soon as the class is invoked
+     * */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -103,11 +107,10 @@ public class AddGoodsController implements Initializable {
             }
         });
 
-        // adding goods to combo box
+        // Adding goods category to combo box
         try {
             removeGoodComboBox.setItems(ItemCategoryData.allProducts());
             goodsCategoryComboBox.setItems(ItemCategoryData.goodsCategoryItems());
-            System.out.println("Items list =  "+ItemCategoryData.goodsCategoryItems());
             goodsCategoryComboBoxNew.setItems(ItemCategoryData.goodsCategoryItems());
 
         } catch (SQLException e) {
@@ -117,7 +120,9 @@ public class AddGoodsController implements Initializable {
     }
 
     /**
-     * Calculate gross price for each good.
+     * <p>Calculate total cosr price for each good.
+     * <p>The calculation is done by simply clicking the <i>cost price field</i> in the application.
+     *
      * */
     @FXML
     void calculateGross(MouseEvent event) {
@@ -127,106 +132,116 @@ public class AddGoodsController implements Initializable {
         }
 
     }
-    private final Stack<ArrayList<String>> stackGoods = new Stack<>();
-    private final Queue<ArrayList<String>> queueGoods = new LinkedList<>();
-    private final ArrayList<ArrayList<String>> listGoods = new ArrayList<>();
 
+    /**Stores stack goods*/
+    private final Stack<ArrayList<String>> stackGoods = new Stack<>();
+
+    /**Stores queue goods*/
+    private final Queue<ArrayList<String>> queueGoods = new LinkedList<>();
+
+    /**Stores list goods*/
+    private final List<ArrayList<String>> listGoods = new ArrayList<>();
+
+    /**Stores each good data into various data structure*/
     private final ArrayList<String> items = new ArrayList<>();
     private char addedCollection; // keeps track of the data structure which took the added goods
     private int itemsListSize;
-    private final Stack<Character> trackItemAdded = new Stack<>(); // keeps track of goods added each time
-    private static boolean isOverstocked = false; // keeps track of overstocked goods category to determine whether to clear fields or maintain inputs in fields
+    /**
+     * trackItemAdded stack keeps track of goods added each time
+     * for removal of a goods from their various data structure
+     * */
+    private final Stack<Character> trackItemAdded = new Stack<>();
 
 
-    // TODO: THERE IS A BUG IN CHECKING OF HIGH STOCK GOODS FOR EACH CATEGORY. ARRAYLIST SEEMS TO BE INCREASING IN SIZE INSTEAD OF MAINTAIN ITS ORIGINAL SIZE
+    /**
+     * {@code addGoods} for adding of goods to their various data structure
+     * <p>This is the code that runs behind the <i>ADD GOODS<i/> button in the app
+     * */
     @FXML
     void addGoods(MouseEvent event) throws SQLException {
-//        CURRENT_SUM_QUANTITY = DataAccess.getSumQuantity(goodsCategoryComboBox.getSelectedItem());
 
-        items.add(0, goodsName1.getSelectedItem());
-        System.out.println("good id = "+DataAccess.getGoodsId(goodsName1.getSelectedItem()));
-        items.add(1, buyingPrice.getText());
-        items.add(2, sellingPriceField.getText());
-        items.add(3, totalProfitField.getText());
-        items.add(4, quantityField.getText());
-        items.add(5, GetDatetime.todayDateTime());
+        items.add(0, goodsName1.getSelectedItem()); // goods name
+        items.add(1, buyingPrice.getText()); // stores buying price
+        items.add(2, sellingPriceField.getText()); // stores selling price
+        items.add(3, totalProfitField.getText()); // stores total profit
+        items.add(4, quantityField.getText()); // stores good quantity
+        items.add(5, GetDatetime.todayDateTime()); // stores datetime of when good was added
 
-
-        System.out.println(itemsListSize+" size here");
-
-
-//        System.out.println("pushed items array = " + items);
-//        System.out.println("before push = " + stackGoods);
+        /*checks from database if good should be added in stack*/
         if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "s")){
-
-
             if (DataAccess.updateQuantity(goodsName1.getSelectedItem(), Integer.parseInt(quantityField.getText()),
                     'a')){
-                overStockingMessage.setVisible(true);
-                overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
-            }else {
                 overStockingMessage.setVisible(false);
                 stackGoods.push(new ArrayList<>(items));
                 addedCollection = 's';
                 trackItemAdded.push(addedCollection);
+
+                  }else {
+
+                overStockingMessage.setVisible(true);
+                overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
+
+
             }
 
 
-
+        /*checks from database if good should be added in queue*/
         } else if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "q")) {
-
 
             if (DataAccess.updateQuantity(goodsName1.getSelectedItem(), Integer.parseInt(quantityField.getText()),
                     'a')){
-                overStockingMessage.setVisible(true);
-                overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
-            }else {
+
                 overStockingMessage.setVisible(false);
                 queueGoods.offer(new ArrayList<>(items));
                 addedCollection = 'q';
                 trackItemAdded.push(addedCollection);
-            }
-
-        } else if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "l")) {
+                   }else {
 
 
-
-            if (DataAccess.updateQuantity(goodsName1.getSelectedItem(), Integer.parseInt(quantityField.getText()),
-                    'a')){
                 overStockingMessage.setVisible(true);
                 overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
-            }else {
+
+            }
+
+            /*checks from database if good should be added in list*/
+        } else if (Objects.equals(DataAccess.getDataStructure(goodsCategoryComboBox.getSelectedItem()), "l")) {
+            if (DataAccess.updateQuantity(goodsName1.getSelectedItem(), Integer.parseInt(quantityField.getText()),
+                    'a')){
                 overStockingMessage.setVisible(false);
                 listGoods.add(new ArrayList<>(items));
                 itemsListSize = listGoods.size();
                 addedCollection = 'l';
                 trackItemAdded.push(addedCollection);
+
+                       }else {
+
+                overStockingMessage.setVisible(true);
+                overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
+
+
             }
         }
 
 
         items.clear();
-//        System.out.println("pushed items after array clear = " + items);
-       /* System.out.println("pushed after = " + stackGoods);
-        System.out.println("offered after = " + queueGoods);
-        System.out.println("added after = " + listGoods);
-        System.out.println("tracked items = " + trackItemAdded);
-        System.out.println("overstocked = " + isOverstocked);
-        System.out.println("Quantiyy = " + GoodsCategoryDSChecker.checkQuantityOfUnderEachCategory);*/
 
-        if (!isOverstocked){
-            goodsCategoryComboBox.clearSelection();
-            goodsName1.clear();
-            quantityField.clear();
-            sellingPriceField.clear();
-            buyingPrice.clear();
-            grossPriceField.clear();
-            totalSellingField.clear();
-            totalProfitField.clear();
-        }
+        /*clear fields once a good has been added successfully*/
+        goodsCategoryComboBox.clearSelection();
+        goodsName1.clear();
+        quantityField.clear();
+        sellingPriceField.clear();
+        buyingPrice.clear();
+        grossPriceField.clear();
+        totalSellingField.clear();
+        totalProfitField.clear();
+
 
     }
 
+    /**
+     * {@code removeGoods} helps to remove a goods from added goods
+     * <p>This is the code that runs behind the <i>REMOVE GOODS<i/> button in the app
+     **/
     @FXML
     void removeGoods(MouseEvent event) {
         if (trackItemAdded.isEmpty()){
@@ -246,34 +261,41 @@ public class AddGoodsController implements Initializable {
             System.out.println("removed = " + listGoods);
         }
     }
-    //TODO: adding each item collected in stack to data base... error in loop
+
+    /**
+     * {@code saveGoods} methods save all goods from each data structure into database.
+     * <p>This is the code behind the <i>SAVE</i> button in the application</p>
+     * */
     @FXML
     void saveGoods(MouseEvent event) throws SQLException{
         if (stackGoods.isEmpty() && queueGoods.isEmpty() && listGoods.isEmpty()){
             AlertNotification.trayNotification("ERROR", "PLEASE ADD GOODS TO THE INVENTORY",
                     4, NotificationType.SUCCESS);
         }else {
+
+            /*
+             * Removes all items from stack into database
+             * */
             while(!stackGoods.isEmpty()){
                 ArrayList<String> getEachGoodsDataStack = stackGoods.pop();
                 DataAccess.addGoods(getEachGoodsDataStack.get(0), getEachGoodsDataStack.get(1), getEachGoodsDataStack.get(2),
                         getEachGoodsDataStack.get(3), getEachGoodsDataStack.get(4), getEachGoodsDataStack.get(5), overStockingMessage);
-
             }
 
+            /*Removes all items from queue into database*/
             while (!queueGoods.isEmpty()){
                 ArrayList<String> getEachGoodsDataQueue = queueGoods.poll();
-//                System.out.println("polled data queue = " + getEachGoodsDataQueue);
                 assert getEachGoodsDataQueue != null;
                 DataAccess.addGoods(getEachGoodsDataQueue.get(0), getEachGoodsDataQueue.get(1), getEachGoodsDataQueue.get(2),
                         getEachGoodsDataQueue.get(3), getEachGoodsDataQueue.get(4), getEachGoodsDataQueue.get(5), overStockingMessage);
 
             }
+            /*Removes all items from list into database*/
             while (!listGoods.isEmpty()){
                 for (int i = 0; i < itemsListSize; i++){
                     System.out.println("count value = "+ i);
                     ArrayList<String> getEachGoodsDataList = listGoods.remove(i);
-//                    System.out.println(getEachGoodsDataList);
-//                    System.out.println("removed data list = " + getEachGoodsDataList);
+
                     assert getEachGoodsDataList != null;
 
                     DataAccess.addGoods(getEachGoodsDataList.get(0), getEachGoodsDataList.get(1), getEachGoodsDataList.get(2),
@@ -283,8 +305,8 @@ public class AddGoodsController implements Initializable {
             }
 
             if (stackGoods.isEmpty() && queueGoods.isEmpty() && listGoods.size() == 0){
-                System.out.println("print hererererererererer3");
 
+                /*Clear all fields goods has been saved into database*/
                 goodsCategoryComboBox.clearSelection();
                 goodsName1.clear();
                 quantityField.clear();
@@ -302,6 +324,10 @@ public class AddGoodsController implements Initializable {
 
     }
 
+    /**
+     * {@code addNewCategory} method adds new good category into database
+     * <p>This is the code behind the <i>ADD NEW CATEGORY TO INVENTORY</i> button in the application</p>
+    * */
     @FXML
     void addNewCategory(MouseEvent event) throws SQLException{
         String assignDSCheckerGroup = GoodsCategoryDSChecker.assignDS.get(Integer.parseInt(RandomIdGenerator.randomId(0, GoodsCategoryDSChecker.assignDS.size()-1)));
@@ -327,15 +353,22 @@ public class AddGoodsController implements Initializable {
         }
 
     }
+    /**
+     * {@code topUpQuantity} tops up quantity of good by selecting the good and it category
+     * */
     @FXML
     void topUpQuantity(MouseEvent event)throws SQLException{
         if (!quantityField.getText().isEmpty() && !goodsName1.getText().isEmpty() && !goodsCategoryComboBox.getText().isEmpty()){
             if (DataAccess.updateQuantity(goodsName1.getSelectedItem(), Integer.parseInt(quantityField.getText()),
                     'a')){
+
+                overStockingMessage.setVisible(false);
+             }else {
                 overStockingMessage.setVisible(true);
                 overStockingMessage.setText("OVERSTOCKING "+ goodsCategoryComboBox.getSelectedItem().toUpperCase());
-            }else {
-                overStockingMessage.setVisible(false);
+
+
+
             }
         }else {
             AlertNotification.trayNotification("ERROR", "PLEASE FILL IN THE GOODS NAME, CATEGORY NAME \nAND THE QUANTITY FIELD", 4, NotificationType.NOTICE);
@@ -343,6 +376,9 @@ public class AddGoodsController implements Initializable {
 
     }
 
+    /**
+     * {@code addNewGoods} add new goods into inventory
+     * */
     @FXML
     void addNewGoods(MouseEvent event) throws SQLException{
         DataAccess.addNewGoods(RandomIdGenerator.randomId(111, 999), newGoodsName.getText(), 0.00, 0.00,
@@ -355,6 +391,9 @@ public class AddGoodsController implements Initializable {
 
     }
 
+    /**
+     * Refresh item in various combo box's once and update has been made
+     * */
     @FXML
     void refresh(MouseEvent event) throws SQLException{
         goodsCategoryComboBoxNew.clear();
@@ -371,6 +410,12 @@ public class AddGoodsController implements Initializable {
                 "GOODS NAME AND GOODS CATEGORY HAS BEEN UPDATED.", 5, NotificationType.NOTICE);*/
     }
 
+
+    /**
+     * <p>Calculate total selling price for each good.
+     * <p>The calculation is done by simply clicking the <i>selling price field</i> in the application.
+     *
+     * */
     @FXML
     void calculateTotalSellingPrice(MouseEvent event){
         if (!quantityField.getText().isEmpty() && !sellingPriceField.getText().isEmpty()){
@@ -379,6 +424,12 @@ public class AddGoodsController implements Initializable {
         }
     }
 
+
+    /**
+     * <p>Calculate total profit for each good.
+     * <p>The calculation is done by simply clicking the <i>total profit field</i> in the application.
+     *
+     * */
     @FXML
     void calculateTotalProfit(MouseEvent event){
         if (!totalSellingField.getText().isEmpty() && !grossPriceField.getText().isEmpty()){

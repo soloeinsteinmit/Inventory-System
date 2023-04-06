@@ -1,12 +1,18 @@
 package com.example.inventorymanagmentsystemmain;
 
-public class IssueGoodsInfo {
 
+/**
+ * Class for storing each issued goods
+ * */
+public class IssueGoodsInfo {
     private String product;
     private int quantity;
     private float unitPrice;
 
 
+    /**
+     *Constructor for storing issued each issued good
+     * */
     public IssueGoodsInfo(String product, int quantity, float unitPrice) {
         this.product = product;
         this.quantity = quantity;

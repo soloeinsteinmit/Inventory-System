@@ -3,17 +3,12 @@ package com.example.inventorymanagmentsystemmain;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
-import javafx.util.Duration;
-import tray.animations.AnimationType;
 import tray.notification.NotificationType;
-import tray.notification.TrayNotification;
 
 import java.sql.*;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.*;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 /**
  * @author .py_ML_ai_MIT (Solomon Eshun)
  *This class is mainly for sending and receiving data from the database
@@ -86,21 +81,35 @@ public class DataAccess {
     public static ArrayList<String> receiptDetails = new ArrayList<String>(5);
     public static String getLoggedInUserId;
 
+    /**Stores vendors info*/
     private static ObservableList<VendorsInfo> viewVendorsInfo = FXCollections.observableArrayList();
+    /**Stores issued goods info*/
     private static ObservableList<ViewIssuedGoodsInfo> viewIssuedGoodsInfo = FXCollections.observableArrayList();
+    /**stores bills info*/
     private static ObservableList<ViewBillsInfo> viewBillsInfo = FXCollections.observableArrayList();
+    /**Stores goods info*/
     private static ObservableList<ViewGoodsInfo> viewGoodsInfo = FXCollections.observableArrayList();
+    /**stores goods category*/
     private static ObservableList<String> itemCategory = FXCollections.observableArrayList();
+    /**stores all products*/
     private static ObservableList<String> allProducts = FXCollections.observableArrayList();
+    /**stores goods from database per category selected*/
     private static ObservableList<String> goodsName = FXCollections.observableArrayList();
 
+    /**Stores stack goods*/
     private static Stack<ArrayList<String>> stackItems = new Stack<>();
+    /**stores queue goods*/
     private static Queue<ArrayList<String>> queueItems = new LinkedList<>();
-    private static ArrayList<ArrayList<String>> arrayListItems = new ArrayList<>();
+    /**stores list goods*/
+    private static List<ArrayList<String>> arrayListItems = new ArrayList<>();
     private static ArrayList<String> getEachItem = new ArrayList<>();
 
 
 
+    /**
+     * @param id gets id of user for validation
+     * @param password get password of user for validation
+     * */
     public static boolean login(String id, String password) throws SQLException {
         Connection connection;
         PreparedStatement psCheckUserExist;
@@ -121,6 +130,9 @@ public class DataAccess {
 
     }
 
+    /**
+     * get user credentials from database
+     * */
     public static boolean getUserProfile() throws SQLException {
         Connection connection;
         PreparedStatement psGetUserProfile;
@@ -151,6 +163,7 @@ public class DataAccess {
         }
     }
 
+    /**gets information about a receipt*/
     public static boolean getReceiptDetails() throws SQLException, ParseException {
         Connection connection;
         PreparedStatement psGetReceiptDetails;
@@ -178,6 +191,7 @@ public class DataAccess {
         return true;
     }
 
+    /**get vendors name from database*/
     public static String getUserName(String userId) throws SQLException {
         Connection connection;
         PreparedStatement psGetUserName;
@@ -203,6 +217,7 @@ public class DataAccess {
 
     }
 
+    /**check password for validation and changing of password*/
     public static boolean checkPassword(String password) throws SQLException {
         Connection connection;
         PreparedStatement psCheckPassword;
@@ -228,6 +243,10 @@ public class DataAccess {
 
     }
 
+    /**
+     * Changes vendor password
+     * @param password get password to be changed to
+     * */
     public static void changePassword(String password) throws SQLException {
         Connection connection;
         PreparedStatement psInsertPassword;
@@ -244,6 +263,10 @@ public class DataAccess {
 
     }
 
+    /**
+     * Registers vendor
+     * <p>Check if vendor Id exist before creating a new account for a vendor</p>
+     * */
     public static boolean registerVendor(String name, String id, String status, String gender,
              String telephoneNo, String date) throws SQLException {
 
@@ -273,11 +296,6 @@ public class DataAccess {
             psRegisterVendor.setString(4, status);
             psRegisterVendor.setString(5, gender);
 
-            /*java.util.Date date = new Date();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("Y-MM-dd");
-            dateFormat.format(date)
-            */
-
             psRegisterVendor.setString(6, date);
             psRegisterVendor.setString(7, telephoneNo);
             psRegisterVendor.executeUpdate();
@@ -286,6 +304,7 @@ public class DataAccess {
 
     }
 
+    /**checks if an id is valid*/
     public static boolean checkId(String id) throws SQLException {
         Connection connection;
         PreparedStatement psCheckId;
@@ -311,6 +330,7 @@ public class DataAccess {
 
     }
 
+    /**retrieves all issued goods info from database*/
     public static ObservableList<ViewIssuedGoodsInfo> allIssuedGoodsInfo() throws SQLException{
         int i = 1;
         Connection connection;
@@ -343,12 +363,12 @@ public class DataAccess {
         return viewIssuedGoodsInfo;
     }
     /**
-     *
+     * retrieves all vendors info from database
      * */
     public static ObservableList<VendorsInfo> allVendorsInfo() throws SQLException {
         int i = 1; Connection connection;
         PreparedStatement psGetDetails; ResultSet resultSet;
-
+        // HashMap for retrieving vendors info from database
         HashMap<String, VendorsInfo> vInfo = new HashMap<String, VendorsInfo>(); // hashmap to store vendor info
 
         connection = DriverManager.getConnection(DBConstantConnection.root_URL,
@@ -361,7 +381,8 @@ public class DataAccess {
         if (resultSet.isBeforeFirst()){
             while (resultSet.next()){
                 name = resultSet.getString("user_name");
-                id = resultSet.getString("user_id"); status = resultSet.getString("status");
+                id = resultSet.getString("user_id");
+                status = resultSet.getString("status");
                 gender = resultSet.getString("gender"); date_registered = resultSet.getString("date_registered");
                 telephone_number = resultSet.getString("telephone_number");
 
@@ -377,6 +398,9 @@ public class DataAccess {
         return viewVendorsInfo;
     }
 
+    /**
+     * retrieves all vendors info from database
+     * */
     public static ObservableList<ViewBillsInfo> allBillsInfo() throws SQLException{
         Connection connection;
         PreparedStatement psGetBills;
@@ -403,6 +427,7 @@ public class DataAccess {
         return viewBillsInfo;
     }
 
+    /**get data structure for each category*/
     public static String getDataStructure(String categoryName) throws SQLException{
         Connection connection;
         PreparedStatement getDS;
@@ -426,6 +451,9 @@ public class DataAccess {
         return dataStructure;
     }
 
+    /**
+     * retrieves all goods info from database
+     * */
     public static ObservableList<ViewGoodsInfo> allGoodsInfo() throws SQLException {
         int i = 1;
         Connection connection;
@@ -460,13 +488,6 @@ public class DataAccess {
                 getEachItem.add(3, sellingPrice);
                 getEachItem.add(4, String.valueOf(formattedNumber));
 
-                /*if (Algorithms.linearSearch(categoryNames, GoodsCategoryDSChecker.stackGoodsCategory)){
-                    stackItems.push(new ArrayList<>(getEachItem));
-                } else if (Algorithms.linearSearch(categoryNames, GoodsCategoryDSChecker.queueGoodsCategory)) {
-                    queueItems.offer(new ArrayList<>(getEachItem));
-                } else if (Algorithms.linearSearch(categoryNames, GoodsCategoryDSChecker.arrayListGoodsCategory)) {
-                    arrayListItems.add(new ArrayList<>(getEachItem));
-                }*/
 
                 if (Objects.equals(getDataStructure(getEachItem.get(1)), "s")){
                     stackItems.push(new ArrayList<>(getEachItem));
@@ -476,10 +497,10 @@ public class DataAccess {
                     arrayListItems.add(new ArrayList<>(getEachItem));
                 }
                 getEachItem.clear();
-//                System.out.println("from db stack = " + stackItems);
-//                System.out.println("from db queue = " + queueItems);
-//                System.out.println("from db list = " + arrayListItems);
-                // TODO: CODE FOR RECEIVING STACK, QUEUE AND ARRAYLIST WILL BE HERE -- DONE
+
+                /*System.out.println("from db stack = " + stackItems);
+                System.out.println("from db queue = " + queueItems);
+                System.out.println("from db list = " + arrayListItems);*/
 
             }
             while (!stackItems.isEmpty()){
@@ -508,7 +529,6 @@ public class DataAccess {
 
             }
 
-//            viewGoodsInfo.add(new ViewGoodsInfo(i, goodsNames, categoryNames, quantity, "$ "+sellingPrice));
 
         }
         return viewGoodsInfo;
@@ -529,6 +549,9 @@ public class DataAccess {
 
     }
 
+    /**
+     * retrieves all goods category from database
+     * */
     public static ObservableList<String> allItemCategory() throws SQLException {
         Connection connection;
         PreparedStatement psGetItemCategory;
@@ -545,20 +568,22 @@ public class DataAccess {
             while (resultSet.next()){
                 item_category = resultSet.getString("category_name");
 
+                // using linear search algorithm detecting duplicate category
                 if (Algorithms.linearSearch(item_category, itemCategory)){
-                    //itemCategory.contains(item_category);
                     continue;
                 }else {
                     itemCategory.add(item_category);
                 }
 
-//                System.out.println("each item = "+ item_category);
 
             }
         }
         return itemCategory;
     }
 
+    /**
+     * retrieves all goods name from database
+     * */
     public static ObservableList<String> allGoodsName(String categoryName) throws SQLException {
         Connection connection;
         PreparedStatement psGetGoodsName;
@@ -583,6 +608,9 @@ public class DataAccess {
         return goodsName;
     }
 
+    /**
+     * removes vendor from database
+     * */
     public static void removeVendor(String id) throws SQLException {
         Connection connection;
         PreparedStatement psDeleteUser;
@@ -599,6 +627,10 @@ public class DataAccess {
                     4, NotificationType.SUCCESS);
     }
 
+    /**
+     * retrieves goods id from database with it good name
+     * @param goods_name name of goods you want to get id of
+     * */
     public static String getGoodsId(String goods_name) throws SQLException {
         Connection connection;
         PreparedStatement psGetGoodsId;
@@ -618,6 +650,11 @@ public class DataAccess {
         }
         return goodsId;
     }
+
+    /**
+     * retrieves category id from database with it category name
+     * @param category_name name of category you want to get id of
+     * */
     public static String getCategoryId(String category_name) throws SQLException {
         Connection connection;
         PreparedStatement psGetCategoryId;
@@ -638,6 +675,10 @@ public class DataAccess {
         return categoryId;
     }
 
+    /**
+     * retrieves category name from database with it category id
+     * @param c_id id of category you want to get name of
+     * */
     public static String getCategoryName(String c_id) throws SQLException {
         Connection connection;
         PreparedStatement psGetCategoryId;
@@ -657,6 +698,11 @@ public class DataAccess {
         }
         return categoryName;
     }
+
+    /**
+     * retrieves goods name from database with it goods id
+     * @param g_id id of goods you want to get name of
+     * */
     public static String getGoodName(String g_id) throws SQLException {
         Connection connection;
         PreparedStatement psGetGoodsId;
@@ -681,7 +727,9 @@ public class DataAccess {
     }
 
 
-
+    /**
+     * adds goods to database
+     * */
     public static void addGoods(String goodsName, String buyingPrice,String sellingPrice, String profit,
                 String quantity,String datetimeRegistered, Label overStockingMessage) throws SQLException {
 
@@ -733,6 +781,9 @@ public class DataAccess {
 
     }
 
+    /**
+     * add new category to inventory
+     * */
     public static void addNewCategory(String cId, String categoryName, String ds) throws SQLException {
         Connection connection;
         PreparedStatement psAddNewCategory;
@@ -763,6 +814,9 @@ public class DataAccess {
 
     }
 
+    /**
+     * add new goods inventory
+     * */
     public static void addNewGoods(String goodsId, String goodsName, Double bp, Double sp, Double gp, Integer quantity,
                    String datetimeRegistered, String categoryName) throws SQLException {
         Connection connection;
@@ -788,6 +842,9 @@ public class DataAccess {
 
     }
 
+    /**
+     * get quantity of a selected good
+     * */
     public static int getGoodQuantity(String goodName) throws SQLException {
         Connection connection;
         PreparedStatement psGetEachGoodQuantity;
@@ -812,8 +869,10 @@ public class DataAccess {
     }
 
 
-
-    public static ObservableList<String> getAllGods() throws SQLException{
+    /**
+     * gets all goods info
+     * */
+    public static ObservableList<String> getAllGoods() throws SQLException{
         Connection connection;
         PreparedStatement psGetAllGoods;
         ResultSet resultSet;
@@ -831,7 +890,6 @@ public class DataAccess {
 
                 if (Algorithms.linearSearch(productName, allProducts)){
                     continue;
-                    // allProducts.contains(productName)
                 }else {
                     allProducts.add(productName);
                 }
@@ -841,6 +899,9 @@ public class DataAccess {
         return allProducts;
     }
 
+    /**
+     * get selling price of product selected
+     * */
     public static float getSellingPriceOfProduct(String productName) throws SQLException{
         Connection connection;
         PreparedStatement psGetSellingPrice;
@@ -891,6 +952,10 @@ public class DataAccess {
 
         return initialQuantity;
     }
+
+    /**
+     * update quantity of each product
+     * */
     public static boolean updateQuantity(String gName, int quantity, char updateQuantityType) throws SQLException {
         Connection connection;
         PreparedStatement psUpdateQuantity;
@@ -903,60 +968,68 @@ public class DataAccess {
                 SET quantity = ?
                 WHERE goods_name = ?
                 """);
-
+        int total = getEachProductQuantity(gName) + quantity;
         if (updateQuantityType == 'a'){ // a - adding of goods into table
-            if(getEachProductQuantity(gName) + quantity >= HIGH_STOCK_VALUE && getEachProductQuantity(gName) + quantity < HIGHEST_STOCK_VALUE){
-                psUpdateQuantity.setInt(1, getEachProductQuantity(gName) + quantity);
+            if(total >= HIGH_STOCK_VALUE && total < HIGHEST_STOCK_VALUE){
+                System.out.println("1");
+                psUpdateQuantity.setInt(1, total);
+                psUpdateQuantity.setString(2, gName);
                 AlertNotification.trayNotification("OVERSTOCKING", gName.toUpperCase()+ " IS BEING OVERSTOCKED",
                         4, NotificationType.NOTICE);
                 return true;
 
-            } else if(getEachProductQuantity(gName) + quantity >= HIGHEST_STOCK_VALUE){
-//                psUpdateQuantity.setInt(1, getEachProductQuantity(gName));
+            } else if(total >= HIGHEST_STOCK_VALUE){
+                System.out.println("2");
                 AlertNotification.trayNotification("OVERSTOCKING", gName.toUpperCase()+ " IS BEING OVERSTOCKED\n" +
                         "CANNOT ADD ANYMORE GOODS TO INVENTORY", 4, NotificationType.NOTICE);
                 return false;
             }else {
-                psUpdateQuantity.setInt(1, getEachProductQuantity(gName) + quantity);
-//                System.out.println("Initial quantity of "+ gName +" "+ getEachProductQuantity(gName));
-//                System.out.println("DataAccess updated db= "+ (getEachProductQuantity(gName) + quantity));
+
+                System.out.println("p1 "+total);
+
+                psUpdateQuantity.setInt(1, total);
+                psUpdateQuantity.setString(2, gName);
+                psUpdateQuantity.executeUpdate();
+
+                System.out.println("pr"+total);
                 return true;
             }
 
         }else if(updateQuantityType == 'i'){ // i - issuing of goods
             if ( getEachProductQuantity(gName) - quantity <= LOW_STOCK_VALUE){
                 psUpdateQuantity.setInt(1, getEachProductQuantity(gName) - quantity);
+                psUpdateQuantity.setString(2, gName);
                 AlertNotification.trayNotification("OUT OF STOCK", gName.toUpperCase()+ " IS GETTING OUT OF STOCK",
                         4, NotificationType.NOTICE);
-                System.out.println("Initial quantity of "+ gName +" "+ getEachProductQuantity(gName));
-                System.out.println("DataAccess line 694 updated db= "+ (getEachProductQuantity(gName) - quantity));
                 return true;
 
             } else if (getEachProductQuantity(gName) - quantity <= LOWEST_STOCK_VALUE){
                 psUpdateQuantity.setInt(1, getEachProductQuantity(gName) - quantity);
+                psUpdateQuantity.setString(2, gName);
                 AlertNotification.trayNotification("OUT OF STOCK", gName.toUpperCase()+ " VERY IS LOW IN STOCK",
                         4, NotificationType.NOTICE);
-                System.out.println("Initial quantity of "+ gName +" "+ getEachProductQuantity(gName));
-                System.out.println("DataAccess line 694 updated db= "+ (getEachProductQuantity(gName) - quantity));
                 return true;
 
             }else if (getEachProductQuantity(gName) - quantity <= 0){
-//                psUpdateQuantity.setInt(1, getEachProductQuantity(gName));
                 AlertNotification.trayNotification("OUT OF STOCK", gName.toUpperCase()+ " IS OUT IN STOCK", 4, NotificationType.NOTICE);
-                System.out.println("Initial quantity of "+ gName +" "+ getEachProductQuantity(gName));
-                System.out.println("DataAccess line 694 updated db= "+ (getEachProductQuantity(gName) - quantity));
+
                 return false;
             }else {
                 psUpdateQuantity.setInt(1, getEachProductQuantity(gName) - quantity);
+                psUpdateQuantity.setString(2, gName);
+                psUpdateQuantity.executeUpdate();
+                return true;
             }
 
         }
 
-        psUpdateQuantity.setString(2, gName);
-        psUpdateQuantity.executeUpdate();
+
         return false;
     }
 
+    /**
+     * inserts issued goods into database
+     * */
     public static void issueGoods(String gName, String rId, int quantitySold, float amt, String cName) throws SQLException {
         Connection connection;
         PreparedStatement psIssueGoods;
@@ -976,6 +1049,7 @@ public class DataAccess {
         psIssueGoods.executeUpdate();
     }
 
+    /**method not used yet*/
     public static String getReceiptId(String rId) throws SQLException {
         Connection connection;
         PreparedStatement psGetReceiptId;
@@ -997,11 +1071,14 @@ public class DataAccess {
         }else{
             AlertNotification.trayNotification("INVALID RECEIPT ID", "PLEASE ENTER RECEIPT ID AGAIN", 4, NotificationType.NOTICE);
 
-        }
+    }
 
         return receiptID;
     }
 
+    /**
+     * checks for valid receipt id
+     * */
     public static boolean checkReceiptIdExist(String rId) throws SQLException {
         Connection connection;
         PreparedStatement psGetReceiptId;
@@ -1041,27 +1118,6 @@ public class DataAccess {
 
 
         return receiptIds;
-    }
-
-
-    private boolean validateEmail(String  email){
-        Pattern pattern = Pattern.compile("[a-zA-Z0-9][a-zA-Z0-9._]*@[a-zA-Z0-9]+([.][a-zA-Z]+)+");
-        Matcher matcher = pattern.matcher(email);
-        if (matcher.find() && matcher.group().equals(email)){
-            return true;
-        } else {
-            String title = "Email Validation Error";
-            String message = "Please enter a valid email";
-            TrayNotification tray = new TrayNotification();
-            AnimationType  type = AnimationType.POPUP;
-
-            tray.setAnimationType(type);
-            tray.setTitle(title);
-            tray.setMessage(message);
-            tray.setNotificationType(NotificationType.ERROR);
-            tray.showAndDismiss(Duration.millis(3000));
-            return false;
-        }
     }
 
     public static String getName() {
