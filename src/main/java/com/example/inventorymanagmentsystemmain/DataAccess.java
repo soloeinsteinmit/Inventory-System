@@ -368,8 +368,11 @@ public class DataAccess {
     public static ObservableList<VendorsInfo> allVendorsInfo() throws SQLException {
         int i = 1; Connection connection;
         PreparedStatement psGetDetails; ResultSet resultSet;
+        
         // HashMap for retrieving vendors info from database
         HashMap<String, VendorsInfo> vInfo = new HashMap<String, VendorsInfo>(); // hashmap to store vendor info
+        ArrayList<Integer> sortValues = new ArrayList<>();
+
 
         connection = DriverManager.getConnection(DBConstantConnection.root_URL,
                 DBConstantConnection.user, DBConstantConnection.password);
@@ -383,18 +386,44 @@ public class DataAccess {
                 name = resultSet.getString("user_name");
                 id = resultSet.getString("user_id");
                 status = resultSet.getString("status");
-                gender = resultSet.getString("gender"); date_registered = resultSet.getString("date_registered");
+                gender = resultSet.getString("gender");
+                date_registered = resultSet.getString("date_registered");
                 telephone_number = resultSet.getString("telephone_number");
 
                 vInfo.put(id, new VendorsInfo(i, name, status, gender, date_registered, telephone_number)); //puts data into hashmap
                 i++;
             }
+
         }
+
+        for(Map.Entry<String, VendorsInfo> eachVendorInfo : vInfo.entrySet()){
+            sortValues.add(eachVendorInfo.getValue().getNumber());
+        }
+        int[] sort = new int[sortValues.size()];
+
+        for (int j = 0; j < sortValues.size(); j++){
+            sort[j] = sortValues.get(j);
+        }
+        Algorithms.mergeSort(sort); //mergeSort
+        sortValues.clear();
+
+        for (int k = 0; k < sort.length; k++){
+            sortValues.add(k, sort[k]);
+        }
+        System.out.println(sortValues);
+
+        Queue<Integer> sorted = new LinkedList<>(sortValues);
+
         for(Map.Entry<String, VendorsInfo> eachVendorInfo : vInfo.entrySet()){ // displays data into hashmap
-            viewVendorsInfo.add(new VendorsInfo(eachVendorInfo.getValue().getNumber(), eachVendorInfo.getValue().getName(), eachVendorInfo.getKey(), eachVendorInfo.getValue().getStatus(),
+
+            viewVendorsInfo.add(new VendorsInfo(sorted.poll(), eachVendorInfo.getValue().getName(), eachVendorInfo.getKey(), eachVendorInfo.getValue().getStatus(),
                 eachVendorInfo.getValue().getGender(), eachVendorInfo.getValue().getDate_registered(),
                     eachVendorInfo.getValue().getTelephone_number()));
+
         }
+
+        sorted.clear();
+        sortValues.clear();
         return viewVendorsInfo;
     }
 

@@ -8,9 +8,18 @@ public class TestAlgorithms {
 
 //        ArrayList<String> test = new ArrayList<>(List.of("a", "b", "c"));
 //        System.out.println(Algorithms.linearSearch("d", test));
-        ArrayList<Integer> sort = new ArrayList<>(List.of(5, 12, 5, 6, 2, 6, 1, 90, 23, 13, 54, 23));
+        ArrayList<Integer> sort = new ArrayList<>(List.of(12, 5, 6, 2, 1, 90, 23, 13, 54, 23));
 
-        Algorithms.mergeSort(sort);
-        System.out.println(sort);
+        int[] array = {9, 2, 1, 5, 7};
+        int[] sort1 = new int[sort.size()];
+        for (int i = 0; i < sort.size(); i++){
+            sort1[i] = sort.get(i);
+        }
+        System.out.println(sort1);
+        Algorithms.mergeSort(sort1);
+
+        for (int j : sort1) {
+            System.out.print(j + " ");
+        }
     }
 }

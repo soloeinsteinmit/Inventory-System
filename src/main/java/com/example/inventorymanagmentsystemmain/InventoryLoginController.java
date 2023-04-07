@@ -87,8 +87,8 @@ public class InventoryLoginController implements Initializable {
 
                 if (DataAccess.getUserProfile()){
                     if (DataAccess.myProfileData.get(2).equals("Admin")){
-//                        ChangingScenes.changeWindow(event, "Dashboard");
-                        ChangingScenes.toHome(event, "Dashboard", mfxSpinner);
+                        ChangingScenes.changeWindow(event, "Dashboard");
+//                        ChangingScenes.toHome(event, "Dashboard", mfxSpinner);
                     }else{
 //                        ChangingScenes.changeWindow(event, "DashboardNonAdmin");
                         ChangingScenes.toHome(event, "DashboardNonAdmin", mfxSpinner);
