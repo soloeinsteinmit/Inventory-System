@@ -13,14 +13,15 @@
 The login for the frontend logins
 - Admin Id: 2468
 - Password: structures
-> The non vendor
+> Non admin logins
 - user Id: 8642
 - password: vendor
 
 ## Some Java files and their functions
-- The DBConstantConnection.java is the connection class to the database and you can MySqlWorkBench to work with the database.
-- Algorithms.java contains some algorithms
-- DataAccess.java contains some algorithms and database access. Also for keeping balance between high and low price.
+- The DBConstantConnection.java establishes connection with the MySQLWorkbench server
+  - It contains the MySQL server *password*, *root* and *url* for making connection to the server.
+- Algorithms.java contains some algorithms.
+- DataAccess.java contains sql queries for retrieving and storing goods and information about vendors into database. It also contains code for keeping balance between high and low price.
 
 ## Implementation of data Structures
 - AddGoodsController.java and DataAccess.java contain codes for adding and removing of goods in their various structures

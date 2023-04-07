@@ -17,8 +17,6 @@ public class InventoryManagementSystem extends Application {
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
 
-//        stage.initStyle(StageStyle.UNDECORATED);
-
         root.setOnMousePressed(mouseEvent -> {
             x = mouseEvent.getSceneX();
             y = mouseEvent.getSceneY();
@@ -28,12 +26,10 @@ public class InventoryManagementSystem extends Application {
             stage.setY(mouseEvent.getScreenY() - y);
         });
 
-//        stage.getIcons().add(icon);
         stage.setTitle("Inventory Management System");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
-
 
     }
 

@@ -438,8 +438,11 @@ public class AddGoodsController implements Initializable {
         }
     }
 
+    /**
+     * Removes goods from inventory
+     * */
     @FXML
     void removeGoodFromIventory(MouseEvent event){
-
+        //TODO: Write code to remove good from inventory
     }
 }
